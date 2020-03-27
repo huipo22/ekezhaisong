@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-goods-action": "../../dist/vant/goods-action/index",
+    "van-goods-action-icon": "../../dist/vant/goods-action-icon/index",
+    "van-goods-action-button": "../../dist/vant/goods-action-button/index"
+  },
+  "navigationBarTitleText": "商品详情"
+}

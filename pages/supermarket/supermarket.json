@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-card": "../../dist/vant/card/index",
+    "van-loading": "../../dist/vant/loading/index",
+    "search-com":"../searchComponent/searchComponent"
+  },
+  "navigationBarTitleText": "分类"
+}

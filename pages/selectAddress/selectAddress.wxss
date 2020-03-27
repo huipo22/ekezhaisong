@@ -1,0 +1,28 @@
+/* pages/selectAddress/selectAddress.wxss */
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.addressBox {
+    width: 100%;
+    background: #fff;
+    padding: 0;
+}
+
+.addressCon, .address {
+    display: flex;
+    height: 80rpx;
+    align-items: center;
+}
+
+.addressCon .name {
+    flex: 1
+}
+
+.btnBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

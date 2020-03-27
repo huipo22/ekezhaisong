@@ -1,0 +1,21 @@
+/* pages/editAddress/editAddress.wxss */
+
+.container {
+  height: 100%;
+  background: #fff;
+}
+.edit_address{
+  width: 100%;
+}
+.address {
+  width: 100%;
+}
+
+.weui-label {
+  width: 80px;
+}
+
+.weui-cell{
+  border-bottom: 1rpx solid #F1F1F3;
+  padding: 25rpx!important;
+}

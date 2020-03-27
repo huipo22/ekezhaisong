@@ -1,0 +1,70 @@
+<!-- pages/person/person.wxml -->
+<view class="container">
+  <!-- 头 -->
+  <view class='p-header'>
+    <view class="bgHeader">
+      <view class="avater">
+        <image bindtap="submitTap" class="avaterImg1" src="{{userData.avatarUrl}}" mode="cover"></image>
+        <view class="avaterItem">
+          <view class="avaterName">{{userData.nickName}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="order common">
+    <view class="order-title f_m_size">
+      <text>我的订单</text>
+    </view>
+    <view class="order_list f_s_size">
+      <view class="order_list_cato" data-num="1" bindtap="orderList">
+        <image class="avaterImg" src="../../dist/icon/daifukuan.png"></image>
+        <view>
+          <text>待付款</text>
+        </view>
+      </view>
+      <view class="order_list_cato" data-num="2" bindtap="orderList">
+        <image class="avaterImg" src="../../dist/icon/daifahuo.png"></image>
+        <view>
+          <text>待发货</text>
+        </view>
+      </view>
+      <view class="order_list_cato" data-num="3" bindtap="orderList">
+        <image class="avaterImg" src="../../dist/icon/daishouhuo.png"></image>
+        <view>
+          <text>待收货</text>
+        </view>
+      </view>
+      <view class="order_list_cato" data-num="4" bindtap="orderList">
+        <image class="avaterImg" src="../../dist/icon/yiwancheng.png"></image>
+        <view>
+          <text>已完成</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottomList common f_m_size">
+    <button open-type="contact">
+      <mp-cell value="在线客服" link="true" ext-class="bottom_line" open-type="contact">
+        <view slot="icon" class="slot_icon">
+          <image src="../../dist/icon/kefu.png" width="20px" height="20px"></image>
+        </view>
+      </mp-cell>
+    </button>
+    <mp-cell value="联系商家" link="true" bindtap="makePhone" ext-class="bottom_line">
+      <view slot="icon" class="slot_icon">
+        <image src="../../dist/icon/phone.png" width="20px" height="20px"></image>
+      </view>
+    </mp-cell>
+    <mp-cell value="收货地址" link="true" bindtap="addressTap" ext-class="bottom_line">
+      <view slot="icon" class="slot_icon">
+        <image src="../../dist/icon/address.png" width="20px" height="20px"></image>
+      </view>
+    </mp-cell>
+    <mp-cell value="联系开发小程序" link="true" bindtap="shopsTap" ext-class="bottom_line">
+      <view slot="icon" class="slot_icon">
+        <image src="../../dist/icon/platform.png" width="20px" height="20px"></image>
+      </view>
+    </mp-cell>
+  </view>
+</view>

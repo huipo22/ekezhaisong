@@ -1,0 +1,49 @@
+<!-- pages/goodList/goodList.wxml -->
+<view class="container" wx:if="{{display}}">
+  <view class="menu_box">
+    <view class="menu_box_titleBox {{flag == 1?'flag':''}}" data-type="1" bindtap="clickNav">
+      综合
+    </view>
+    <view class="menu_box_titleBox {{flag == 2?'flag':''}}" data-type="2" bindtap="clickNav">
+      最新
+    </view>
+    <view class="menu_box_titleBox {{flag == 3||flag == 4 ?'flag':''}}" data-type="{{aFlag==true?3:4}}" bindtap="clickNav">
+      价格
+      <view>
+        <view class="topArrow {{flag == 4 ?'topActive':''}}"></view>
+        <view class="bottomArrow {{flag == 3?'bottomActive':''}}"></view>
+      </view>
+    </view>
+    <view class="menu_box_titleBox {{flag == 5?'flag':''}}" data-type="5" bindtap="clickNav">
+      销量
+    </view>
+  </view>
+  <view class="menu_tab">
+    <scroll-view class="" scroll-x="false" scroll-y="true" style="height: 1254rpx;" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper="" bindscrolltolower="loadMore" bindscroll="" data-type="{{flag}}">
+      <view class="menu_tab_list">
+        <view class="menu_tab_list_good" bindtap="goodSelect" wx:for="{{goodsList}}" wx:key="id" wx:for-item="good" data-goodid="{{good.id}}">
+          <view>
+            <image src="{{resourse+good.goods_img}}" mode="aspectFill"></image>
+            <view class="good_detail">
+              <text>{{good.goods_name}}</text>
+              <view class="menu_box_n">
+                <view class="menu_box_n_1">
+                  <text>{{"￥"+good.present_price}}</text>
+                </view>
+                <view class="menu_box_n_2 f_h3">
+                  <text>已售{{good.goods_volume}}{{good.goods_spec}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<view class="menu_tab" wx:else>
+  <view class="isView">
+    <image class="wushuju" src="{{noneImg}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+    <text class="">{{noneData}}</text>
+  </view>
+</view>

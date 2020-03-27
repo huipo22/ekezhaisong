@@ -1,0 +1,33 @@
+<!-- pages/goodList/goodList.wxml -->
+<view class="container">
+    <view class="menu_tab" wx:if="{{platformList}}">
+        <view class="menu_tab_list">
+            <view class="menu_tab_list_good" wx:for="{{platformList}}" wx:key="id" wx:for-item="good">
+                <view>
+                    <image src="{{resourse+good.img}}" mode="aspectFill" bind:tap="preview" data-src="{{resourse+good.img}}"></image>
+                    <view class="good_detail">
+                        <text>{{good.name}}</text>
+                        
+                        <view class="menu_box_n">
+                            <view class="menu_box_n_1">
+                                <text>{{"￥"+good.price}}</text>
+                            </view>
+                            <view class="menu_box_n_2 f_h3">
+                                <text>已售{{good.number}}</text>
+                            </view>
+                        </view>
+                        <view class="menu_box_n cen">
+                            <text class="phoneStyle" bindtap="call" data-phoneNumber="{{good.mobile}}">拨打电话</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="menu_tab" wx:else>
+        <view class="isView">
+            <image class="wushuju" src="../../dist/icon/zanwushuju.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+            <text class="">暂无数据</text>
+        </view>
+    </view>
+</view>

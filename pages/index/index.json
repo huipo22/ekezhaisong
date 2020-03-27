@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-grid": "../../dist/vant/grid/index",
+    "van-grid-item": "../../dist/vant/grid-item/index",
+    "van-button": "../../dist/vant/button/index",
+    "van-icon": "../../dist/vant/icon/index",
+    "search-com":"../searchComponent/searchComponent",
+    "van-card": "../../dist/vant/card/index"
+  },
+  "navigationBarTitleText": ""
+}

@@ -1,0 +1,64 @@
+/* pages/goodList/goodList.wxss */
+
+.menu_box {
+  width: 100%;
+  display: flex;
+  height: 100rpx;
+  background: #fff;
+  align-items: center;
+}
+
+.menu_box_titleBox {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+
+.menu_tab {
+  width: 100%;
+  height: auto;
+}
+
+.menu_box_n {
+  display: flex;
+  height: 60rpx;
+}
+
+.menu_box_n_1 {
+  display: flex;
+  flex: 2;
+  align-items: center;
+  color: red;
+}
+
+.menu_box_n_2 {
+  display: flex;
+  /* flex: 1; */
+  align-items: center;
+  color: #ccc;
+}
+
+.menu_tab_list {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.menu_tab_list_good {
+  width: 49%;
+  overflow: hidden;
+  background: #fff;
+  margin: 3rpx;
+}
+
+.menu_tab_list_good image {
+  width: 100%;
+  height: 350rpx;
+}
+.good_detail{
+  padding: 10rpx;
+}
+.flag {
+  color: red;
+}

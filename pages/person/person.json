@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mp-cell": "../../weui-miniprogram/cell/cell",
+    "mp-cells": "../../weui-miniprogram/cells/cells"
+  },
+  "navigationBarTitleText": "我的"
+}

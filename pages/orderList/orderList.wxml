@@ -1,0 +1,79 @@
+<!-- pages/orderList/orderList.wxml -->
+<view class="container">
+  <view class="order_title">
+    <view class="order_title1">
+      <text class="{{sign==1?'add-tabing':'addtab'}}" data-num='1' bindtap="clickNav">待付款</text>
+    </view>
+    <view class="order_title1">
+      <text class="{{sign==2?'add-tabing':'addtab'}}" data-num='2' bindtap="clickNav">待发货</text>
+    </view>
+    <view class="order_title1">
+      <text class="{{sign==3?'add-tabing':'addtab'}}" data-num='3' bindtap="clickNav">待收货</text>
+    </view>
+    <view class="order_title1">
+      <text class="{{sign==4?'add-tabing':'addtab'}}" data-num='4' bindtap="clickNav">已完成</text>
+    </view>
+  </view>
+  <view class="order_detail">
+    <view wx:if="{{!orderList}}" class="orderBox">
+      <text style="text-align:center">暂无相关订单</text>
+    </view>
+    <view wx:else class="orderBox">
+      <view class="order" wx:for="{{orderList}}" wx:for-item="order" wx:key="id">
+        <view class="order-head f_h4">
+          <text class="order-num">订单号:{{order.order_number}}</text>
+          <text class="">{{order.add_time}}</text>
+        </view>
+        <view class="order-default" wx:for="{{order.goods_info}}" wx:key="id" wx:for-item="good">
+          <view class="good">
+            <view class="good_img">
+              <image src="{{resouce+good.goods_img}}" mode="aspect" style="height: 65px;width: 65px;" role="img"></image>
+            </view>
+            <view class="good_con">
+              <text>{{good.goods_name}}</text>
+              <text class="guige">规格：{{good.goods_spec}}</text>
+              <text class="price">x{{good.goods_num}}</text>
+            </view>
+            <view class="good_num">{{"￥"+good.goods_price}}</view>
+          </view>
+        </view>
+        <view class="order-foot f_h3" wx:if="{{sign==1}}">
+          <text class="order-num">
+            <text>{{"配送费￥"+order.express_price}}</text>
+            <text style="color:red;padding-left:10px">合计:{{order.pay_price}}</text>
+          </text>
+          <text class="btnop" id="{{order.id}}" bindtap="cancel">取消</text>
+          <text class="btnop" data-order="{{order}}" bindtap="pay">付款</text>
+        </view>
+        <view class="order-foot f_h3" wx:if="{{sign==2}}">
+          <text class="order-num">
+            <text>{{"配送费￥"+order.express_price}}</text>
+            <text style="color:red;padding-left:10px">合计:{{order.pay_price}}</text>
+          </text>
+          <text class="btnop" bindtap="backPay" id="{{order.id}}">退款</text>
+        </view>
+        <view class="order-foot f_h3" wx:if="{{sign==3}}">
+          <text class="order-num">
+            <text>{{"配送费￥"+order.express_price}}</text>
+            <text style="color:red;padding-left:10px">合计:{{order.pay_price}}</text>
+          </text>
+          <text class="btnop1">待收货</text>
+        </view>
+        <view class="order-foot f_h3" wx:if="{{sign==4}}">
+          <text class="order-num">
+            <text>{{"配送费￥"+order.express_price}}</text>
+            <text style="color:red;padding-left:10px">合计:{{order.pay_price}}</text>
+          </text>
+          <text class="btnop1">已完成</text>
+        </view>
+        <view class="order-foot f_h3" wx:if="{{sign==5}}">
+          <text class="order-num">
+            <text>{{"配送费￥"+order.express_price}}</text>
+            <text style="color:red;padding-left:10px">合计:{{order.pay_price}}</text>
+          </text>
+          <text class="btnop1">已退款</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

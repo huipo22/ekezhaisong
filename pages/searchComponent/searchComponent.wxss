@@ -1,0 +1,19 @@
+/* pages/searchComponent.wxss */
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+}
+
+.iconBox {
+    display: flex;
+}
+
+.topSearch {
+    background: #eee;
+    margin: 20rpx;
+    /* display: flex; */
+    border-radius: 20rpx;
+}

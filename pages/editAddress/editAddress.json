@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mp-cell": "../../weui-miniprogram/cell/cell",
+    "mp-cells": "../../weui-miniprogram/cells/cells",
+    "mp-form": "../../weui-miniprogram/form/form"
+  },
+  "navigationBarTitleText": "编辑地址"
+}

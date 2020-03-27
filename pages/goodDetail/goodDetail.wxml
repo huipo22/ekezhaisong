@@ -1,0 +1,49 @@
+<!-- pages/goodDetail/goodDetail.wxml -->
+<view class="container">
+  <view class="slideImage2">
+    <!-- 轮播图 -->
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" class="detailBox">
+      <block wx:for="{{goodDetailData.banners}}" wx:for-item="imgItem" wx:key="*this">
+        <swiper-item class="imgBox">
+          <image src="{{resourse+imgItem.url}}" data-src="{{resourse+imgItem.url}}" class="" bindtap="previewImage" mode="aspectFit" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="goodTitle">
+      <view class="good_title">
+        <text>{{goodDetailData.goods_name}}</text>
+      </view>
+      <view class="good_title1">
+        <view class="good_title_price">
+          <text>{{"￥"+goodDetailData.present_price}}</text>
+        </view>
+        <view class="good_title_num">
+          <view style="text-decoration: line-through;">{{"￥"+goodDetailData.original_price}}</view>
+          <view style="margin-left:20rpx">
+            销量：{{goodDetailData.goods_volume+goodDetailData.goods_spec}}
+          </view>
+        </view>
+        <view class="good_share">
+          <button open-type="share" plain="true" class="btn-share">
+            <view>
+              <image src="../../dist/icon2/fenxiang.png"></image>
+            </view>
+            <view class="fenxiang">分享</view>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="detailBlock">
+    <view class="slide_box">
+      <view>商品详情</view>
+    </view>
+    <view class="slide_box_1">
+      <rich-text class="richText" nodes="{{rich}}"></rich-text>
+    </view>
+  </view>
+  <van-goods-action>
+    <van-goods-action-icon icon="cart-o" text="购物车" info="{{cartInfo}}" catch:tap="cartLink"/>
+    <van-goods-action-button text="加入购物车" color="#00a046" catch:tap="addCart" data-goodid="{{goodDetailData.id}}"/>
+  </van-goods-action>
+</view>

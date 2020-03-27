@@ -1,0 +1,43 @@
+<!-- index.wxml -->
+<view class="container">
+	<search-com style="width:100%"></search-com>
+	<view class="slideImage">
+		<!-- 轮播图 -->
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" circular="true">
+			<block wx:for="{{imgUrls}}" wx:key="*this">
+				<swiper-item>
+					<image src="{{resourse+item.url}}" class="slide-image" mode="aspectFit" />
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<!-- 6列布局 -->
+	<view class="page-section juzhen">
+		<van-grid column-num="5" class="grid">
+			<van-grid-item use-slot wx:for="{{ cateList }}" wx:for-item="item" wx:for-index="index" wx:key="*this" catch:tap="link" data-parentId="{{item.id}}" data-parentName="{{item.name}}" data-index="{{index}}">
+				<image style="width: 100%; height: 80rpx;" src="{{resourse+item.img}}" mode="aspectFit" lazy-load="{{true}}" />
+				<view class="cate-name">{{item.name}}</view>
+			</van-grid-item>
+		</van-grid>
+	</view>
+	<view wx:for="{{recommend}}" wx:for-item="item" class="recommend">
+		<view class="recommend_title">
+			{{item.name}}	
+		</view>
+			
+		<van-card title="{{items.goods_name}}" thumb="{{resourse+items.goods_img }}" class="card" wx:for="{{item.goods_list}}" wx:for-item="items" wx:key="*this" catch:tap="goodSelect" data-goodid="{{items.id}}" thumb-class="{{items.goods_num==0?'zhezhao':''}}">
+			<view slot="bottom" class="cart-bo">
+				<view class="priceBox">
+                <view>{{items.present_price}}元/{{items.goods_spec}}</view>
+                <view style="text-decoration:line-through;">
+                  {{items.original_price}}元/{{items.goods_spec}}
+                </view>
+              </view>
+				<view class="cartIcon" wx:if="{{items.goods_num!==0}}">
+					<image src="../../dist/icon2/cartLink.png" style="width:30px;height:30px" catch:tap="addCart" data-cart="{{items}}" data-goodid="{{items.id}}" mode="aspectFit" lazy-load="true"></image>
+				</view>
+			</view>
+		</van-card>
+	</view>
+
+</view>

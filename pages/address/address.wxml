@@ -1,0 +1,32 @@
+<!-- pages/address/address.wxml -->
+<view class="container">
+  <view class="addressBox">
+    <view class="addressInfo a_margin" wx:for="{{addressList}}" wx:for-item="address" wx:key="*this">
+      <view class="addressCon">
+        <text class="addressName">收货人:</text>
+        <text class="name">{{address.name}}</text>
+        <text>{{address.mobile}}</text>
+      </view>
+      <view class="address b_line">
+        <text class="addressName">收货地址:</text>
+        <text>{{address.address}}</text>
+      </view>
+      <view class="address">
+        <radio class="a_radio" checked="{{address.default}}" bindtap="radioTap" data-id="{{address.id}}">
+          <text class="{{address.default==1?'red':'default'}}">设为默认</text>
+        </radio>
+        <view class="edit" bindtap="editTap" data-info="{{address}}">
+          <image class="" src="../../dist/icon/bianji.png" mode="aspectFit|aspectFill|widthFix" />
+          <text>编辑</text>
+        </view>
+        <view class="delete" bindtap="deleteTap" data-id="{{address.id}}">
+          <image class="" src="../../dist/icon/shanchu.png" mode="aspectFit|aspectFill|widthFix" />
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="address_btn" bindtap="newAddress">
+    <text>添加新地址</text>
+  </view>
+</view>
