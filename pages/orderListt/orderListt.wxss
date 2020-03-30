@@ -1,0 +1,155 @@
+/* pages/orderListt/orderListt.wxss */
+
+.subscrbeFont {
+    font-size: 24rpx;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.Box {
+    width: 100%;
+}
+
+.van-tab--active {
+    color: #00a046!important
+}
+
+.van-tabs__line {
+    background: #00a046!important
+}
+
+.goodInfo {
+    display: flex;
+}
+
+.orderInfo {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+}
+
+.priceBox {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    /* padding: 10rpx 30rpx; */
+    /* font-size: 22rpx; */
+    /* height: 45rpx; */
+}
+
+.pprice {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1rpx solid #ddd;
+    border-bottom: 1rpx solid #ddd;
+}
+
+.to {
+    border-top: 1rpx solid #ddd;
+}
+
+.sumPri {
+    padding: 20rpx 30rpx;
+    font-size: 0.5rem;
+}
+
+.orderInfo>.order-num {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.orderInfo>.order-datetime {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.goodInfo>.left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.goodInfo>.right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.goodInfoNum {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.redColor {
+    color: red;
+}
+
+.redPrice {
+    display: flex;
+    justify-content: flex-end;
+    color: red;
+}
+
+.subscrbeImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnStatus {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-foot {
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+}
+
+.order-num {
+    flex: 1;
+    display: flex;
+}
+
+.btnop {
+    width: 100rpx;
+    border: 1rpx solid;
+    text-align: center;
+    border-radius: 8rpx;
+    margin: 0 10rpx;
+}
+
+.btnop1 {
+    width: 100rpx;
+    border: 1rpx solid;
+    text-align: center;
+    border-radius: 8rpx;
+    margin: 0 10rpx;
+    background: #FE8045;
+    color: #fff;
+}
+
+.priceBox {
+    color: red;
+    padding-left: 10px
+}
+
+.load {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,76 @@
+<!-- pages/orderListt/orderListt.wxml -->
+<view class="container">
+    <view class="Box">
+        <van-tabs active="{{ orderActive }}" bind:change="orderChange">
+            <van-tab title="{{item.title}}" wx:for="{{orderListTab}}" wx:for-item="item" wx:key="unique" name="{{item.name}}" color="#00a046">
+                <view class="load" wx:if="{{loadFlag==true}}">
+                    <van-loading size="24px" color="#00a046">加载中...</van-loading>
+                </view>
+                <view wx:else>
+                    <view class="Box" wx:for="{{orderListData}}" wx:for-item="order" wx:key="unique">
+                        <!-- 订单号 -->
+                        <view class="Box orderInfo">
+                            <view class="order-num">{{order.order_number}}</view>
+                            <view class="order-datetime">{{order.add_time}}</view>
+                        </view>
+                        <!-- 详情列表 -->
+                        <!-- 加载框 -->
+                        <view class="Box subscrbeFont">
+                            <van-row wx:for="{{order.goods_info}}" wx:for-item="orderDetail" wx:key="unique" catch:tap="goodLink" data-id="{{orderDetail.goods_id}}">
+                                <van-col span="5">
+                                    <view class="subscrbeImg">
+                                        <van-image width="50" height="50" src="{{resourse+orderDetail.goods_img}}"></van-image>
+                                    </view>
+                                </van-col>
+                                <van-col span="19">
+                                    <view class="Box goodInfo">
+                                        <view class="left">{{orderDetail.goods_name}}</view>
+                                        <view class="right">{{'¥'+orderDetail.goods_price}}</view>
+                                    </view>
+                                    <view class="Box goodInfoNum">x{{orderDetail.goods_num}}</view>
+                                </van-col>
+                            </van-row>
+                            <view class="order-foot f_h3" wx:if="{{orderActive==1}}">
+                                <view class="order-num">
+                                    <view>{{"配送费￥"+order.express_price}}</view>
+                                    <view class="priceBox">合计:{{order.pay_price}}</view>
+                                </view>
+                                <text class="btnop" id="{{order.id}}" bindtap="cancel">取消</text>
+                                <text class="btnop" data-order="{{order}}" bindtap="pay">付款</text>
+                            </view>
+                            <view class="order-foot f_h3" wx:if="{{orderActive==2}}">
+                                <view class="order-num">
+                                    <view>{{"配送费￥"+order.express_price}}</view>
+                                    <view class="priceBox">合计:{{order.pay_price}}</view>
+                                </view>
+                                <text class="btnop" bindtap="backPay" id="{{order.id}}">退款</text>
+                            </view>
+                            <view class="order-foot f_h3" wx:if="{{orderActive==3}}">
+                                <view class="order-num">
+                                    <view>{{"配送费￥"+order.express_price}}</view>
+                                    <view class="priceBox">合计:{{order.pay_price}}</view>
+                                </view>
+                            </view>
+                            <view class="order-foot f_h3" wx:if="{{sign==4}}">
+                                <text class="order-num">
+                                    <text>{{"配送费￥"+order.express_price}}</text>
+                                    <text style="color:red;padding-left:10px">
+                                        合计:{{order.pay_price}}
+                                    </text>
+                                </text>
+                                <text class="btnop1">已完成</text>
+                            </view>
+                            <view class="order-foot f_h3" wx:if="{{orderActive==5}}">
+                                <view class="order-num">
+                                    <view>{{"配送费￥"+order.express_price}}</view>
+                                    <view class="priceBox">合计:{{order.pay_price}}</view>
+                                </view>
+                                <text class="btnop1">已退款</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </van-tab>
+        </van-tabs>
+    </view>
+</view>

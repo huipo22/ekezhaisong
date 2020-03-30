@@ -1,0 +1,34 @@
+<!-- pages/listPage/listPage.wxml -->
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="container">
+    <view class="infoBox">
+        <van-icon name="shopping-cart" info="{{cartInfo==0?'':cartInfo}}" size="45px" color="#00a046" catch:tap="cartLink"/>
+    </view>
+    <view style="width:100%">
+        <!-- 加载框 -->
+        <view class="load" wx:if="{{loadFlag==true}}">
+            <van-loading size="24px" color="#00a046">加载中...</van-loading>
+        </view>
+        <scroll-view scroll-y="true" style="height:100vh;" scroll-with-animation="true" bindscrolltolower="loadMore" wx:else>
+            <van-card title="{{items.goods_name}}" class="card" wx:for="{{cateData}}" wx:for-item="items" wx:key="*this" catch:tap="goodSelect" data-goodid="{{items.id}}">
+                <view class="subscrbeImg" slot="thumb">
+                    <van-image width="100%" height="100%" src="{{resource+items.goods_img}}" fit="contain" class="{{items.goods_num==0?'zhezhao':''}}"></van-image>
+                </view>
+                <view slot="bottom" class="cart-bo">
+                    <view class="priceBox">
+                        <view class="se_price">
+                            <rich-text class="" nodes="{{filter.priceFilter(items.present_price)}}"></rich-text>
+                            元/{{items.goods_spec}}
+                        </view>
+                        <view style="text-decoration:line-through;">
+                            {{items.original_price}}元/{{items.goods_spec}}
+                        </view>
+                    </view>
+                    <view class="cartIcon" wx:if="{{items.goods_num!==0}}">
+                        <image src="../../dist/icon2/cartLink.png" style="width:30px;height:30px" catch:tap="addCart" data-cart="{{items}}" data-goodid="{{items.id}}" mode="aspectFit" lazy-load="true"></image>
+                    </view>
+                </view>
+            </van-card>
+        </scroll-view>
+    </view>
+</view>
