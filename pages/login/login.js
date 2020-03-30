@@ -43,7 +43,6 @@ Component({
             fail: () => { },
             complete: () => { }
           });
-
           wx.navigateBack({
             delta: 2
           });

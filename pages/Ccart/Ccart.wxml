@@ -10,19 +10,27 @@
                 <view class='{{item.isSelect?"item-select-yes":"item-select-no"}}' catch:tap="switchSelect" data-index="{{index}}" data-id="{{index}}">
                     <text></text>
                 </view>
-                <image class='item-image' src='{{resourse+item.goods_img}}' catch:tap="goodSelect" data-goodid="{{item.id}}"></image>
+                <image class='item-image' src='{{resourse+item.goods_img}}' catch:tap="goodSelect" data-goodid="{{item.goods_id}}" thumb-class="{{items.goods_num==0?'zhezhao':''}}"></image>
                 <view class='column'>
-                    <text class='title' catch:tap="goodSelect" data-goodid="{{item.id}}">{{item.goods_name}}</text>
-                    <text class='desc' catch:tap="goodSelect" data-goodid="{{item.id}}">限购{{item.limit_num}}{{item.goods_spec}}</text>
-                    <view class='row margintop' catch:tap="goodSelect" data-goodid="{{item.id}}">
+                    <text class='title' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
+                        {{item.goods_name}}
+                    </text>
+                    <text class='desc' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
+                        限购{{item.limit_num}}{{item.goods_spec}}
+                    </text>
+                    <view class='row margintop' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
                         <text class='sku-price1'>￥</text>
                         <text class='sku-price1'>{{item.present_price}}/{{item.goods_spec}}</text>
                     </view>
-                    <view class='row' catch:tap="goodSelect" data-goodid="{{item.id}}">
+                    <view class='row' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
                         <text class='sku-price'>￥</text>
                         <text class='sku-price'>{{item.present_price}}/{{item.goods_spec}}</text>
                     </view>
-                    <view class='sku'>
+                    
+                    
+                </view>
+                <!-- <view class="tips" wx:if="{{item.num==item.limit_num}}">限购{{limit_num}}件</view> -->
+                <view class='sku'>
                         <text class='sub' catch:tap='quantityChange' id='dec' data-index="{{index}}">
                             -
                         </text>
@@ -31,7 +39,6 @@
                             +
                         </text>
                     </view>
-                </view>
             </view>
             <view class='separate'></view>
         </view>

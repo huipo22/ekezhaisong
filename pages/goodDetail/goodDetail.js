@@ -15,22 +15,11 @@ Page({
     interval: 1500, //间隔时间
     duration: 400, //滑动时间
     rich: '',
-    cartInfo: null,
+    cartInfo: 0,
   },
   onShow() {
     // 查询购物车数量
-    api.cartNum({
-      shop_id: app.globalData.shopId
-    }, {
-      Token: wx.getStorageSync('token'),
-      "Device-Type": 'wxapp',
-    }).then((res) => {
-      if(res.data.code==1){
-        this.setData({
-          cartInfo:res.data.data.sum
-        })
-      }
-    })
+    this.cartQ(app)
   },
 
   onLoad(options) {
@@ -53,22 +42,75 @@ Page({
   cartLink() {
     util.cartLink()
   },
-  // 添加购物车
-  addCart(e) {
-    util.addCart(e, app)
-    // 查询购物车数量
+  cartQ(app) {
+    let that = this;
     api.cartNum({
       shop_id: app.globalData.shopId
     }, {
       Token: wx.getStorageSync('token'),
       "Device-Type": 'wxapp',
     }).then((res) => {
-      if(res.data.code==1){
-        this.setData({
-          cartInfo:res.data.data.sum
+      if (res.data.code == 1) {
+        that.setData({
+          cartInfo: res.data.data.sum
         })
       }
     })
+  },
+  // 添加购物车
+  addCart(e) {
+    let goodId = e.currentTarget.dataset.goodid;
+    api.cartAdd({
+      goods_id: goodId,
+      shop_id: app.globalData.shopId
+    }, {
+      Token: wx.getStorageSync('token'),
+      "Device-Type": 'wxapp',
+    }).then((res) => {
+      if (res.data.code == 1) {
+        wx.showToast({
+          title: '加入购物车成功',
+          icon: "none",
+          duration: 1000
+        })
+        api.cartNum({
+          shop_id: app.globalData.shopId,
+        }, {
+          Token: wx.getStorageSync('token'),
+          "Device-Type": 'wxapp',
+        }).then((res) => {
+          if (res.data.code == 1) {
+            // 购物车右上角数量
+            let sum = res.data.data.sum;
+            let that = this;
+            if (sum !== 0) {
+              wx.setTabBarBadge({
+                index: 2,
+                text: String(sum)
+              })
+              that.setData({
+                cartInfo: sum
+              })
+            } else {
+              wx.removeTabBarBadge({
+                index: 2,
+              });
+            }
+          }
+        })
+      } else if (res.data.code == 10001) {
+        wx.navigateTo({
+          url: '../login/login'
+        })
+      } else {
+        wx.showToast({
+          title: res.data.msg,
+          icon: "none",
+          duration: 1200
+        })
+      }
+    })
+
   },
   // 点击预览图片
   previewImage(e) {
@@ -83,5 +125,18 @@ Page({
       current: current,
       urls: imgUrls,
     })
-  }
+  },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    util.queryCart(app)
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    util.queryCart(app)
+  },
 })

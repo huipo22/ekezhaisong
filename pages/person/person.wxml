@@ -41,6 +41,12 @@
           <text>已完成</text>
         </view>
       </view>
+      <view class="order_list_cato" data-num="5" bindtap="orderList">
+        <image class="avaterImg" src="../../dist/icon/shouhou.png"></image>
+        <view>
+          <text>已退款</text>
+        </view>
+      </view>
     </view>
   </view>
   <view class="bottomList common f_m_size">

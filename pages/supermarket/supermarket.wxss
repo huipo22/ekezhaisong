@@ -82,7 +82,7 @@
 
 .add-tabing {
   color: #00a046;
-  background: #fff;
+  background: transparent;
 }
 
 .add-tabing:before {
@@ -132,6 +132,7 @@
 .cartIcon {
   display: flex;
   align-items: center;
+  margin-right: 25rpx;
 }
 
 .load {
@@ -155,7 +156,7 @@
 }
 
 .tui-nav-active {
-  background: red;
+  background: #00a046;
   color: #fff;
 }
 

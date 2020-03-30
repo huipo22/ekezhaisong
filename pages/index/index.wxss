@@ -14,7 +14,7 @@
 }
 
 .positon1 {
-  width: 50%;
+  width: 40%;
   height: 100%;
   position: relative;
   /* flex: 2; */
@@ -22,13 +22,15 @@
   text-align: center;
   display: flex;
   align-items: center;
+  color: #00a046;
 }
 
 /* 标题左右横线 */
 
-.positon1::before, .positon1::after {
+.positon1::before,
+.positon1::after {
   position: absolute;
-  background: #F1F1F3;
+  background: #00a046;
   content: "";
   height: 1rpx;
   top: 50%;
@@ -258,20 +260,4 @@
   align-items: center;
   justify-content: center;
   height: 80rpx;
-}
-
-.zhezhao::after {
-  content: '已售完';
-  height: 100%;
-  background: #000;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  border-radius: 50%;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: .5;
-  font-size: 30rpx;
 }

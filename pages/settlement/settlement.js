@@ -37,7 +37,7 @@ Component({
     settleData: null,
     resource: app.globalData.resource,
     parmsData: null,
-    remark: null,//b备注
+    remark: null, //b备注
   },
 
   /**
@@ -51,18 +51,11 @@ Component({
       });
 
     },
-    // 日期
-    bindDateChange: function (e) {
-      console.log('picker发送选择改变，携带值为', e.detail.value)
-      this.setData({
-        date: e.detail.value
-      })
-    },
-    // 时间
-    bindTimeChange: function (e) {
-      console.log('picker发送选择改变，携带值为', e.detail.value)
-      this.setData({
-        time: e.detail.value
+    goodLink(e) {
+      console.log(e)
+      const id = e.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: '../goodDetail/goodDetail?goodId=' + id,
       })
     },
     // 提交事件
@@ -127,14 +120,14 @@ Component({
                 }
                 wx.setStorageSync('cartData', storage)
                 wx.navigateTo({
-                  url: '../orderList/orderList?id=2'
+                  url: '../orderListt/orderListt?active=2'
                 })
 
               },
               fail(res) {
                 console.log('调用支付接口fail', res)
                 wx.navigateTo({
-                  url: '../orderList/orderList?id=1'
+                  url: '../orderListt/orderListt?active=1'
                 })
               }
             })

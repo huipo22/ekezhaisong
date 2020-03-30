@@ -20,6 +20,8 @@ let apiList = {
     cartAction:host+"/api/goods/shopcar/action",//购物车加减
     createOrder:host+"/api/goods/order/create_order",//创建订单
     goodSub:host+"/api/goods/goods/goods_good",//商品推荐
+    getOrder:host+"/api/goods/order/order_status",//获取订单
+    orderRefund:host+"/api/goods/order/order_refund",//取消订单
 }
 
 module.exports = apiList; //暴露出来

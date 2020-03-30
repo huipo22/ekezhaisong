@@ -43,7 +43,7 @@
     </view>
   </view>
   <van-goods-action>
-    <van-goods-action-icon icon="cart-o" text="购物车" info="{{cartInfo}}" catch:tap="cartLink"/>
+    <van-goods-action-icon icon="cart-o" text="购物车" info="{{cartInfo==0?'':cartInfo}}" catch:tap="cartLink"/>
     <van-goods-action-button text="加入购物车" color="#00a046" catch:tap="addCart" data-goodid="{{goodDetailData.id}}"/>
   </van-goods-action>
 </view>

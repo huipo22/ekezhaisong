@@ -1,6 +1,7 @@
 /**app.wxss**/
 
 @import './dist/weui.wxss';
+
 page {
   height: 100%;
   font-size: 32rpx;
@@ -38,11 +39,12 @@ page {
 
 /* 轮播 */
 
-swiper {
-  /* height: 200px; */
-}
+/* swiper {
+  height: 200px;
+} */
 
-.slideImage, .slideImage image {
+.slideImage,
+.slideImage image {
   width: 100%;
   height: 100%;
   background: #fff;
@@ -59,7 +61,8 @@ swiper {
   display: flex;
   background: #fff;
   border-bottom: 1rpx solid #ccc;
-  height: 200rpx;
+  /* height: 200rpx; */
+  padding: 10rpx;
 }
 
 .good_con {
@@ -67,7 +70,7 @@ swiper {
   align-self: center;
   display: flex;
   flex: 2;
-  padding: 10rpx;
+  padding: 0 10rpx;
 }
 
 .good_con>.guige {
@@ -150,6 +153,7 @@ swiper {
   border-right: 1px solid #999;
   transform: rotate(45deg);
   /* margin-top: 20%; */
+  margin-right: 5px;
 }
 
 /* 字体大小 */
@@ -254,9 +258,10 @@ button {
   padding: 20rpx;
 }
 
-.addressCon, .address {
+.addressCon,
+.address {
   display: flex;
-  height: 80rpx;
+  height: 60rpx;
   align-items: center;
 }
 
@@ -276,14 +281,16 @@ button {
   flex: 1
 }
 
-.edit, .delete {
+.edit,
+.delete {
   width: 130rpx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.edit>image, .delete>image {
+.edit>image,
+.delete>image {
   width: 40rpx;
   height: 40rpx;
 }
@@ -370,3 +377,49 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   -webkit-transform: translate(-50%, -50%) scale(1);
 }
 
+.zhezhao::after {
+  content: '已售完';
+  height: 100%;
+  background: #000;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .5;
+  font-size: 30rpx;
+}
+
+.se_price {
+  color: red;
+  display: flex;
+  align-items: flex-end;
+
+}
+
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.subscrbeImg {
+  width: 100%;
+  height: 100%;
+
+}
+
+.hh1 {
+  font-size: 50rpx;
+}
+.goodName{
+  font-size: 26rpx;
+}
+.van-card{
+  border-bottom: 1rpx solid #eee!important;
+
+}

@@ -28,6 +28,6 @@ App({
     logoImg:'https://hr.jishanhengrui.com/upload/service/logo.jpg',
     host: 'https://hr.jishanhengrui.com',//域名
     resource: 'https://hr.jishanhengrui.com/upload/',//图片资源地址
-    indexObj:null
+    sum:0,
   }
 })

@@ -63,8 +63,10 @@ Page({
             content: '确定删除商品?',
             success(res) {
                 if (res.confirm) {
-                    that.cartDelete(shoppingId)
-                    util.queryCart(app)
+                    // debugger
+                    that.cartDelete(shoppingId,index)
+                    // util.queryCart(app)
+                    // that.getTotalPrice()
                 } else if (res.cancel) {
                     return
                 }
@@ -72,7 +74,7 @@ Page({
         })
     },
     // 购物车删除
-    cartDelete(shoppingId) {
+    cartDelete(shoppingId,index,e) {
         api.cartDelete({
             shopping_id: shoppingId
         }, {
@@ -85,9 +87,57 @@ Page({
                     icon: 'none',
                     duration: 1500
                 });
-                this.cartQuery()
+                // this.cartQuery()
+                const carts=this.data.carts;
+                util.arrayRemoveItem(carts,carts[index])
+                let selectNum = 0; //统计选中商品
+                for (let i = 0; i < carts.length; i++) {
+                    if (carts[i].isSelect) {
+                        selectNum++
+                    }
+                }
+                if (selectNum == carts.length) {
+                    this.setData({
+                        isAllSelect: true
+                    })
+                } else {
+                    this.setData({
+                        isAllSelect: false
+                    })
+                }
+                util.queryCart(app)
+                this.getTotalPrice()
+                this.cartQ()
             }
         })
+    },
+    cartQ(){
+        api.cartNum({
+            shop_id: app.globalData.shopId,
+          }, {
+            Token: wx.getStorageSync('token'),
+            "Device-Type": 'wxapp',
+          }).then((res) => {
+            if (res.data.code == 1) {
+              // 购物车右上角数量
+              let sum = res.data.data.sum;
+              if (sum !== 0) {
+                wx.setTabBarBadge({
+                  index: 2,
+                  text: String(sum)
+                })
+              } else {
+                wx.removeTabBarBadge({
+                  index: 2,
+                });
+                this.setData({
+                    totalMoney:0,
+                    selectNum:0,
+                    isAllSelect:false,
+                })
+              }
+            }
+          })
     },
     // 加减接口
     cartOption(e, carts, index, num) {
@@ -104,6 +154,10 @@ Page({
                 this.setData({
                     carts: carts
                 })
+                util.queryCart(app)
+                this.getTotalPrice()
+                this.cartQ()
+               
             } else {
                 wx.showToast({
                     title: res.data.msg,
@@ -127,8 +181,7 @@ Page({
                     content: '确定删除商品?',
                     success(res) {
                         if (res.confirm) {
-                            that.cartDelete(shoppingId);
-                            util.queryCart(app)
+                            that.cartDelete(shoppingId,index);
                         } else if (res.cancel) {
                             return
                         }
@@ -138,15 +191,13 @@ Page({
             } else {
                 num -= 1
                 this.cartOption(e, carts, index, num)
-                util.queryCart(app)
-                this.getTotalPrice()
+
             }
 
         } else if (e.target.id == 'inc') {
             num += 1
             this.cartOption(e, carts, index, num)
-            util.queryCart(app)
-            this.getTotalPrice()
+
         }
 
 
@@ -165,6 +216,7 @@ Page({
             carts: carts,
             totalMoney: total.toFixed(2)
         });
+
     },
     // 商品全选
     selectAll() {
@@ -210,7 +262,8 @@ Page({
                 return {
                     goods_id: obj.goods_id,
                     present_price: obj.present_price,
-                    num: obj.num
+                    num: obj.num,
+                    shopping_id: obj.id
                 }
             })
 
@@ -228,7 +281,7 @@ Page({
                     wx.showToast({
                         title: res.data.msg,
                         icon: 'none',
-                        duration: 1500
+                        duration: 3000
                     });
                 }
             })
@@ -255,12 +308,34 @@ Page({
                 that.setData({
                     carts: res.data.data
                 })
-                that.selectAll()
+                // that.selectAll()
+                let selectNum = 0; //统计选中商品
+                let carts = that.data.carts;
+                if (carts.length !== 0) {
+                    for (let i = 0; i < carts.length; i++) {
+                        carts[i].isSelect = true; // 改变所有商品状态
+                        if (carts[i].isSelect) {
+                            selectNum++
+                        }
+                    }
+                    that.setData({
+                        isAllSelect: true,
+                        carts: carts,
+                        selectNum: selectNum
+                    });
+                    that.getTotalPrice(); // 重新获取总价
+                } else {
+                    that.setData({
+                        isAllSelect: false,
+                    });
+                }
+
             }
         })
     },
     onShow: function () {
         // 查询购物车
+        util.getSetting()
         this.cartQuery()
         util.queryCart(app)
     }

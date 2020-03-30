@@ -1,4 +1,5 @@
 <!-- pages/supermarket.wxml -->
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <view class="container">
   <search-com style="width:100%"></search-com>
   <!-- 两列布局 -->
@@ -10,63 +11,28 @@
         </view>
       </scroll-view>
     </view>
-    <view class="right" wx:if="{{rightList.return_type==1}}">
-      <view style="display: flex;align-items: center;positive:relative">
-        <scroll-view scroll-x="true" style="height: 80rpx;width:90%;white-space: nowrap;flex:6" scroll-into-view="NAV{{status}}" scroll-with-animation="true">
-          <view class="categoryBox">
-            <view wx:for="{{rightList.categories}}" wx:for-item="category" class="cate" bindtap="getStatus" id="NAV{{index}}" class="tui-nav-li {{index === status ? 'tui-nav-active' : ''}}" data-index="{{index}}">
-              {{category.name}}
-            </view>
-          </view>
-        </scroll-view>
-        <view class="arrowBox down-arrow {{flag==true?'active':''}}" catch:tap="showPopup"></view>
-        <view class="popupBoxx" wx:if="{{flag==true}}">
-          <view class="categoryBox1">
-            <view wx:for="{{rightList.categories}}" wx:for-item="category" class="cate" bindtap="getStatus" id="NAV{{index}}" class="tui-nav-li {{index === status ? 'tui-nav-active' : ''}}" data-index="{{index}}">
-              {{category.name}}
-            </view>
-          </view>
-        </view>
-      </view>
+    <view class="right">
       <!-- 加载框 -->
       <view class="load" wx:if="{{loadFlag==true}}">
         <van-loading size="24px" color="#00a046">加载中...</van-loading>
       </view>
-      <scroll-view scroll-y="true" style="height: 90%;" bindscrolltoupper="upper" bindscrolltolower="loadMore" bindscroll="scrollCate" id="NAV{{status}}" scroll-into-view="NAV{{status}}" scroll-with-animation="true" scroll-top="{{scrollTop}}" wx:else>
-        <view wx:for="{{rightList.categories}}" wx:for-item="category" id="NAV{{index}}">
-          <view id="NAV{{index}}">{{category.name}}</view>
-          <van-card title="{{item.goods_name}}" thumb="{{ resource+item.goods_img }}" class="card" wx:for="{{category.goods}}" wx:for-item="item" wx:key="*this" catch:tap="goodSelect" data-goodid="{{item.id}}" mode="aspectFit" class="card">
-            <view slot="bottom" class="cart-bo">
-              <view class="priceBox">
-                <view>{{item.present_price}}元/{{item.goods_spec}}</view>
-                <view style="text-decoration:line-through;">
-                  {{item.original_price}}元/{{item.goods_spec}}
-                </view>
-              </view>
-              <view class="cartIcon">
-                <image src="../../dist/icon2/cartLink.png" style="width:25px;height:25px" catch:tap="addCart" data-cart="{{item}}" data-goodid="{{item.id}}" lazy-load="{{true}}"></image>
-              </view>
-            </view>
-          </van-card>
-        </view>
-      </scroll-view>
-    </view>
-    <view class="right" wx:elif="{{rightList.return_type==2}}">
-      <!-- 加载框 -->
-      <view class="load" wx:if="{{loadFlag==true}}">
-        <van-loading size="24px" color="#00a046">加载中...</van-loading>
-      </view>
-      <scroll-view scroll-y="true" style="height: 98%;" bindscrolltoupper="upper" bindscrolltolower="loadMore" bindscroll="scrollCate" id="NAV{{status}}" scroll-into-view="NAV{{status}}" scroll-with-animation="true" scroll-top="{{scrollTop}}" wx:else>
+      <scroll-view scroll-y="true" style="height: 98%;" scroll-with-animation="true" bindscrolltolower="loadMore" wx:else>
         <view>
-          <van-card title="{{item.goods_name}}" thumb="{{ resource+item.goods_img }}" class="card" wx:for="{{rightList.categories.goods}}" wx:for-item="item" wx:key="*this" bindtap="goodSelect" data-goodid="{{item.id}}" mode="aspectFit" class="card">
+          <van-card title="{{item.goods_name}}" class="card" wx:for="{{rightList}}" wx:for-item="item" wx:key="*this" catch:tap="{{item.goods_num==0?'':'goodSelect'}}" data-goodid="{{item.id}}" mode="aspectFit" class="card">
+            <view class="subscrbeImg" slot="thumb">
+              <van-image width="100%" height="100%" src="{{resource+item.goods_img}}" fit="contain" class="{{item.goods_num==0?'zhezhao':''}}"></van-image>
+            </view>
             <view slot="bottom" class="cart-bo">
               <view class="priceBox">
-                <view>{{item.present_price}}元/{{item.goods_spec}}</view>
+                <view class="se_price">
+                  <rich-text class="" nodes="{{filter.priceFilter(item.present_price)}}"></rich-text>
+                  元/{{item.goods_spec}}
+                </view>
                 <view style="text-decoration:line-through;">
                   {{item.original_price}}元/{{item.goods_spec}}
                 </view>
               </view>
-              <view class="cartIcon">
+              <view class="cartIcon" wx:if="{{item.goods_num!==0}}">
                 <image src="../../dist/icon2/cartLink.png" style="width:25px;height:25px" catch:tap="addCart" data-cart="{{item}}" data-goodid="{{item.id}}" lazy-load="{{true}}"></image>
               </view>
             </view>

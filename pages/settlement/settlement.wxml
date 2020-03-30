@@ -1,6 +1,6 @@
 <!-- pages/settlement/settlement.wxml -->
 <view class="container">
-  <scroll-view scroll-y="true" style="height: 100%;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <view class="marginBottom">
     <view class="se_addressBox mb" bindtap="address">
       <view class="se_address" wx:if="{{settleData.address_info==null&& parmsData==null}}">
         <text style="color:red">请选择收货地址</text>
@@ -33,118 +33,35 @@
       </view>
       <view class="moreIcon"></view>
     </view>
-    <view class="payRow">
-      <view class="single">
-        <text>支付方式</text>
-      </view>
-      <view>
-        <text>在线支付</text>
-      </view>
-    </view>
-    <!-- <view class="se_address pay mb">
-    <view class="se_address1">
-      <text>支付方式</text>
-    </view>
-    <view class="arrowBox">
-      <text>在线支付</text>
-      <text class="moreIcon"></text>
-    </view>
-  </view> -->
     <view class="se_address_con">
       <view class="se_address_con_title line">
-        <text>平台自营</text>
+        <text>订单内容</text>
       </view>
       <view class="goodList" wx:for="{{settleData.goods_info}}" wx:for-item="good" wx:key="*this">
-        <view class="good">
+        <view class="good" catch:tap="goodLink" data-id="{{good.goods_id}}">
           <view class="good_img">
-            <image src="{{resource+good.goods_img}}" mode="aspect" style="height: 65px;width: 65px;" role="img"></image>
+            <image src="{{resource+good.goods_img}}" mode="aspect" style="height: 60px;width: 60px;" role="img"></image>
           </view>
           <view class="good_con">
-            <text>{{good.goods_name}}</text>
+            <text class="goodName">{{good.goods_name}}</text>
             <text class="guige">规格：{{good.goods_spec}}</text>
-            <text class="price">x{{good.goods_num}}</text>
+            <text class="goodName">x{{good.goods_num}}</text>
           </view>
           <view class="good_num">{{"￥"+good.goods_price}}</view>
         </view>
       </view>
       <view class="se_address line">
         <view class="se_address1">
-          <text>配送方式</text>
-        </view>
-        <view class="radioBox">
-          <view>
-            <radio checked="{{true}}">快递配送</radio>
-          </view>
-          <!-- <view>
-          <radio>到店自提</radio>
-        </view> -->
-        </view>
-      </view>
-      <!-- <view class="se_address line">
-      <view class="se_address1">
-        <text>优惠券</text>
-      </view>
-      <view>
-        <text>目前无可用优惠券</text>
-        <image src="../../dist/icon/more.png"></image>
-      </view>
-    </view> -->
-      <view class="se_address line">
-        <view class="se_address1">
           <text>配送费</text>
         </view>
-        <view>
+        <view class="se_price">
           <text wx:if="{{settleData.address_info==null&& parmsData==null}}">请先选择收货地址</text>
           <text wx:else>{{settleData.express_price}}元</text>
         </view>
       </view>
     </view>
     <view class="time_select">
-      <!-- <view class="common line">
-      <text>配送时间选择</text>
-    </view> -->
-      <!-- <view class="common line ml">
-      <view class="se_address1">
-        <text>选择配送</text>
-      </view>
-      <view class="btnBox">
-        <view>
-          <text>尽快配送</text>
-        </view>
-        <view>
-          <text>预约配送</text>
-        </view>
-      </view>
-    </view> -->
-      <!-- <view class="se_address line ml">
-      <view class="se_address_date">
-        <view>
-          <text>配送日期</text>
-        </view>
-        <view class="datePicker">
-          <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-            <view class="picker">
-              {{date}}
-            </view>
-          </picker>
-        </view>
-      </view>
-    </view>
-    <view class="se_address line ml">
-      <view class="se_address_date">
-        <view>
-          <text>配送时间</text>
-        </view>
-        <view class="datePicker">
-          <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-            <view class="picker">
-              {{time}}
-            </view>
-          </picker>
-        </view>
-      </view>
-    </view> -->
-      <view class="se_address line ml">
+      <view class="se_address line">
         <view class="se_label">
           <text>下单备注</text>
         </view>
@@ -152,15 +69,7 @@
           <input placeholder="请输入留言" value="{{remark}}" type="text"></input>
         </view>
       </view>
-      <view class="se_address line ml">
-        <view class="se_label">
-          <text>配送地址</text>
-        </view>
-        <view>
-          <text></text>
-        </view>
-      </view>
-      <view class="se_address line2 ml">
+      <view class="se_address line2">
         <view class="se_label">
           <text>配送须知</text>
         </view>
@@ -172,13 +81,16 @@
         </view>
       </view>
     </view>
+    <view class="se_address line2 se_price">
+      <text>县城以外满30元免费配送</text>
+    </view>
     <view class="bottom">
       <view class="tag1">
-        <text>总计：{{settleData.price}}</text>
+        <text>合计：￥{{settleData.price}}</text>
       </view>
       <view class="tag2" bindtap="submitTap">
         <text>提交</text>
       </view>
     </view>
-  </scroll-view>
+  </view>
 </view>

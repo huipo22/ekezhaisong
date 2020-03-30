@@ -2,14 +2,19 @@
 <view class="container">
     <view class="addressBox">
         <view class="addressInfo" wx:for="{{addressList}}" wx:for-item="address" wx:key="*this" bindtap="selectedAddress" data-address="{{address}}">
-            <view class="addressCon">
-                <text>收货人:</text>
-                <text class="name">{{address.name}}</text>
-                <text>{{address.mobile}}</text>
+            <view>
+                <radio class="a_radio" checked="{{address.default}}" bindtap="radioTap" data-id="{{address.id}}"></radio>
             </view>
-            <view class="address">
-                <text>收货地址:</text>
-                <text>{{address.address}}</text>
+            <view class="right">
+                <view class="addressCon">
+                    <text>收货人:</text>
+                    <text class="name">{{address.name}}</text>
+                    <text>{{address.mobile}}</text>
+                </view>
+                <view class="address">
+                    <text>收货地址:</text>
+                    <text>{{address.address}}</text>
+                </view>
             </view>
         </view>
     </view>

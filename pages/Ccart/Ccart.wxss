@@ -11,6 +11,7 @@
     padding: 0rpx 20rpx;
     box-sizing: border-box;
     position: relative;
+    align-items: center;
 }
 
 .scroll {
@@ -26,16 +27,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-   
 }
-.margintop{
-  margin-top: 15rpx;
+
+.margintop {
+    margin-top: 15rpx;
 }
 
 .sku {
-    position: relative;
+    /* position: relative;
     right: -200rpx;
-    bottom: -10rpx;
+    bottom: -10rpx; */
 }
 
 .sku text {
@@ -73,12 +74,14 @@
     color: rgba(230, 67, 64, 1);
     /* margin-top: 38rpx; */
 }
+
 .sku-price {
-  font-size: 22rpx;
-  font-family: ArialMT;
-  color: #ccc;
-  /* margin-top: 38rpx; */
+    font-size: 22rpx;
+    font-family: ArialMT;
+    color: #ccc;
+    /* margin-top: 38rpx; */
 }
+
 .price {
     color: red;
     position: relative;
@@ -89,7 +92,8 @@
     font-family: PingFangSC-Regular;
     font-weight: 400;
     color: rgba(74, 74, 74, 1);
-    margin-top: 20rpx;
+    /* margin-top: 20rpx; */
+    margin-top: -40rpx;
 }
 
 .desc {
@@ -97,7 +101,7 @@
     font-family: PingFangSC-Regular;
     font-weight: 400;
     color: rgba(102, 102, 102, 1);
-    margin-top: 15rpx;
+    /* margin-top: 15rpx; */
 }
 
 .small_text {
@@ -108,28 +112,28 @@
 
 .item-select-no {
     position: relative;
-    width: 40rpx;
-    height: 40rpx;
+    width: 50rpx;
+    height: 50rpx;
     border: 1px solid #ccc;
     border-radius: 50%;
-    margin-top: 76rpx;
+    /* margin-top: 76rpx; */
     margin-left: 20rpx;
 }
 
 .item-select-yes {
     position: relative;
-    width: 40rpx;
-    height: 40rpx;
+    width: 50rpx;
+    height: 50rpx;
     border: 1px solid rgb(102, 193, 140);
     border-radius: 50%;
-    margin-top: 76rpx;
+    /* margin-top: 76rpx; */
     margin-left: 20rpx;
 }
 
 .item-select-yes text {
     position: absolute;
-    left: 6rpx;
-    top: 6rpx;
+    left: 10rpx;
+    top: 10rpx;
     height: 29rpx;
     width: 29rpx;
     border-radius: 50%;
@@ -138,8 +142,8 @@
 
 .item-allselect-no {
     position: relative;
-    width: 40rpx;
-    height: 40rpx;
+    width: 50rpx;
+    height: 50rpx;
     margin-left: 20rpx;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -147,8 +151,8 @@
 
 .item-allselect-yes {
     position: relative;
-    width: 40rpx;
-    height: 40rpx;
+    width: 50rpx;
+    height: 50rpx;
     margin-left: 20rpx;
     border: 1px solid rgb(102, 193, 140);
     color: #fff;
@@ -157,8 +161,8 @@
 
 .item-allselect-yes text {
     position: absolute;
-    left: 6rpx;
-    top: 6rpx;
+    left: 10rpx;
+    top: 10rpx;
     height: 29rpx;
     width: 29rpx;
     border-radius: 50%;
@@ -212,7 +216,19 @@ button {
     right: 50rpx;
     top: 30rpx;
 }
-.sku{
+
+.sku {
     position: relative;
-    bottom: 20%;
+    /* bottom: 20%; */
+    position: absolute;
+    right: 5%;
+    bottom: 0;
+}
+
+.tips {
+    position: absolute;
+    right: 5%;
+    bottom: 27%;
+    font-size: 20rpx;
+    color: red;
 }

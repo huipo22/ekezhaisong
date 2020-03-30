@@ -19,6 +19,7 @@ Page({
     recommend: null,
   },
   onShow() {
+    util.queryCart(app)
     // 全局手机号
     api.globalPhone({
       shop_id: app.globalData.shopId
@@ -84,18 +85,16 @@ Page({
   },
   // 矩阵跳转
   link(e) {
-    wx.switchTab({
-      url: '../supermarket/supermarket'
-    });
-    app.globalData.indexObj = {
-      parentId: e.currentTarget.dataset.parentid,
-      index: e.currentTarget.dataset.index
-    }
+    console.log(e)
+    const parentname=e.currentTarget.dataset.parentname;
+    const parentid=e.currentTarget.dataset.parentid
+    wx.navigateTo({
+      url:'../listPage/listPage?parentId='+parentid+'&cateId='+parentname
+    })
   },
   // 添加购物车
   addCart(e) {
-    util.addCart(e, app)
-    util.queryCart(app)
+    util.addCart(e, app,util.queryCart)
   },
   // 商品链接
   goodSelect(e) {

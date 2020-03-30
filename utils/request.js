@@ -127,6 +127,16 @@ let goodSub= (data,header) => {
         resolve(apiRequest(apiList.goodSub, 'get', data,header))
     })
 }
+let getOrder=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.getOrder, 'post', data,header))
+    })
+}
+let orderRefund=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.orderRefund, 'post', data,header))
+    })
+}
 //最后需要将具体调用的函数暴露出，给具体业务调用
 export default {
     platfromServe: platfromServe,
@@ -145,4 +155,6 @@ export default {
     cartAction:cartAction,
     createOrder:createOrder,
     goodSub:goodSub,
+    getOrder:getOrder,
+    orderRefund,orderRefund
 }

@@ -13,7 +13,9 @@
     "pages/login/login",
     "pages/selectAddress/selectAddress",
     "pages/platform/platform",
-    "pages/Ccart/Ccart"
+    "pages/Ccart/Ccart",
+    "pages/orderListt/orderListt",
+    "pages/listPage/listPage"
   ],
   "window": {
     "backgroundTextStyle": "dark",
