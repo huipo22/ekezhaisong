@@ -6,7 +6,6 @@
     "pages/person/person",
     "pages/goodList/goodList",
     "pages/goodDetail/goodDetail",
-    "pages/orderList/orderList",
     "pages/address/address",
     "pages/editAddress/editAddress",
     "pages/settlement/settlement",
