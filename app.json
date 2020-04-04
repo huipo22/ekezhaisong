@@ -15,7 +15,8 @@
     "pages/platform/platform",
     "pages/Ccart/Ccart",
     "pages/orderListt/orderListt",
-    "pages/listPage/listPage"
+    "pages/listPage/listPage",
+    "pages/close/close"
   ],
   "window": {
     "backgroundTextStyle": "dark",

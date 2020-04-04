@@ -261,3 +261,11 @@
   justify-content: center;
   height: 80rpx;
 }
+.act{
+  color:red
+}
+.item-scroll view{
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+}

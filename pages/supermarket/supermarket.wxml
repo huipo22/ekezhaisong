@@ -37,6 +37,7 @@
               </view>
             </view>
           </van-card>
+          <view wx:if="{{noneFlag==true}}" class="noneData">--我是有底线的--</view>
         </view>
       </scroll-view>
     </view>

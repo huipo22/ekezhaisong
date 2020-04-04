@@ -13,6 +13,7 @@ Page({
     page: 1,
     loadFlag: true,
     cartInfo: 0,
+    noneFlag:false,
   },
 
   /**
@@ -63,14 +64,18 @@ Page({
     }).then((res) => {
       if (res.data.code == 1) {
         if (res.data.data == 0) {
-          wx.showToast({
-            title: '无更多数据',
-            duration: 1500,
-          });
+          // wx.showToast({
+          //   title: '无更多数据',
+          //   duration: 1500,
+          // });
+          this.setData({
+            noneFlag:true
+          })
         } else {
           this.setData({
             cateData: oldData.concat(res.data.data),
-            page: pp
+            page: pp,
+            noneFlag:false,
           })
         }
       }

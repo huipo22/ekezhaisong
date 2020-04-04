@@ -6,7 +6,9 @@
     "van-icon": "../../dist/vant/icon/index",
     "search-com":"../searchComponent/searchComponent",
     "van-card": "../../dist/vant/card/index",
-    "van-image": "../../dist/vant/image/index"
+    "van-image": "../../dist/vant/image/index",
+    "van-tab": "../../dist/vant/tab/index",
+    "van-tabs": "../../dist/vant/tabs/index"
   },
   "navigationBarTitleText": ""
 }

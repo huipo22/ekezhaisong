@@ -20,7 +20,8 @@
         <view class="good_title_num">
           <view style="text-decoration: line-through;">{{"￥"+goodDetailData.original_price}}</view>
           <view style="margin-left:20rpx">
-            销量：{{goodDetailData.goods_volume+goodDetailData.goods_spec}}
+            <!-- 销量：{{goodDetailData.goods_volume+goodDetailData.goods_spec}} -->
+            销量：{{goodDetailData.goods_volume}}件
           </view>
         </view>
         <view class="good_share">

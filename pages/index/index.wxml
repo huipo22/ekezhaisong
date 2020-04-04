@@ -46,6 +46,26 @@
 				</view>
 			</view>
 		</van-card>
+		
 	</view>
-
+<!-- <view style="width:100%;white-space:nowrap">
+	<scroll-view style="width: 100%;" scroll-x class="item-scroll" scroll-left="0">
+		<view class="{{currentTab==0?'act':''}}" data-current="0" bindtap="clickTab">无极剑圣</view>
+		<view class="{{currentTab==1?'act':''}}"  data-current="1" bindtap="clickTab">疾风剑豪</view>
+		<view class="{{currentTab==2?'act':''}}"  data-current="2" bindtap="clickTab">德玛西亚</view>
+	</scroll-view>
+</view>
+<swiper current="{{currentTab}}" bindchange="swiperTab" style="width:100%">
+	<swiper-item><view>第一屏</view></swiper-item>
+	<swiper-item><view>第二屏</view></swiper-item>
+	<swiper-item><view>第三屏</view></swiper-item>
+</swiper>
+<van-tabs active="{{ active }}" swipeable>
+  <van-tab title="标签 1">内容 1</van-tab>
+  <van-tab title="标签 2">内容 2</van-tab>
+  <van-tab title="标签 3">内容 3</van-tab>
+  <van-tab title="标签 4">内容 4</van-tab>
+  <van-tab title="标签 5">内容 5</van-tab>
+  <van-tab title="标签 6">内容 6</van-tab>
+</van-tabs> -->
 </view>

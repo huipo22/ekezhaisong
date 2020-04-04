@@ -1,5 +1,9 @@
 {
   "component": true,
-  "usingComponents": {},
+  "usingComponents": {
+    "van-search": "../../dist/vant/search/index",
+    "van-card": "../../dist/vant/card/index",
+    "van-image": "../../dist/vant/image/index"
+  },
   "navigationBarTitleText": "搜索"
 }

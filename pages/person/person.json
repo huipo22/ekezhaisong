@@ -1,8 +1,9 @@
 {
   "component": true,
   "usingComponents": {
-    "mp-cell": "../../weui-miniprogram/cell/cell",
-    "mp-cells": "../../weui-miniprogram/cells/cells"
+    "van-icon": "../../dist/vant/icon/index",
+    "van-cell": "../../dist/vant/cell/index",
+    "van-cell-group": "../../dist/vant/cell-group/index"
   },
   "navigationBarTitleText": "我的"
 }

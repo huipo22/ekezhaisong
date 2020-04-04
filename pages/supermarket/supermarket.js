@@ -20,6 +20,7 @@ Page({
     goodIndex: 0,
     page: 1,
     cateId: null,
+    noneFlag:false,
   },
 
   // left click
@@ -63,14 +64,18 @@ Page({
     }).then((res) => {
       if (res.data.code == 1) {
         if (res.data.data == 0) {
-          wx.showToast({
-            title: '无更多数据',
-            duration: 1500,
-          });
+          // wx.showToast({
+          //   title: '无更多数据',
+          //   duration: 1500,
+          // });
+          this.setData({
+            noneFlag:true
+          })
         } else {
           this.setData({
             rightList: oldData.concat(res.data.data),
-            page: pp
+            page: pp,
+            noneFlag:false,
           })
         }
       }

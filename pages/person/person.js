@@ -4,7 +4,7 @@ const utils = require('../../utils/util')
 console.log(app.globalData)
 Page({
   data: {
-    userData: null
+    userData: null,
   },
   // 我的订单
   orderList: function (e) {
@@ -39,5 +39,11 @@ Page({
         userData: JSON.parse(wx.getStorageSync("userData"))
       })
     }
+  },
+    /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

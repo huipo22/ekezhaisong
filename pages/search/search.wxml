@@ -1,44 +1,30 @@
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <view class="container">
   <!-- 搜索框 -->
-  <view class="weui-search-bar">
-    <view class="weui-search-bar__form">
-      <!-- 点击之后，出现input框 -->
-      <view class="weui-search-bar__box">
-        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-        <!-- 输入款字数大于0，则显示清除按钮 -->
-        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-          <icon type="clear" size="14"></icon>
-        </view>
-      </view>
-      <!-- 没点击之前，只是一些文字和图标 -->
-      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-        <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="weui-search-bar__text">搜索</view>
-      </label>
-    </view>
-    <!-- 动态出现的“取消”键 -->
-    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">
-      取消
-    </view>
-  </view>
+  <van-search value="{{inputVal}}" bind:change="inputTyping" placeholder="请输入搜索关键词" style="width:100%" />
   <!-- 显示 -->
-  <scroll-view class="" scroll-x="false" scroll-y="true" style="height: 1254rpx;" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper="" bindscrolltolower="loadMore" bindscroll="" data-type="true">
-    <view class="menu_tab_list">
-      
-      <view class="menu_tab_list_good" bindtap="goodSelect" wx:for="{{goodList}}" wx:key="id" wx:for-item="good" data-goodid="{{good.id}}">
-        <view>
-          <image src="{{resource+good.goods_img}}" mode="aspectFill"></image>
-          <view class="good_detail">
-            <text>{{good.goods_name}}</text>
-            <view class="menu_box_n">
-              <view class="menu_box_n_1">
-                <text>{{"￥"+good.present_price}}</text>
-              </view>
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height: calc(100vh - 54px);" scroll-with-animation="true">
+    <view >
+      <van-card title="{{item.goods_name}}" class="card" wx:for="{{goodList}}" wx:for-item="item" wx:key="*this" catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{item.id}}">
+        <view class="subscrbeImg" slot="thumb">
+          <van-image width="100%" height="100%" src="{{resourse+item.goods_img}}" fit="contain" class="{{item.goods_num==0?'zhezhao':''}}"></van-image>
+        </view>
+        <view slot="bottom" class="cart-bo">
+          <view class="priceBox">
+            <view class="se_price">
+              <rich-text class="" nodes="{{filter.priceFilter(item.present_price)}}"></rich-text>
+              元/{{item.goods_spec}}
+            </view>
+            <view style="text-decoration:line-through;">
+              {{item.original_price}}元/{{item.goods_spec}}
             </view>
           </view>
+          <view class="cartIcon" wx:if="{{items.goods_num!==0}}">
+            <image src="../../dist/icon2/cartLink.png" style="width:30px;height:30px" catch:tap="addCart" data-cart="{{item}}" data-goodid="{{item.id}}" mode="aspectFit" lazy-load="true"></image>
+          </view>
         </view>
-      </view>
+      </van-card>
+      <view wx:if="{{noneFlag==true}}" class="noneData">--我是有底线的--</view>
     </view>
   </scroll-view>
 </view>

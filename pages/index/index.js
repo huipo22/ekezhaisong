@@ -17,6 +17,8 @@ Page({
     duration: 400, //滑动时间
     cateList: null, //6列数据
     recommend: null,
+    active:1,
+    currentTab: 0,
   },
   onShow() {
     util.queryCart(app)
@@ -78,6 +80,24 @@ Page({
     app.globalData.shopId = wx.getStorageSync('shopId')
 
   },
+  clickTab: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+
+      })
+    }
+  },
+  swiperTab: function (e) {
+    var that = this;
+    that.setData({
+      currentTab: e.detail.current
+    });
+
+  },
   goodDetailTap: function (e) {
     wx.navigateTo({
       url: '../goodDetail/goodDetail?goodId=' + e.currentTarget.dataset.goodid,
@@ -86,15 +106,15 @@ Page({
   // 矩阵跳转
   link(e) {
     console.log(e)
-    const parentname=e.currentTarget.dataset.parentname;
-    const parentid=e.currentTarget.dataset.parentid
+    const parentname = e.currentTarget.dataset.parentname;
+    const parentid = e.currentTarget.dataset.parentid
     wx.navigateTo({
-      url:'../listPage/listPage?parentId='+parentid+'&cateId='+parentname
+      url: '../listPage/listPage?parentId=' + parentid + '&cateId=' + parentname
     })
   },
   // 添加购物车
   addCart(e) {
-    util.addCart(e, app,util.queryCart)
+    util.addCart(e, app, util.queryCart)
   },
   // 商品链接
   goodSelect(e) {
@@ -102,4 +122,13 @@ Page({
       url: '../goodDetail/goodDetail?goodId=' + e.currentTarget.dataset.goodid,
     })
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    // return{
+    //   title:'456',
+    //   imageUrl:"../../dist/icon2/person.png"
+    // }
+  }
 })

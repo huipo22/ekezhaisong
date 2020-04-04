@@ -12,14 +12,6 @@ const formatTime = date => {
 }
 let api = require('./request').default;
 const app = getApp();
-// url参数
-const getCurrentPageArgs = () => {
-  const pages = getCurrentPages();
-  const currentPage = pages[pages.length - 1];
-  const url = currentPage.route;
-  const options = currentPage.options;
-  return options
-}
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -52,26 +44,7 @@ const getSetting = () => {
     }
   })
 }
-// 判断库存
-const isNum = (goodNum, goodsNum) => {
-  if (goodNum >= goodsNum) {
-    wx.showToast({
-      title: '库存不足',
-      duration: 1000,
-    });
-    return
-  }
-}
-// 错误提示
-const errorTip = (res) => {
-  wx.showToast({
-    title: res.data.msg,
-    icon: 'none',
-    duration: 1500,
-    mask: false,
-  });
 
-}
 const login = () => {
   wx.login({
     success: res => {
@@ -193,12 +166,9 @@ module.exports = {
   formatDate: formatDate,
   formatTime: formatTime,
   searchTap: searchTap,
-  getCurrentPageArgs: getCurrentPageArgs,
   arrayRemoveItem: arrayRemoveItem,
   getSetting: getSetting,
   login: login,
-  isNum: isNum,
-  errorTip: errorTip,
   addCart: addCart,
   cartLink: cartLink,
   queryCart: queryCart
