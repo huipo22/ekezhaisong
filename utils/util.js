@@ -52,48 +52,48 @@ const login = () => {
       wx.getUserInfo({
         success(res) {
           let wxData = res;
-          wx.request({
-            url: "https://hr.jishanhengrui.com/api/wxapp/public/login",
-            data: {
-              code: wxCode,
-              encrypted_data: wxData.encryptedData,
-              iv: wxData.iv,
-              raw_data: wxData.rawData,
-              signature: wxData.signature
-            },
-            header: {
-              'AppId': 'wx1c2c5d708d0c4ea9' // 默认值
-            },
-            success(res) {
-              if (res.data.code == 1) {
-                console.log(res);
-                wx.setStorageSync('token', res.data.data.token)
-                const app = getApp()
-                api.cartNum({
-                  shop_id: app.globalData.shopId,
-                }, {
-                  Token: wx.getStorageSync('token'),
-                  "Device-Type": 'wxapp',
-                }).then((res) => {
-                  if (res.data.code == 1) {
-                    // 购物车右上角数量
-                    let sum = res.data.data.sum;
-                    if (sum !== 0) {
-                      wx.setTabBarBadge({
-                        index: 2,
-                        text: String(sum)
-                      })
-                    } else {
-                      wx.removeTabBarBadge({
-                        index: 2,
-                      });
-                    }
+          api.wxLogin({
+            code: wxCode,
+            encrypted_data: wxData.encryptedData,
+            iv: wxData.iv,
+            raw_data: wxData.rawData,
+            signature: wxData.signature
+          }, {
+            'AppId': 'wx1c2c5d708d0c4ea9' // 默认值
+          }).then((res) => {
+            if (res.data.code == 1) {
+              console.log(res);
+              wx.setStorageSync('token', res.data.data.token)
+              const app = getApp()
+              api.cartNum({
+                shop_id: app.globalData.shopId,
+              }, {
+                Token: wx.getStorageSync('token'),
+                "Device-Type": 'wxapp',
+              }).then((res) => {
+                if (res.data.code == 1) {
+                  console.log(111115555)
+                  // 购物车右上角数量
+                  let sum = res.data.data.sum;
+                  if (sum !== 0) {
+                    wx.setTabBarBadge({
+                      index: 2,
+                      text: String(sum)
+                    })
+                  } else {
+                    wx.removeTabBarBadge({
+                      index: 2,
+                    });
                   }
-                })
+                }
+              })
+              var pages = getCurrentPages();
+              console.log(pages)
+              if (pages.length !== 1) {
+                wx.navigateBack({
+                  delta: 1
+                });
               }
-            },
-            fail(err) {
-              console.log(err)
             }
           })
         }
@@ -162,6 +162,14 @@ const cartLink = () => {
     url: '../Ccart/Ccart',
   })
 }
+// 页面参数
+const getCurrentPageArgs = () => {
+  const pages = getCurrentPages();
+  const currentPage = pages[pages.length - 1];
+  const url = currentPage.route;
+  const options = currentPage.options;
+  return options
+}
 module.exports = {
   formatDate: formatDate,
   formatTime: formatTime,
@@ -171,5 +179,6 @@ module.exports = {
   login: login,
   addCart: addCart,
   cartLink: cartLink,
-  queryCart: queryCart
+  queryCart: queryCart,
+  getCurrentPageArgs: getCurrentPageArgs
 }

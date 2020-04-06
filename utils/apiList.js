@@ -1,7 +1,4 @@
 let host = 'https://hr.jishanhengrui.com' // 设置API接口的ip地址和端口
-let host1 = "https://www.jishanhengrui.com:8091" //新的host 地址
-const app = getApp()
-console.log(app)
 let apiList = {
     platform: host + "/api/goods/shop/service", //平台服务
     wheel: host + "/api/goods/shop/wheels", //轮播图
@@ -22,6 +19,12 @@ let apiList = {
     goodSub:host+"/api/goods/goods/goods_good",//商品推荐
     getOrder:host+"/api/goods/order/order_status",//获取订单
     orderRefund:host+"/api/goods/order/order_refund",//取消订单
+    addressList:host+"/api/goods/address/list_address",//地址列表
+    defaultAddress:host+"/api/goods/address/default_address",//默认地址
+    deleteAddress:host+"/api/goods/address/delete_address",//删除地址
+    addAddress:host+"/api/goods/address/add_address",//新增地址
+    updateAddress:host+"/api/goods/address/update_address",//更改地址
+    wxLogin:host+"/api/wxapp/public/login",//微信登录后台
 }
 
 module.exports = apiList; //暴露出来

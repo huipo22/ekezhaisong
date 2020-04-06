@@ -234,7 +234,7 @@ button {
   background-color: #fff;
   padding: 0;
   text-align: left;
-  line-height: 0;
+  /* line-height: 0; */
   font-size: 32rpx;
 }
 

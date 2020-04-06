@@ -1,146 +1,186 @@
 // pages/editAddress/editAddress.js
-let app = getApp();
-const utils = require("../../utils/util.js");
-Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
+const app = getApp();
+import util from '../../utils/util'
+let api = require('../../utils/request').default;
+Page({
 
-  },
-  pageLifetimes: {
-    show() {
-      //收货地址 页面传来的参数
-      let option = utils.getCurrentPageArgs();
-      console.log(option)
-      if (Object.keys(option).length == 0) {
-        return
-      } else {
-        let Address = JSON.parse(option.addressInfo)
-        this.setData({
-          id: Address.id,
-          province: Address.province,
-          city: Address.city,
-          county: Address.county,
-          name: Address.name,
-          mobile: Address.mobile,
-          address: Address.address,
-          region: [Address.province, Address.city, Address.county]
-        })
-      }
-    }
-  },
   /**
-   * 组件的初始数据
+   * 页面的初始数据
    */
   data: {
+    userData:null,
     id: null,
-    province: null,
-    city: null,
-    county: null,
-    region: null,
+    // province: null,
+    // city: null,
+    // county: null,
     name: null,
     mobile: null,
     address: null,
+    region: ["山西省", "运城市", "稷山县"]
+  },
+  getPhoneNumber (e) {
+    console.log(e)
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    //收货地址 页面传来的参数
+    console.log(options)
+    if (Object.keys(options).length == 0) {
+      return
+    } else {
+      let Address = JSON.parse(options.addressInfo)
+      this.setData({
+        id: Address.id,
+        province: Address.province,
+        city: Address.city,
+        county: Address.county,
+        name: Address.name,
+        mobile: Address.mobile,
+        address: Address.address,
+        // region: [Address.province, Address.city, Address.county],
+      })
+    }
+  },
+  // name
+  nameChange(e) {
+    console.log(e)
+    this.setData({
+      name: e.detail
+    })
+  },
+  // mobile
+  mobileChange(e) {
+    this.setData({
+      mobile: e.detail
+    })
+  },
+  // region
+  bindRegionChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value
+    })
+  },
+  // address
+  addressChange(e) {
+    this.setData({
+      address: e.detail
+    })
+  },
+  // save
+  saveTap(e) {
+    // add address
+    const addressId = e.currentTarget.dataset.id
+    if (addressId == null) {
+      api.addAddress({
+        name: this.data.name,
+        mobile: this.data.mobile,
+        address: this.data.address,
+        province: this.data.region[0],
+        city: this.data.region[1],
+        county: this.data.region[2]
+      }, {
+        "Token": wx.getStorageSync("token"),
+        "Device-Type": 'wxapp',
+      }).then((res) => {
+        if (res.data.code == 1) {
+          wx.showToast({
+            title: '保存成功',
+            duration: 1500,
+            success: () => {
+              wx.redirectTo({
+                url: '../address/address',
+              });
+            },
+          });
+        } else if (res.data.code == 0) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    } else {
+      // update adress
+      api.updateAddress({
+        id: addressId,
+        name: this.data.name,
+        mobile: this.data.mobile,
+        address: this.data.address,
+        province: this.data.region[0],
+        city: this.data.region[1],
+        county: this.data.region[2]
+      }, {
+        "Token": wx.getStorageSync("token"),
+        "Device-Type": 'wxapp',
+      }).then(res => {
+        if (res.data.code == 1) {
+          wx.showToast({
+            title: '保存成功',
+            duration: 1500,
+            success: (result) => {
+              wx.navigateTo({
+                url: '../address/address',
+              });
+            },
+          });
+        }
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
   /**
-   * 组件的方法列表
+   * 生命周期函数--监听页面显示
    */
-  methods: {
-    // name
-    nameChange(e) {
+  onShow: function () {
+    if (wx.getStorageSync("userData")) {
       this.setData({
-        name: e.detail.value
+        userData: JSON.parse(wx.getStorageSync("userData"))
       })
-    },
-    // mobile
-    mobileChange(e) {
-      this.setData({
-        mobile: e.detail.value
-      })
-    },
-    // region
-    bindRegionChange: function (e) {
-      console.log('picker发送选择改变，携带值为', e.detail.value)
-      this.setData({
-        region: e.detail.value
-      })
-    },
-    // address
-    addressChange(e) {
-      this.setData({
-        address: e.detail.value
-      })
-    },
-    // save
-    saveTap(e) {
-      // add address
-      if (e.currentTarget.dataset.id == null) {
-        wx.request({
-          url: app.globalData.host + "/api/goods/address/add_address",
-          method: "POST",
-          header: {
-            "Token": wx.getStorageSync("token"),
-            "Device-Type": 'wxapp',
-          },
-          data: {
-            name: this.data.name,
-            mobile: this.data.mobile,
-            address: this.data.address,
-            province: this.data.region[0],
-            city: this.data.region[1],
-            county: this.data.region[2]
-          },
-          success(res) {
-            if (res.data.code == 1) {
-              wx.showToast({
-                title: '保存成功',
-                duration: 1500,
-                success: (result) => {
-                  wx.navigateTo({
-                    url: '../address/address',
-                  });
-                },
-              });
-            }
-          }
-        })
-      } else {
-        // update adress
-        wx.request({
-          url: app.globalData.host + "/api/goods/address/update_address",
-          method: "POST",
-          header: {
-            "Token": wx.getStorageSync("token"),
-            "Device-Type": 'wxapp',
-          },
-          data: {
-            id: e.currentTarget.dataset.id,
-            name: this.data.name,
-            mobile: this.data.mobile,
-            address: this.data.address,
-            province: this.data.region[0],
-            city: this.data.region[1],
-            county: this.data.region[2]
-          },
-          success(res) {
-            if (res.data.code == 1) {
-              wx.showToast({
-                title: '保存成功',
-                duration: 1500,
-                success: (result) => {
-                  wx.navigateTo({
-                    url: '../address/address',
-                  });
-                },
-              });
-            }else{
-              utils.errorTip(res)
-            }
-          }
-        })
-      }
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

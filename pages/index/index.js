@@ -17,11 +17,10 @@ Page({
     duration: 400, //滑动时间
     cateList: null, //6列数据
     recommend: null,
-    active:1,
-    currentTab: 0,
+    // active: 1,
+    // currentTab: 0,
   },
   onShow() {
-    util.queryCart(app)
     // 全局手机号
     api.globalPhone({
       shop_id: app.globalData.shopId
@@ -32,44 +31,53 @@ Page({
           title: "e刻宅送"
         })
         app.globalData.phone = res.data.data.user_phone
-      } else {
-        util.errorTip(res)
       }
+    }).then(() => {
+      this.wheel()
+    }).then(() => {
+      this.goodR()
+    }).then(() => {
+      this.column()
     })
+
+  },
+  wheel() {
+    const that = this;
     // 轮播图
     api.wheel({
       shop_id: app.globalData.shopId
     }).then((res) => {
       if (res.data.code == 1) {
-        this.setData({
+        that.setData({
           imgUrls: res.data.data
         })
-      } else {
-        util.errorTip(res)
       }
     })
+  },
+  goodR() {
+    const that = this;
     // 好物推荐
     api.goodSub().then((res) => {
       if (res.data.code == 1) {
-        this.setData({
+        that.setData({
           recommend: res.data.data
         })
       }
     })
+  },
+  column() {
+    const that = this;
     // 首页5列数据
     api.homeCategory({
       shop_id: app.globalData.shopId
     }).then((res) => {
       if (res.data.code == 1) {
-        this.setData({
+        that.setData({
           cateList: res.data.data
         })
       }
     })
-    util.queryCart(app)
-
   },
-
   onLoad(query) {
     if (query && query.shopId) {
       getApp().globalData.shopId = query.shopId;
@@ -80,24 +88,24 @@ Page({
     app.globalData.shopId = wx.getStorageSync('shopId')
 
   },
-  clickTab: function (e) {
-    var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
+  // clickTab: function (e) {
+  //   var that = this;
+  //   if (this.data.currentTab === e.target.dataset.current) {
+  //     return false;
+  //   } else {
+  //     that.setData({
+  //       currentTab: e.target.dataset.current
 
-      })
-    }
-  },
-  swiperTab: function (e) {
-    var that = this;
-    that.setData({
-      currentTab: e.detail.current
-    });
+  //     })
+  //   }
+  // },
+  // swiperTab: function (e) {
+  //   var that = this;
+  //   that.setData({
+  //     currentTab: e.detail.current
+  //   });
 
-  },
+  // },
   goodDetailTap: function (e) {
     wx.navigateTo({
       url: '../goodDetail/goodDetail?goodId=' + e.currentTarget.dataset.goodid,
@@ -126,9 +134,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    // return{
-    //   title:'456',
-    //   imageUrl:"../../dist/icon2/person.png"
-    // }
+
   }
 })

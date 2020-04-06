@@ -1,28 +1,29 @@
 <!-- pages/editAddress/editAddress.wxml -->
 <view class="container">
-  <view class="edit_address">
-    <mp-form id="form">
-      <mp-cell prop="shouhuo" title="收货人" ext-class="">
-        <input bindinput="nameChange" data-field="shouhuo" class="weui-input" placeholder="" value="{{name}}" />
-      </mp-cell>
-      <mp-cell prop="phone" title="联系电话" ext-class="">
-        <input bindinput="mobileChange" data-field="phone" class="weui-input" placeholder="" value="{{mobile}}" />
-      </mp-cell>
-      <mp-cell prop="address_zone" title="所在地区" ext-class="" wx:if="{{region!==null}}">
+  <view style="width: 100%;">
+    <van-cell-group>
+      <van-field value="{{ name }}" placeholder="请输入姓名" border="{{ true }}" bind:change="nameChange" label="姓名" />
+      <van-field value="{{ mobile }}" placeholder="请输入联系电话" border="{{ true }}" bind:change="mobileChange" label="手机号" />
+    
+      <van-cell prop="address_zone" title="所在地区" ext-class="" value-class="valC" title-class="titleC">
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
           <view class="picker">{{region[0]}}{{region[1]}}{{region[2]}}</view>
         </picker>
-      </mp-cell>
-      <mp-cell prop="address_zone" title="所在地区" ext-class="" wx:else>
+      </van-cell>
+      <!-- <van-cell prop="address_zone" title="所在地区" ext-class="" wx:if="{{region!==null}}" value-class="valC" title-class="titleC">
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+          <view class="picker">{{region[0]}}{{region[1]}}{{region[2]}}</view>
+        </picker>
+      </van-cell> -->
+      <!-- <van-cell prop="address_zone" title="所在地区"value-class="valC" title-class="titleC" wx:else>
         <picker mode="region" bindchange="bindRegionChange" value="">
           <view class="picker">请选择</view>
         </picker>
-      </mp-cell>
-      <mp-cell prop="address" title="详细地址" ext-class="">
-        <input bindinput="addressChange" data-field="address" class="weui-input" placeholder="" value="{{address}}" />
-      </mp-cell>
-    </mp-form>
+      </van-cell> -->
+      <van-field value="{{ address }}" placeholder="请输入详细地址" border="{{ true }}" bind:change="addressChange" label="详细地址" />
+    </van-cell-group>
   </view>
+    <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button> -->
   <view class="address_btn" bindtap="saveTap" data-id="{{id}}">
     <text>保存</text>
   </view>

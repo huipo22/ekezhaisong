@@ -5,7 +5,7 @@
         <view wx:for="{{carts}}" wx:key="">
             <view class='cart_container'>
                 <view>
-                    <image src="../../dist/icon/shanchu.png" class="deleteBox" catch:tap="singleDelete" data-index="{{index}}" />
+                    <van-icon name="delete" class="deleteBox" catch:tap="singleDelete" data-index="{{index}}" />
                 </view>
                 <view class='{{item.isSelect?"item-select-yes":"item-select-no"}}' catch:tap="switchSelect" data-index="{{index}}" data-id="{{index}}">
                     <text></text>
@@ -26,19 +26,17 @@
                         <text class='sku-price'>￥</text>
                         <text class='sku-price'>{{item.present_price}}/{{item.goods_spec}}</text>
                     </view>
-                    
-                    
                 </view>
                 <!-- <view class="tips" wx:if="{{item.num==item.limit_num}}">限购{{limit_num}}件</view> -->
                 <view class='sku'>
-                        <text class='sub' catch:tap='quantityChange' id='dec' data-index="{{index}}">
-                            -
-                        </text>
-                        <text class='number'>{{item.num}}</text>
-                        <text class='add' catch:tap='quantityChange' id='inc' data-index="{{index}}">
-                            +
-                        </text>
-                    </view>
+                    <text class='sub' catch:tap='quantityChange' id='dec' data-index="{{index}}">
+                        -
+                    </text>
+                    <text class='number'>{{item.num}}</text>
+                    <text class='add' catch:tap='quantityChange' id='inc' data-index="{{index}}">
+                        +
+                    </text>
+                </view>
             </view>
             <view class='separate'></view>
         </view>

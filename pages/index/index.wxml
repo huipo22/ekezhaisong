@@ -21,6 +21,11 @@
 			</van-grid-item>
 		</van-grid>
 	</view>
+	<van-notice-bar
+	scrollable="true"
+	style="width:100%"
+	text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
+	/>
 	<view wx:for="{{recommend}}" wx:for-item="item" class="recommend">
 		<view class="positon_p">
 			<text class="positon1 f_h1">{{item.name}}</text>

@@ -1,21 +1,13 @@
 /* pages/editAddress/editAddress.wxss */
 
-.container {
-  height: 100%;
-  background: #fff;
-}
-.edit_address{
-  width: 100%;
-}
-.address {
-  width: 100%;
+.titleC {
+  flex: 1!important;
 }
 
-.weui-label {
-  width: 80px;
+.valC {
+  flex: 2.2!important;
 }
 
-.weui-cell{
-  border-bottom: 1rpx solid #F1F1F3;
-  padding: 25rpx!important;
+picker {
+  display: flex;
 }

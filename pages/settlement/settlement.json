@@ -1,5 +1,11 @@
 {
   "component": true,
-  "usingComponents": {},
+  "usingComponents": {
+    "van-row": "../../dist/vant/row/index",
+    "van-col": "../../dist/vant/col/index",
+    "van-field": "../../dist/vant/field/index",
+    "van-popup": "../../dist/vant/popup/index",
+    "van-image": "../../dist/vant/image/index"
+  },
   "navigationBarTitleText": "结算"
 }

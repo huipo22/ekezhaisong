@@ -4,7 +4,7 @@
         <view class="menu_tab_list">
             <view class="menu_tab_list_good" wx:for="{{platformList}}" wx:key="id" wx:for-item="good">
                 <view>
-                    <image src="{{resourse+good.img}}" mode="aspectFill" bind:tap="preview" data-src="{{resourse+good.img}}"></image>
+                 <van-image width="100%" height="100%" src="{{resourse+good.img}}" fit="contain" bind:tap="preview" data-src="{{resourse+good.img}}"></van-image>
                     <view class="good_detail">
                         <text>{{good.name}}</text>
                         
@@ -26,7 +26,7 @@
     </view>
     <view class="menu_tab" wx:else>
         <view class="isView">
-            <image class="wushuju" src="../../dist/icon/zanwushuju.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+            <!-- <image class="wushuju" src="../../dist/icon/zanwushuju.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image> -->
             <text class="">暂无数据</text>
         </view>
     </view>

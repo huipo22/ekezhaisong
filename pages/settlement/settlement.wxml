@@ -1,89 +1,77 @@
 <!-- pages/settlement/settlement.wxml -->
 <view class="container">
   <view class="marginBottom">
-    <view class="se_addressBox mb" bindtap="address">
-      <view class="se_address" wx:if="{{settleData.address_info==null&& parmsData==null}}">
-        <text style="color:red">请选择收货地址</text>
+    <!-- 都没有 -->
+    <van-row custom-class="row addressB col" catch:tap="address" wx:if="{{settleData.address_info==null&& parmsData==null}}">
+      请选择收货地址
+    </van-row>
+    <!-- 切换地址 -->
+    <van-row custom-class="row addressB" catch:tap="address" wx:elif="{{parmsData!==null}}">
+      <van-col span="12" custom-class="col sty">
+        <view>收货人:{{parmsData.name}}</view>
+        <view>收货地址:{{parmsData.address}}</view>
+      </van-col>
+      <van-col span="12" custom-class="col">{{parmsData.mobile}}</van-col>
+    </van-row>
+    <!-- 用户地址有 -->
+    <van-row custom-class="row addressB" catch:tap="address" wx:else>
+      <van-col span="12" custom-class="col sty">
+        <view>收货人:{{settleData.address_info.name}}</view>
+        <view>收货地址:{{settleData.address_info.address}}</view>
+      </van-col>
+      <van-col span="12" custom-class="col">{{settleData.address_info.mobile}}</van-col>
+    </van-row>
+    <van-row custom-class="row">
+      <van-col custom-class="col" span="24">订单内容</van-col>
+    </van-row>
+    <van-row>
+      <van-col custom-class="col" span="20">
+        <van-image width="50px" height="50px" fit="contain" src="{{resource+img}}" wx:for="{{imgList}}" wx:for-item="img"></van-image>
+      </van-col>
+      <van-col custom-class="col" span="4">
+        <view>共{{imgList.length}}件</view>
+        <view bind:tap="showPopup">详细</view>
+      </van-col>
+    </van-row>
+    <van-row custom-class="row">
+      <van-col span="6" custom-class="col">配送费</van-col>
+      <van-col span="18" custom-class="col">{{settleData.express_price}}元</van-col>
+    </van-row>
+    <van-row custom-class="row">
+      <van-col span="6" custom-class="col">备注</van-col>
+      <van-col span="18" custom-class="col">
+        <input type="text" value="{{ remark }}" label="备注" placeholder="请输入留言" />
+      </van-col>
+    </van-row>
+    <van-row custom-class="row">
+      <van-col span="6" custom-class="col">配送须知</van-col>
+      <van-col span="18" wx:if="{{settleData.express_price==0}}" custom-class="col">
+        满{{settleData.base_price}}元，免配送费
+      </van-col>
+      <van-col span="18" wx:else custom-class="col">
+        满{{settleData.base_price}}元，免{{settleData.express_price}}元配送费
+      </van-col>
+    </van-row>
+    <van-row custom-class="row">
+      <van-col custom-class="col" span="24">县城以外满30元免费配送</van-col>
+    </van-row>
+    <!-- 左侧弹出抽屉 -->
+    <van-popup show="{{ show }}" position="left" closeable close-icon-position="top-right" bind:close="onClose" custom-style="height: 100%;width:80%">
+      <view style="margin-top:50px">
+        <van-row wx:for="{{settleData.goods_info}}" wx:for-item="good" wx:key="*this" custom-class="goodBox" catch:tap="goodLink" data-id="{{good.goods_id}}">
+          <van-col span="6" custom-class="goodImg">
+            <van-image width="50px" height="50px" fit="contain" src="{{resource+good.goods_img}}"></van-image>
+          </van-col>
+          <van-col span="14" custom-class="goodCon">
+            <view>{{good.goods_name}}</view>
+            <view>{{"￥"+good.goods_price}}</view>
+          </van-col>
+          <van-col span="4" custom-class="goodNum">
+            <view>x{{good.goods_num}}</view>
+          </van-col>
+        </van-row>
       </view>
-      <view wx:elif="{{parmsData!==null}}" class="addressLeft">
-        <view class="addressInfo">
-          <view class="addressCon">
-            <text>收货人:</text>
-            <text class="name">{{parmsData.name}}</text>
-            <text>{{parmsData.mobile}}</text>
-          </view>
-          <view class="address">
-            <text>收货地址:</text>
-            <text>{{parmsData.address}}</text>
-          </view>
-        </view>
-      </view>
-      <view wx:else class="addressLeft">
-        <view class="addressInfo">
-          <view class="addressCon">
-            <text>收货人:</text>
-            <text class="name">{{settleData.address_info.name}}</text>
-            <text>{{settleData.address_info.mobile}}</text>
-          </view>
-          <view class="address">
-            <text>收货地址:</text>
-            <text>{{settleData.address_info.address}}</text>
-          </view>
-        </view>
-      </view>
-      <view class="moreIcon"></view>
-    </view>
-    <view class="se_address_con">
-      <view class="se_address_con_title line">
-        <text>订单内容</text>
-      </view>
-      <view class="goodList" wx:for="{{settleData.goods_info}}" wx:for-item="good" wx:key="*this">
-        <view class="good" catch:tap="goodLink" data-id="{{good.goods_id}}">
-          <view class="good_img">
-            <image src="{{resource+good.goods_img}}" mode="aspect" style="height: 60px;width: 60px;" role="img"></image>
-          </view>
-          <view class="good_con">
-            <text class="goodName">{{good.goods_name}}</text>
-            <text class="guige">规格：{{good.goods_spec}}</text>
-            <text class="goodName">x{{good.goods_num}}</text>
-          </view>
-          <view class="good_num">{{"￥"+good.goods_price}}</view>
-        </view>
-      </view>
-      <view class="se_address line">
-        <view class="se_address1">
-          <text>配送费</text>
-        </view>
-        <view class="se_price">
-          <text wx:if="{{settleData.address_info==null&& parmsData==null}}">请先选择收货地址</text>
-          <text wx:else>{{settleData.express_price}}元</text>
-        </view>
-      </view>
-    </view>
-    <view class="time_select">
-      <view class="se_address line">
-        <view class="se_label">
-          <text>下单备注</text>
-        </view>
-        <view>
-          <input placeholder="请输入留言" value="{{remark}}" type="text"></input>
-        </view>
-      </view>
-      <view class="se_address line2">
-        <view class="se_label">
-          <text>配送须知</text>
-        </view>
-        <view wx:if="{{settleData.express_price==0}}">
-          <text>满{{settleData.base_price}}元，免配送费</text>
-        </view>
-        <view wx:else>
-          <text>满{{settleData.base_price}}元，免{{settleData.express_price}}元配送费</text>
-        </view>
-      </view>
-    </view>
-    <view class="se_address line2 se_price">
-      <text>县城以外满30元免费配送</text>
-    </view>
+    </van-popup>
     <view class="bottom">
       <view class="tag1">
         <text>合计：￥{{settleData.price}}</text>

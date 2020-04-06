@@ -8,7 +8,8 @@
     "van-card": "../../dist/vant/card/index",
     "van-image": "../../dist/vant/image/index",
     "van-tab": "../../dist/vant/tab/index",
-    "van-tabs": "../../dist/vant/tabs/index"
+    "van-tabs": "../../dist/vant/tabs/index",
+    "van-notice-bar": "../../dist/vant/notice-bar/index"
   },
   "navigationBarTitleText": ""
 }

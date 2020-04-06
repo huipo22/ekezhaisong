@@ -1,7 +1,7 @@
 // pages/person/person.js
 const app = getApp();
-const utils = require('../../utils/util')
-console.log(app.globalData)
+import util from '../../utils/util'
+// console.log(app.globalData)
 Page({
   data: {
     userData: null,
@@ -32,8 +32,7 @@ Page({
     })
   },
   onShow(){
-    utils.getSetting()
-    utils.queryCart(app)
+    util.getSetting()
     if (wx.getStorageSync("userData")) {
       this.setData({
         userData: JSON.parse(wx.getStorageSync("userData"))

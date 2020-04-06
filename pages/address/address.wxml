@@ -16,11 +16,9 @@
           <text class="{{address.default==1?'red':'default'}}">设为默认</text>
         </radio>
         <view class="edit" bindtap="editTap" data-info="{{address}}">
-          <image class="" src="../../dist/icon/bianji.png" mode="aspectFit|aspectFill|widthFix" />
           <text>编辑</text>
         </view>
         <view class="delete" bindtap="deleteTap" data-id="{{address.id}}">
-          <image class="" src="../../dist/icon/shanchu.png" mode="aspectFit|aspectFill|widthFix" />
           <text>删除</text>
         </view>
       </view>

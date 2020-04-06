@@ -137,6 +137,36 @@ let orderRefund=(data,header) => {
         resolve(apiRequest(apiList.orderRefund, 'post', data,header))
     })
 }
+let addressList=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.addressList, 'get',data,header))
+    })
+}
+let defaultAddress=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.defaultAddress, 'post',data,header))
+    })
+}
+let deleteAddress=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.deleteAddress, 'post',data,header))
+    })
+}
+let addAddress=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.addAddress, 'post',data,header))
+    })
+}
+let updateAddress=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.updateAddress, 'post',data,header))
+    })
+}
+let wxLogin=(data,header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.wxLogin, 'post',data,header))
+    })
+}
 //最后需要将具体调用的函数暴露出，给具体业务调用
 export default {
     platfromServe: platfromServe,
@@ -156,5 +186,11 @@ export default {
     createOrder:createOrder,
     goodSub:goodSub,
     getOrder:getOrder,
-    orderRefund,orderRefund
+    orderRefund,orderRefund,
+    addressList:addressList,
+    defaultAddress:defaultAddress,
+    deleteAddress:deleteAddress,
+    addAddress:addAddress,
+    updateAddress:updateAddress,
+    wxLogin:wxLogin
 }

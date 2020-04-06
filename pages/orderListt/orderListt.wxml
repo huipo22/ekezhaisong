@@ -43,7 +43,10 @@
                                     <view>{{"配送费￥"+order.express_price}}</view>
                                     <view class="priceBox">合计:{{order.pay_price}}</view>
                                 </view>
-                                <text class="btnop" bindtap="backPay" id="{{order.id}}">退款</text>
+                                <!-- <text class="btnop" bindtap="backPay" id="{{order.id}}">退款</text> -->
+                                <button open-type="contact">
+                                    <text class="btnop">退款</text>
+                                </button>
                             </view>
                             <view class="order-foot f_h3" wx:if="{{orderActive==3}}">
                                 <view class="order-num">
