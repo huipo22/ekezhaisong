@@ -1,7 +1,7 @@
 <!-- pages/orderListt/orderListt.wxml -->
 <view class="container">
     <view class="Box">
-        <van-tabs active="{{ orderActive }}" bind:change="orderChange">
+        <van-tabs active="{{ orderActive }}" bind:change="orderChange" sticky>
             <van-tab title="{{item.title}}" wx:for="{{orderListTab}}" wx:for-item="item" wx:key="unique" name="{{item.name}}" color="#00a046">
                 <view class="load" wx:if="{{loadFlag==true}}">
                     <van-loading size="24px" color="#00a046">加载中...</van-loading>
@@ -14,20 +14,38 @@
                             <view class="order-datetime">{{order.add_time}}</view>
                         </view>
                         <!-- 详情列表 -->
-                        <!-- 加载框 -->
+                        <!-- 左侧弹出抽屉 -->
+                        <van-popup show="{{ show }}" position="left" closeable close-icon-position="top-right" bind:close="onClose" custom-style="height: 100%;width:80%">
+                            <view>
+                                <van-row custom-class="rowTitle" style="height:50px">
+                                    <van-col custom-class="col" span="23" offset="1">
+                                        商品清单({{goodList.length}})
+                                    </van-col>
+                                </van-row>
+                                <scroll-view scroll-y="true" style="height:85vh">
+                                    <van-row wx:for="{{goodList}}" wx:for-item="good" wx:key="*this" custom-class="goodBox" catch:tap="goodLink" data-id="{{good.goods_id}}">
+                                        <van-col span="6" custom-class="goodImg">
+                                            <van-image width="50px" height="50px" fit="contain" src="{{resourse+good.goods_img}}"></van-image>
+                                        </van-col>
+                                        <van-col span="14" custom-class="goodCon">
+                                            <view>{{good.goods_name}}</view>
+                                            <view>{{"￥"+good.goods_price}}</view>
+                                        </van-col>
+                                        <van-col span="4" custom-class="goodNum">
+                                            <view>x{{good.goods_num}}</view>
+                                        </van-col>
+                                    </van-row>
+                                </scroll-view>
+                            </view>
+                        </van-popup>
                         <view class="Box subscrbeFont">
-                            <van-row wx:for="{{order.goods_info}}" wx:for-item="orderDetail" wx:key="unique" catch:tap="goodLink" data-id="{{orderDetail.goods_id}}">
-                                <van-col span="5">
-                                    <view class="subscrbeImg">
-                                        <van-image width="50" height="50" src="{{resourse+orderDetail.goods_img}}"></van-image>
-                                    </view>
-                                </van-col>
-                                <van-col span="19">
-                                    <view class="Box goodInfo">
-                                        <view class="left">{{orderDetail.goods_name}}</view>
-                                        <view class="right">{{'¥'+orderDetail.goods_price}}</view>
-                                    </view>
-                                    <view class="Box goodInfoNum">x{{orderDetail.goods_num}}</view>
+                            <van-row custom-class="good_info">
+                                <van-col custom-class="col" span="24" catch:tap="showPopup" data-index="{{index}}">
+                                <view style="width:100%;white-space:nowrap">
+                                     <scroll-view scroll-x style="width: 100%;">
+                                        <van-image width="40px" height="40px" fit="contain" src="{{resourse+img.goods_img}}" wx:for="{{order.goods_info}}" wx:for-item="img" custom-class="img_p" />
+                                    </scroll-view>
+                                </view>
                                 </van-col>
                             </van-row>
                             <view class="order-foot f_h3" wx:if="{{orderActive==1}}">

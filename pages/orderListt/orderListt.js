@@ -31,14 +31,15 @@ Page({
         title: "已退款"
       },
     ],
-    loadFlag:true,
+    loadFlag: true,
     resourse: app.globalData.resource,
-    orderListData: []
+    orderListData: [],
+    goodList:[],
   },
   // 加载订单数据
   loadOrdernData(status) {
     this.setData({
-      loadFlag:true
+      loadFlag: true
     })
     api.getOrder({
       shop_id: app.globalData.shopId,
@@ -50,7 +51,7 @@ Page({
       if (res.data.code == 1) {
         this.setData({
           orderListData: res.data.data,
-          loadFlag:false
+          loadFlag: false
         })
       }
     })
@@ -107,7 +108,7 @@ Page({
   pay(e) {
     console.log(e)
     let order = e.target.dataset.order
-    let that=this
+    let that = this
     // return;
     wx.request({
       url: app.globalData.host + "/api/goods/order/wxapp_pay",
@@ -139,12 +140,12 @@ Page({
               orderActive: 2,
             })
             that.loadOrdernData(2)
-           
+
           },
           fail(res) {
             console.log('调用支付接口fail', res)
             that.setData({
-              orderActive:1,
+              orderActive: 1,
             })
             that.loadOrdernData(1)
           }
@@ -180,7 +181,7 @@ Page({
                 success(res) {
                   if (res.confirm) {
                     that.setData({
-                      orderActive:5,
+                      orderActive: 5,
                     })
                     that.loadOrdernData(5)
                   }
@@ -196,13 +197,26 @@ Page({
       }
     })
   },
-  goodLink(e){
+  goodLink(e) {
     console.log(e)
-    const id=e.currentTarget.dataset.id;
+    const id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../goodDetail/goodDetail?goodId=' + id,
     })
-  } ,
+  },
+  showPopup(e) {
+    console.log(e)
+    const index=e.currentTarget.dataset.index
+    this.setData({
+      show: true,
+      goodList:this.data.orderListData[index].goods_info
+    });
+  },
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

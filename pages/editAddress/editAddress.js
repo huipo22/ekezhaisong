@@ -90,8 +90,11 @@ Page({
             title: '保存成功',
             duration: 1500,
             success: () => {
-              wx.redirectTo({
-                url: '../address/address',
+              // wx.redirectTo({
+              //   url: '../address/address',
+              // });
+              wx.navigateBack({
+                delta: 1
               });
             },
           });

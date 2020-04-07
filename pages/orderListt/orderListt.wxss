@@ -153,3 +153,55 @@
     align-items: center;
     justify-content: center;
 }
+.goodBox {
+    height: 120rpx;
+    border-bottom: 1rpx solid #eee;
+    padding: 10rpx;
+  }
+  
+  .goodCon {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 22rpx;
+  }
+  
+  .goodImg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .goodNum {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .img_p {
+    padding: 5rpx 10rpx;
+  }
+  
+  .good_info {
+    height: 110rpx;
+  }
+  
+  .rowTitle {
+    height: 50px;
+    border-top: 1rpx solid #ccc;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .row {
+    height: 80rpx;
+    border-top: 1rpx solid #ccc;
+  }
+  
+  .col {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  

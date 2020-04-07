@@ -7,6 +7,7 @@
     "van-col": "../../dist/vant/col/index",
     "van-image": "../../dist/vant/image/index",
     "van-button": "../../dist/vant/button/index",
+    "van-popup": "../../dist/vant/popup/index",
     "van-loading": "../../dist/vant/loading/index"
   },
   "navigationBarTitleText": "订单列表"

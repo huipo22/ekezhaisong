@@ -5,7 +5,8 @@
     "van-col": "../../dist/vant/col/index",
     "van-field": "../../dist/vant/field/index",
     "van-popup": "../../dist/vant/popup/index",
-    "van-image": "../../dist/vant/image/index"
+    "van-image": "../../dist/vant/image/index",
+    "van-icon": "../../dist/vant/icon/index"
   },
   "navigationBarTitleText": "结算"
 }

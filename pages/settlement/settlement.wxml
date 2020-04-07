@@ -24,13 +24,15 @@
     <van-row custom-class="row">
       <van-col custom-class="col" span="24">订单内容</van-col>
     </van-row>
-    <van-row>
+    <van-row custom-class="good_info">
       <van-col custom-class="col" span="20">
-        <van-image width="50px" height="50px" fit="contain" src="{{resource+img}}" wx:for="{{imgList}}" wx:for-item="img"></van-image>
+        <van-image width="40px" height="40px" fit="contain" src="{{resource+img}}" wx:for="{{imgList}}" wx:for-item="img" x:key wx:if="{{index<=4}}" custom-class="img_p">
+          >
+        </van-image>
       </van-col>
-      <van-col custom-class="col" span="4">
+      <van-col custom-class="col" span="4" bind:tap="showPopup">
         <view>共{{imgList.length}}件</view>
-        <view bind:tap="showPopup">详细</view>
+        <van-icon name="arrow" size="13px" />
       </van-col>
     </van-row>
     <van-row custom-class="row">
@@ -57,18 +59,26 @@
     </van-row>
     <!-- 左侧弹出抽屉 -->
     <van-popup show="{{ show }}" position="left" closeable close-icon-position="top-right" bind:close="onClose" custom-style="height: 100%;width:80%">
-      <view style="margin-top:50px">
-        <van-row wx:for="{{settleData.goods_info}}" wx:for-item="good" wx:key="*this" custom-class="goodBox" catch:tap="goodLink" data-id="{{good.goods_id}}">
-          <van-col span="6" custom-class="goodImg">
-            <van-image width="50px" height="50px" fit="contain" src="{{resource+good.goods_img}}"></van-image>
-          </van-col>
-          <van-col span="14" custom-class="goodCon">
-            <view>{{good.goods_name}}</view>
-            <view>{{"￥"+good.goods_price}}</view>
-          </van-col>
-          <van-col span="4" custom-class="goodNum">
-            <view>x{{good.goods_num}}</view>
-          </van-col>
+      <view>
+        <van-row custom-class="rowTitle" style="height:50px">
+          <van-col custom-class="col" span="23" offset="1">商品清单({{imgList.length}})</van-col>
+        </van-row>
+        <scroll-view scroll-y="true" style="height:80vh">
+          <van-row wx:for="{{settleData.goods_info}}" wx:for-item="good" wx:key="*this" custom-class="goodBox" catch:tap="goodLink" data-id="{{good.goods_id}}">
+            <van-col span="6" custom-class="goodImg">
+              <van-image width="50px" height="50px" fit="contain" src="{{resource+good.goods_img}}"></van-image>
+            </van-col>
+            <van-col span="14" custom-class="goodCon">
+              <view>{{good.goods_name}}</view>
+              <view>{{"￥"+good.goods_price}}</view>
+            </van-col>
+            <van-col span="4" custom-class="goodNum">
+              <view>x{{good.goods_num}}</view>
+            </van-col>
+          </van-row>
+        </scroll-view>
+        <van-row custom-class="row">
+          <van-col span="23" offset="1" custom-class="col">合计：￥{{settleData.price}}</van-col>
         </van-row>
       </view>
     </van-popup>

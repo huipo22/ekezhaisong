@@ -4,7 +4,6 @@
     "pages/logs/logs",
     "pages/supermarket/supermarket",
     "pages/person/person",
-    "pages/goodList/goodList",
     "pages/goodDetail/goodDetail",
     "pages/address/address",
     "pages/editAddress/editAddress",

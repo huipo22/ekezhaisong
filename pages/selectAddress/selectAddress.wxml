@@ -5,20 +5,21 @@
             <view>
                 <radio class="a_radio" checked="{{address.default}}" bindtap="radioTap" data-id="{{address.id}}"></radio>
             </view>
-            <view class="right">
-                <view class="addressCon">
-                    <text>收货人:</text>
-                    <text class="name">{{address.name}}</text>
-                    <text>{{address.mobile}}</text>
-                </view>
-                <view class="address">
-                    <text>收货地址:</text>
-                    <text>{{address.address}}</text>
-                </view>
+            <view style="width:100%">
+                <van-row custom-class="row addressB" catch:tap="address">
+                    <van-col span="12" custom-class="col sty">
+                        <view>收货人:{{address.name}}</view>
+                        <view>收货地址:{{address.address}}</view>
+                    </van-col>
+                    <van-col span="12" custom-class="col">{{address.mobile}}</van-col>
+                </van-row>
             </view>
         </view>
     </view>
-    <view class="btnBox">
-        <button bindtap="getAddress" type="primary" size="mini">一键获取地址</button>
+    <view class="address_btn" bindtap="newAddress">
+        <text>添加新地址</text>
     </view>
+    <!-- <view class="btnBox">
+        <button bindtap="getAddress" type="primary" size="mini">一键获取地址</button>
+    </view> -->
 </view>
