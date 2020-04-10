@@ -3,6 +3,9 @@
     "van-card": "../../dist/vant/card/index",
     "van-loading": "../../dist/vant/loading/index",
     "van-image": "../../dist/vant/image/index",
-    "van-icon": "../../dist/vant/icon/index"
+    "van-icon": "../../dist/vant/icon/index",
+    "van-divider": "../../dist/vant/divider/index",
+    "van-tab": "../../dist/vant/tab/index",
+    "van-tabs": "../../dist/vant/tabs/index"
   }
 }

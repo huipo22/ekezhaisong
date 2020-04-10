@@ -2,8 +2,11 @@
 <view class="container">
   <view class="marginBottom">
     <!-- 都没有 -->
-    <van-row custom-class="row addressB col" catch:tap="address" wx:if="{{settleData.address_info==null&& parmsData==null}}">
-      请选择收货地址
+    <van-row custom-class="row addressB" catch:tap="address" wx:if="{{settleData.address_info==null&& parmsData==null}}">
+      <van-col custom-class="col redColor" span="22">请点击选择收货地址</van-col>
+      <van-col custom-class="col" span="2">
+        <van-icon name="arrow" size="13px" color="red" />
+      </van-col>
     </van-row>
     <!-- 切换地址 -->
     <van-row custom-class="row addressB" catch:tap="address" wx:elif="{{parmsData!==null}}">

@@ -34,7 +34,7 @@ Page({
     loadFlag: true,
     resourse: app.globalData.resource,
     orderListData: [],
-    goodList:[],
+    goodList: [],
   },
   // 加载订单数据
   loadOrdernData(status) {
@@ -58,11 +58,10 @@ Page({
   },
   // 订单选项卡改变事件
   orderChange(event) {
-    console.log(event)
-    console.log(this.data.orderActive)
     const status = event.detail.name
+    console.log(status)
     this.setData({
-      orderActive: event.detail.name
+      orderActive: status
     })
     this.loadOrdernData(status)
   },
@@ -173,7 +172,6 @@ Page({
               that.setData({
                 orderList: res.data.data
               })
-              util.errorTip(res)
               wx.showModal({
                 title: '提示',
                 content: '退款成功',
@@ -198,7 +196,6 @@ Page({
     })
   },
   goodLink(e) {
-    console.log(e)
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../goodDetail/goodDetail?goodId=' + id,
@@ -206,10 +203,10 @@ Page({
   },
   showPopup(e) {
     console.log(e)
-    const index=e.currentTarget.dataset.index
+    const index = e.currentTarget.dataset.index
     this.setData({
       show: true,
-      goodList:this.data.orderListData[index].goods_info
+      goodList: this.data.orderListData[index].goods_info
     });
   },
   onClose() {
@@ -221,13 +218,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    this.loadOrdernData(1)
     if (options.active) {
       this.setData({
         orderActive: Number(options.active)
       })
-      this.loadOrdernData(Number(options.active))
+      // this.loadOrdernData(Number(options.active))
     } else {
-      this.loadOrdernData(1)
+      // this.loadOrdernData(1)
     }
   },
 

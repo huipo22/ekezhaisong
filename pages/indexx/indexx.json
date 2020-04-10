@@ -9,7 +9,9 @@
     "van-image": "../../dist/vant/image/index",
     "van-tab": "../../dist/vant/tab/index",
     "van-tabs": "../../dist/vant/tabs/index",
-    "van-notice-bar": "../../dist/vant/notice-bar/index"
+    "van-notice-bar": "../../dist/vant/notice-bar/index",
+    "add-tips": "../../dist/weplug-add-tips-master/index",
+    "van-loading": "../../dist/vant/loading/index"
   },
   "navigationBarTitleText": ""
 }

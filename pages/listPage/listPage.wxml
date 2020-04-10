@@ -2,7 +2,7 @@
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <view class="container">
     <view class="infoBox">
-        <van-icon name="shopping-cart" info="{{cartInfo==0?'':cartInfo}}" size="45px" color="#00a046" catch:tap="cartLink"/>
+        <van-icon name="shopping-cart" info="{{cartInfo==0?'':cartInfo}}" size="45px" color="#00a046" catch:tap="cartLink" />
     </view>
     <view style="width:100%">
         <!-- 加载框 -->
@@ -10,7 +10,7 @@
             <van-loading size="24px" color="#00a046">加载中...</van-loading>
         </view>
         <scroll-view scroll-y="true" style="height:100vh;" scroll-with-animation="true" bindscrolltolower="loadMore" wx:else>
-            <van-card title="{{items.goods_name}}" class="card" wx:for="{{cateData}}" wx:for-item="items" wx:key="*this"  catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{items.id}}">
+            <van-card title="{{items.goods_name}}" desc="{{items.remark}}" class="card" wx:for="{{cateData}}" wx:for-item="items" wx:key="*this" catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{items.id}}" title-class="cardTitle">
                 <view class="subscrbeImg" slot="thumb">
                     <van-image width="100%" height="100%" src="{{resource+items.goods_img}}" fit="contain" class="{{items.goods_num==0?'zhezhao':''}}"></van-image>
                 </view>
@@ -24,13 +24,20 @@
                             {{items.original_price}}元/{{items.goods_spec}}
                         </view>
                     </view>
+                    <view class="volumn">
+                        已售
+                        <view class="red">{{items.goods_volume_false}}</view>
+                        {{items.goods_spec}}
+                    </view>
                     <view class="cartIcon" wx:if="{{items.goods_num!==0}}">
                         <image src="../../dist/icon2/cartLink.png" style="width:30px;height:30px" catch:tap="addCart" data-cart="{{items}}" data-goodid="{{items.id}}" mode="aspectFit" lazy-load="true"></image>
                     </view>
                 </view>
             </van-card>
             <view wx:if="{{noneFlag==true}}" class="noneData">
-                --我是有底线的--
+                <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 14px" class="divider">
+                    我是有底线的
+                </van-divider>
             </view>
         </scroll-view>
     </view>

@@ -5,7 +5,9 @@
     "van-card": "../../dist/vant/card/index",
     "van-submit-bar": "../../dist/vant/submit-bar/index",
     "van-stepper": "../../dist/vant/stepper/index",
-    "van-icon": "../../dist/vant/icon/index"
+    "van-icon": "../../dist/vant/icon/index",
+    "van-image": "../../dist/vant/image/index"
+
   },
   "navigationBarTitleText": "购物车"
 }

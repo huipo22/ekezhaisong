@@ -34,7 +34,7 @@ Page({
         const isSelect = carts[index].isSelect; // 获取当前商品的选中状态
         carts[index].isSelect = !isSelect; // 改变状态
         for (let i = 0; i < carts.length; i++) {
-            if (carts[i].isSelect) {
+            if (carts[i].goods_status == 1 && carts[i].isSelect) {
                 selectNum++
             }
         }
@@ -64,7 +64,7 @@ Page({
             success(res) {
                 if (res.confirm) {
                     // debugger
-                    that.cartDelete(shoppingId,index)
+                    that.cartDelete(shoppingId, index)
                     // util.queryCart(app)
                     // that.getTotalPrice()
                 } else if (res.cancel) {
@@ -74,7 +74,7 @@ Page({
         })
     },
     // 购物车删除
-    cartDelete(shoppingId,index,e) {
+    cartDelete(shoppingId, index, e) {
         api.cartDelete({
             shopping_id: shoppingId
         }, {
@@ -88,11 +88,11 @@ Page({
                     duration: 1500
                 });
                 // this.cartQuery()
-                const carts=this.data.carts;
-                util.arrayRemoveItem(carts,carts[index])
+                const carts = this.data.carts;
+                util.arrayRemoveItem(carts, carts[index])
                 let selectNum = 0; //统计选中商品
                 for (let i = 0; i < carts.length; i++) {
-                    if (carts[i].isSelect) {
+                    if (carts[i].goods_status == 1 && carts[i].isSelect) {
                         selectNum++
                     }
                 }
@@ -111,33 +111,33 @@ Page({
             }
         })
     },
-    cartQ(){
+    cartQ() {
         api.cartNum({
             shop_id: app.globalData.shopId,
-          }, {
+        }, {
             Token: wx.getStorageSync('token'),
             "Device-Type": 'wxapp',
-          }).then((res) => {
+        }).then((res) => {
             if (res.data.code == 1) {
-              // 购物车右上角数量
-              let sum = res.data.data.sum;
-              if (sum !== 0) {
-                wx.setTabBarBadge({
-                  index: 2,
-                  text: String(sum)
-                })
-              } else {
-                wx.removeTabBarBadge({
-                  index: 2,
-                });
-                this.setData({
-                    totalMoney:0,
-                    selectNum:0,
-                    isAllSelect:false,
-                })
-              }
+                // 购物车右上角数量
+                let sum = res.data.data.sum;
+                if (sum !== 0) {
+                    wx.setTabBarBadge({
+                        index: 2,
+                        text: String(sum)
+                    })
+                } else {
+                    wx.removeTabBarBadge({
+                        index: 2,
+                    });
+                    this.setData({
+                        totalMoney: 0,
+                        selectNum: 0,
+                        isAllSelect: false,
+                    })
+                }
             }
-          })
+        })
     },
     // 加减接口
     cartOption(e, carts, index, num) {
@@ -157,7 +157,7 @@ Page({
                 util.queryCart(app)
                 this.getTotalPrice()
                 this.cartQ()
-               
+
             } else {
                 wx.showToast({
                     title: res.data.msg,
@@ -181,7 +181,7 @@ Page({
                     content: '确定删除商品?',
                     success(res) {
                         if (res.confirm) {
-                            that.cartDelete(shoppingId,index);
+                            that.cartDelete(shoppingId, index);
                         } else if (res.cancel) {
                             return
                         }
@@ -208,7 +208,7 @@ Page({
         let carts = this.data.carts; // 获取购物车列表
         let total = 0;
         for (let i = 0; i < carts.length; i++) { // 循环列表得到每个数据
-            if (carts[i].isSelect) { // 判断选中才会计算价格
+            if (carts[i].goods_status == 1 && carts[i].isSelect) { // 判断选中才会计算价格
                 total += carts[i].num * carts[i].present_price; // 所有价格加起来
             }
         }
@@ -226,9 +226,11 @@ Page({
         isAllSelect = !isAllSelect;
         let carts = that.data.carts;
         for (let i = 0; i < carts.length; i++) {
-            carts[i].isSelect = isAllSelect; // 改变所有商品状态
-            if (carts[i].isSelect) {
-                selectNum++
+            if (carts[i].goods_status == 1) {
+                carts[i].isSelect = isAllSelect; // 改变所有商品状态
+                if (carts[i].isSelect) {
+                    selectNum++
+                }
             }
         }
         that.setData({
@@ -313,10 +315,13 @@ Page({
                 let carts = that.data.carts;
                 if (carts.length !== 0) {
                     for (let i = 0; i < carts.length; i++) {
-                        carts[i].isSelect = true; // 改变所有商品状态
-                        if (carts[i].isSelect) {
-                            selectNum++
+                        if (carts[i].goods_status == 1) {
+                            carts[i].isSelect = true; // 改变所有商品状态
+                            if (carts[i].isSelect) {
+                                selectNum++
+                            }
                         }
+
                     }
                     that.setData({
                         isAllSelect: true,
@@ -339,10 +344,10 @@ Page({
         this.cartQuery()
         util.queryCart(app)
     },
-      /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
 
-}
+    }
 })

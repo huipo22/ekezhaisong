@@ -7,8 +7,9 @@
     display: flex;
     flex-direction: row;
     background-color: #fff;
-    margin-top: 20rpx;
-    padding: 0rpx 20rpx;
+    /* margin-top: 20rpx; */
+    /* padding: 0rpx 20rpx; */
+    margin: 20rpx 0;
     box-sizing: border-box;
     position: relative;
     align-items: center;
@@ -42,7 +43,7 @@
 .sku text {
     display: inline-block;
     height: 40rpx;
-    line-height: 0.4;
+    line-height: 0.42;
     width: 40rpx;
     margin-left: 20rpx;
     text-align: center;
@@ -117,7 +118,7 @@
     border: 1px solid #ccc;
     border-radius: 50%;
     /* margin-top: 76rpx; */
-    margin-left: 20rpx;
+    /* margin-left: 20rpx; */
 }
 
 .item-select-yes {
@@ -127,7 +128,7 @@
     border: 1px solid rgb(102, 193, 140);
     border-radius: 50%;
     /* margin-top: 76rpx; */
-    margin-left: 20rpx;
+    /* margin-left: 20rpx; */
 }
 
 .item-select-yes text {
@@ -210,11 +211,10 @@ button {
 }
 
 .deleteBox {
-    width: 40rpx;
-    height: 40rpx;
     position: absolute;
-    right: 50rpx;
-    top: 30rpx;
+    right: 3%;
+    top: 0;
+    z-index: 99;
 }
 
 .sku {
@@ -231,4 +231,24 @@ button {
     bottom: 27%;
     font-size: 20rpx;
     color: red;
+}
+
+.card {
+    width: 90%;
+}
+
+.cart-bo {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.van-card {
+    padding: 0 !important;
+}
+.cardTitle{
+    width: 85%;
 }

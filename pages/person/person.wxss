@@ -4,85 +4,12 @@
   height: auto;
 }
 
-.common {
-  margin-top: 15rpx;
-  background: #fff;
-}
-
-.p-header {
-  width: 100%;
-  height: auto;
-  position: relative;
-}
-
 .bgHeader {
   background: #00a046;
   height: 400rpx;
   display: flex;
   align-items: center;
-}
-
-.avater {
-  display: flex;
-  margin-left: 5%;
-  color: #fff;
   width: 100%;
-}
-
-.avaterImg1 {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-}
-
-.avaterImg {
-  width: 50rpx;
-  height: 50rpx;
-  /* border-radius: 50%; */
-}
-
-.avaterItem {
-  flex: 2;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  padding-left: 20rpx;
-}
-
-.bottomList {
-  width: 100%;
-  height: 26rpx;
-}
-
-.bottom_line {
-  border-bottom: 1px solid #ccc;
-}
-
-.bag {
-  display: flex;
-  height: 120rpx;
-  background: #fff;
-}
-
-.bag_cato {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.slot_icon {
-  /* display: flex; */
-  margin-right: 6px;
-  vertical-align: middle;
-  width: 20px;
-  height: 20px;
-}
-
-.slot_icon>image {
-  width: 50rpx;
-  height: 50rpx;
 }
 
 .order {
@@ -90,21 +17,13 @@
   background: #fff;
 }
 
-.order-title {
-  height: 80rpx;
-  display: flex;
-  align-items: center;
-  padding-left: 3%;
-}
-
 .order_list {
   display: flex;
-  border-top: 1px solid #ccc;
-  height: 120rpx;
+  height: 135rpx;
 }
 
 .order_list_cato {
-  width: 25%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,25 +32,26 @@
   font-size: 30rpx;
 }
 
-.qianbao {
-  width: 60rpx;
-  height: 60rpx;
+.row {
+  height: 50px;
 }
 
-.jifen {
-  width: 30rpx;
-  height: 30rpx;
-}
-
-.jifen_box {
-  display: flex;
-}
-
-.address {
+.col {
+  height: 100%;
   display: flex;
   align-items: center;
-  flex: 1;
-  background: red;
-  border-radius: 40rpx 0 0 40rpx;
-  padding-left: 20rpx;
+  justify-content: flex-start;
+  color: #fff;
+}
+
+.title {
+  height: 80rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.titleCol {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }

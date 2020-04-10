@@ -1,44 +1,48 @@
 <!-- pages/cart/cart.wxml -->
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <view class="container">
     <scroll-view class='scroll' scroll-y="true">
-        <view class='separate'></view>
         <view wx:for="{{carts}}" wx:key="">
             <view class='cart_container'>
-                <view>
-                    <van-icon name="delete" class="deleteBox" catch:tap="singleDelete" data-index="{{index}}" />
-                </view>
-                <view class='{{item.isSelect?"item-select-yes":"item-select-no"}}' catch:tap="switchSelect" data-index="{{index}}" data-id="{{index}}">
-                    <text></text>
-                </view>
-                <image class='item-image' src='{{resourse+item.goods_img}}' catch:tap="goodSelect" data-goodid="{{item.goods_id}}" thumb-class="{{items.goods_num==0?'zhezhao':''}}"></image>
-                <view class='column'>
-                    <text class='title' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
-                        {{item.goods_name}}
-                    </text>
-                    <text class='desc' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
-                        限购{{item.limit_num}}{{item.goods_spec}}
-                    </text>
-                    <view class='row margintop' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
-                        <text class='sku-price1'>￥</text>
-                        <text class='sku-price1'>{{item.present_price}}/{{item.goods_spec}}</text>
+                <!-- 删除icon -->
+                <van-icon name="delete" class="deleteBox" catch:tap="singleDelete" data-index="{{index}}" size="16px" />
+                <view style="margin:0 20rpx">
+                    <view class='{{item.isSelect?"item-select-yes":"item-select-no"}}' catch:tap="switchSelect" data-index="{{index}}" data-id="{{index}}" wx:if="{{item.goods_status==1}}">
+                        <text></text>
                     </view>
-                    <view class='row' catch:tap="goodSelect" data-goodid="{{item.goods_id}}">
-                        <text class='sku-price'>￥</text>
-                        <text class='sku-price'>{{item.present_price}}/{{item.goods_spec}}</text>
+                    <view class='{{item.isSelect?"item-select-yes":"item-select-no"}}' wx:if="{{item.goods_status==2}}">
+                        <text></text>
                     </view>
                 </view>
-                <!-- <view class="tips" wx:if="{{item.num==item.limit_num}}">限购{{limit_num}}件</view> -->
-                <view class='sku'>
-                    <text class='sub' catch:tap='quantityChange' id='dec' data-index="{{index}}">
-                        -
-                    </text>
-                    <text class='number'>{{item.num}}</text>
-                    <text class='add' catch:tap='quantityChange' id='inc' data-index="{{index}}">
-                        +
-                    </text>
-                </view>
+                <van-card title="{{item.goods_name}}" class="card" wx:key="*this" catch:tap="{{item.goods_num==0||item.goods_status==2?'':'goodSelect'}}" data-goodid="{{item.goods_id}}" mode="aspectFit" class="card" desc="限购{{item.limit_num}}{{item.goods_spec}}" title-class="cardTitle">
+                    <view class="subscrbeImg" slot="thumb">
+                        <van-image width="100%" height="100%" src="{{resourse+item.goods_img}}" fit="contain" class="{{item.goods_num==0?'zhezhao':''}}" class="{{item.goods_status==2?'xiajia':''}}"></van-image>
+                    </view>
+                    <view slot="bottom" class="cart-bo" wx:if="{{item.goods_status==1}}">
+                        <view class="priceBox">
+                            <view class="se_price">
+                                <rich-text class="" nodes="{{filter.priceFilter(item.present_price)}}"></rich-text>
+                                元/{{item.goods_spec}}
+                            </view>
+                            <view style="text-decoration:line-through;">
+                                {{item.original_price}}元/{{item.goods_spec}}
+                            </view>
+                        </view>
+                        <view class="cartIcon">
+                            <view class='sku'>
+                                <text class='sub' catch:tap='quantityChange' id='dec' data-index="{{index}}">
+                                    -
+                                </text>
+                                <text class='number'>{{item.num}}</text>
+                                <text class='add' catch:tap='quantityChange' id='inc' data-index="{{index}}">
+                                    +
+                                </text>
+                            </view>
+                        </view>
+                    </view>
+                    <view slot="bottom" wx:else class="cart-bo">商品已下架</view>
+                </van-card>
             </view>
-            <view class='separate'></view>
         </view>
     </scroll-view>
     <view class='bottom_total'>

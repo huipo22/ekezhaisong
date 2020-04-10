@@ -41,8 +41,7 @@ page {
   height: 200px;
 } */
 
-.slideImage,
-.slideImage image {
+.slideImage, .slideImage image {
   width: 100%;
   height: 100%;
   background: #fff;
@@ -154,24 +153,6 @@ page {
   margin-right: 5px;
 }
 
-/* 字体大小 */
-
-.f_h1 {
-  font-size: 32rpx;
-}
-
-.f_h2 {
-  font-size: 28rpx;
-}
-
-.f_h3 {
-  font-size: 26rpx;
-}
-
-.f_h4 {
-  font-size: 24rpx;
-}
-
 /* 价格上下箭头 */
 
 .topArrow {
@@ -256,8 +237,7 @@ button {
   padding: 20rpx;
 }
 
-.addressCon,
-.address {
+.addressCon, .address {
   display: flex;
   height: 60rpx;
   align-items: center;
@@ -279,16 +259,14 @@ button {
   flex: 1
 }
 
-.edit,
-.delete {
+.edit, .delete {
   width: 130rpx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.edit>image,
-.delete>image {
+.edit>image, .delete>image {
   width: 40rpx;
   height: 40rpx;
 }
@@ -391,6 +369,22 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   font-size: 30rpx;
 }
 
+.xiajia::after {
+  content: '已下架';
+  height: 100%;
+  background: #000;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .5;
+  font-size: 30rpx;
+}
+
 .se_price {
   color: red;
   display: flex;
@@ -424,8 +418,30 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 65rpx;
+  /* height: 80rpx; */
   color: #ccc;
-  font-size: 24rpx;
+  /* font-size: 30rpx; */
+}
 
+.cardTitle {
+  font-size: 30rpx !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 60rpx;
+  width: 90%;
+}
+
+.volumn {
+  font-size: 24rpx;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  justify-content: center;
+}
+.divider{
+  width: 80%;
+}
+.red{
+  color: red;
 }

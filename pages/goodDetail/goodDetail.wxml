@@ -15,9 +15,13 @@
       <van-col custom-class="col" span="23" offset="1">{{goodDetailData.goods_name}}</van-col>
     </van-row>
     <van-row custom-class="row">
-      <van-col span="4" custom-class="col" style="color:red" offset="1">{{"￥"+goodDetailData.present_price}}</van-col>
+      <van-col span="4" custom-class="col" style="color:red" offset="1">
+        {{"￥"+goodDetailData.present_price}}
+      </van-col>
       <van-col span="4" custom-class="col line">{{"￥"+goodDetailData.original_price}}</van-col>
-      <van-col span="6" custom-class="col">销量：{{goodDetailData.goods_volume}}件</van-col>
+      <van-col span="6" custom-class="col">
+        销量：{{goodDetailData.goods_volume_false}}{{goodDetailData.goods_spec}}
+      </van-col>
       <van-col span="4" offset="5" custom-class="col">
         <button open-type="share" plain="true" class="btn-share">
           <view class="shareBox">

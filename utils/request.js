@@ -86,85 +86,110 @@ let subCategories = (data) => {
     })
 }
 // 添加购物车
-let cartAdd = (data,header) => {
+let cartAdd = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.cartAdd, 'post', data,header))
+        resolve(apiRequest(apiList.cartAdd, 'post', data, header))
     })
 }
 // 查询购物车
-let cartIndex = (data,header) => {
+let cartIndex = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.cartIndex, 'get', data,header))
+        resolve(apiRequest(apiList.cartIndex, 'get', data, header))
     })
 }
 // 购物车删除
-let cartDelete = (data,header) => {
+let cartDelete = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.cartDelete, 'post', data,header))
+        resolve(apiRequest(apiList.cartDelete, 'post', data, header))
     })
 }
 // 购物车数量查询
-let cartNum= (data,header) => {
+let cartNum = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.cartNum, 'get', data,header))
+        resolve(apiRequest(apiList.cartNum, 'get', data, header))
     })
 }
 // 购物车加减
-let cartAction= (data,header) => {
+let cartAction = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.cartAction, 'post', data,header))
+        resolve(apiRequest(apiList.cartAction, 'post', data, header))
     })
 }
 // 创建订单
-let createOrder=(data,header) => {
+let createOrder = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.createOrder, 'post', data,header))
+        resolve(apiRequest(apiList.createOrder, 'post', data, header))
     })
 }
 // 好物推荐
-let goodSub= (data,header) => {
+let goodSub = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.goodSub, 'get', data,header))
+        resolve(apiRequest(apiList.goodSub, 'get', data, header))
     })
 }
-let getOrder=(data,header) => {
+let getOrder = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.getOrder, 'post', data,header))
+        resolve(apiRequest(apiList.getOrder, 'post', data, header))
     })
 }
-let orderRefund=(data,header) => {
+let orderRefund = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.orderRefund, 'post', data,header))
+        resolve(apiRequest(apiList.orderRefund, 'post', data, header))
     })
 }
-let addressList=(data,header) => {
+let addressList = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.addressList, 'get',data,header))
+        resolve(apiRequest(apiList.addressList, 'get', data, header))
     })
 }
-let defaultAddress=(data,header) => {
+let defaultAddress = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.defaultAddress, 'post',data,header))
+        resolve(apiRequest(apiList.defaultAddress, 'post', data, header))
     })
 }
-let deleteAddress=(data,header) => {
+let deleteAddress = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.deleteAddress, 'post',data,header))
+        resolve(apiRequest(apiList.deleteAddress, 'post', data, header))
     })
 }
-let addAddress=(data,header) => {
+let addAddress = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.addAddress, 'post',data,header))
+        resolve(apiRequest(apiList.addAddress, 'post', data, header))
     })
 }
-let updateAddress=(data,header) => {
+let updateAddress = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.updateAddress, 'post',data,header))
+        resolve(apiRequest(apiList.updateAddress, 'post', data, header))
     })
 }
-let wxLogin=(data,header) => {
+let wxLogin = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.wxLogin, 'post',data,header))
+        resolve(apiRequest(apiList.wxLogin, 'post', data, header))
+    })
+}
+let personOrderInfo = (data, header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.personOrderInfo, 'get', data, header))
+    })
+}
+let wxActivity = (data, header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.wxActivity, 'get', data, header))
+    })
+}
+let goodType = (data, header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.goodType, 'get', data, header))
+    })
+}
+let goodGoods = (data, header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.goodGoods, 'get', data, header))
+    })
+}
+let phoneGet = (data, header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.phoneGet, 'post', data, header))
     })
 }
 //最后需要将具体调用的函数暴露出，给具体业务调用
@@ -181,16 +206,22 @@ export default {
     cartAdd: cartAdd,
     cartIndex: cartIndex,
     cartDelete: cartDelete,
-    cartNum:cartNum,
-    cartAction:cartAction,
-    createOrder:createOrder,
-    goodSub:goodSub,
-    getOrder:getOrder,
-    orderRefund,orderRefund,
-    addressList:addressList,
-    defaultAddress:defaultAddress,
-    deleteAddress:deleteAddress,
-    addAddress:addAddress,
-    updateAddress:updateAddress,
-    wxLogin:wxLogin
+    cartNum: cartNum,
+    cartAction: cartAction,
+    createOrder: createOrder,
+    goodSub: goodSub,
+    getOrder: getOrder,
+    orderRefund,
+    orderRefund,
+    addressList: addressList,
+    defaultAddress: defaultAddress,
+    deleteAddress: deleteAddress,
+    addAddress: addAddress,
+    updateAddress: updateAddress,
+    wxLogin: wxLogin,
+    personOrderInfo: personOrderInfo,
+    wxActivity: wxActivity,
+    goodType: goodType,
+    goodGoods: goodGoods,
+    phoneGet: phoneGet
 }

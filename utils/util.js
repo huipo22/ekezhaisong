@@ -64,6 +64,7 @@ const login = () => {
             if (res.data.code == 1) {
               console.log(res);
               wx.setStorageSync('token', res.data.data.token)
+              wx.setStorageSync('sessionKey',res.data.data.sessionKey)
               const app = getApp()
               api.cartNum({
                 shop_id: app.globalData.shopId,

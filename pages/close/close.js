@@ -1,11 +1,13 @@
 // pages/close/close.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    start_time: '',
+    end_time: ''
   },
 
   /**
@@ -26,6 +28,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const start = new Date(parseInt(app.globalData.start_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ').split(" ")[1]
+    const end = new Date(parseInt(app.globalData.end_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ').split(" ")[1]
+    this.setData({
+      start_time: start,
+      end_time: end
+    })
 
   },
 

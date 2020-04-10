@@ -26,7 +26,6 @@
     </view>
     <view class="menu_tab" wx:else>
         <view class="isView">
-            <!-- <image class="wushuju" src="../../dist/icon/zanwushuju.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image> -->
             <text class="">暂无数据</text>
         </view>
     </view>

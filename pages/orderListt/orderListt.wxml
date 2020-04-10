@@ -8,90 +8,76 @@
                 </view>
                 <view wx:else>
                     <view class="Box" wx:for="{{orderListData}}" wx:for-item="order" wx:key="unique">
-                        <!-- 订单号 -->
-                        <view class="Box orderInfo">
-                            <view class="order-num">{{order.order_number}}</view>
-                            <view class="order-datetime">{{order.add_time}}</view>
-                        </view>
                         <!-- 详情列表 -->
-                        <!-- 左侧弹出抽屉 -->
-                        <van-popup show="{{ show }}" position="left" closeable close-icon-position="top-right" bind:close="onClose" custom-style="height: 100%;width:80%">
-                            <view>
-                                <van-row custom-class="rowTitle" style="height:50px">
-                                    <van-col custom-class="col" span="23" offset="1">
-                                        商品清单({{goodList.length}})
-                                    </van-col>
-                                </van-row>
-                                <scroll-view scroll-y="true" style="height:85vh">
-                                    <van-row wx:for="{{goodList}}" wx:for-item="good" wx:key="*this" custom-class="goodBox" catch:tap="goodLink" data-id="{{good.goods_id}}">
-                                        <van-col span="6" custom-class="goodImg">
-                                            <van-image width="50px" height="50px" fit="contain" src="{{resourse+good.goods_img}}"></van-image>
-                                        </van-col>
-                                        <van-col span="14" custom-class="goodCon">
-                                            <view>{{good.goods_name}}</view>
-                                            <view>{{"￥"+good.goods_price}}</view>
-                                        </van-col>
-                                        <van-col span="4" custom-class="goodNum">
-                                            <view>x{{good.goods_num}}</view>
-                                        </van-col>
-                                    </van-row>
-                                </scroll-view>
+                        <view style="width:100%">
+                            <!-- 订单号 -->
+                            <view class="Box orderInfo">
+                                <view class="order-num">{{order.order_number}}</view>
+                                <view class="order-datetime">{{order.add_time}}</view>
                             </view>
-                        </van-popup>
-                        <view class="Box subscrbeFont">
                             <van-row custom-class="good_info">
-                                <van-col custom-class="col" span="24" catch:tap="showPopup" data-index="{{index}}">
-                                <view style="width:100%;white-space:nowrap">
-                                     <scroll-view scroll-x style="width: 100%;">
-                                        <van-image width="40px" height="40px" fit="contain" src="{{resourse+img.goods_img}}" wx:for="{{order.goods_info}}" wx:for-item="img" custom-class="img_p" />
-                                    </scroll-view>
-                                </view>
+                                <van-col custom-class="col" span="23" offset="1" catch:tap="showPopup" data-index="{{index}}">
+                                    <view style="width:100%;white-space:nowrap">
+                                        <scroll-view scroll-x style="width: 100%;">
+                                            <van-image width="40px" height="40px" fit="contain" src="{{resourse+img.goods_img}}" wx:for="{{order.goods_info}}" wx:for-item="img" custom-class="img_p" />
+                                        </scroll-view>
+                                    </view>
                                 </van-col>
                             </van-row>
-                            <view class="order-foot f_h3" wx:if="{{orderActive==1}}">
-                                <view class="order-num">
-                                    <view>{{"配送费￥"+order.express_price}}</view>
-                                    <view class="priceBox">合计:{{order.pay_price}}</view>
-                                </view>
-                                <text class="btnop" id="{{order.id}}" bindtap="cancel">取消</text>
-                                <text class="btnop" data-order="{{order}}" bindtap="pay">付款</text>
-                            </view>
-                            <view class="order-foot f_h3" wx:if="{{orderActive==2}}">
-                                <view class="order-num">
-                                    <view>{{"配送费￥"+order.express_price}}</view>
-                                    <view class="priceBox">合计:{{order.pay_price}}</view>
-                                </view>
-                                <!-- <text class="btnop" bindtap="backPay" id="{{order.id}}">退款</text> -->
-                                <button open-type="contact">
-                                    <text class="btnop">退款</text>
-                                </button>
-                            </view>
-                            <view class="order-foot f_h3" wx:if="{{orderActive==3}}">
-                                <view class="order-num">
-                                    <view>{{"配送费￥"+order.express_price}}</view>
-                                    <view class="priceBox">合计:{{order.pay_price}}</view>
-                                </view>
-                            </view>
-                            <view class="order-foot f_h3" wx:if="{{sign==4}}">
-                                <text class="order-num">
-                                    <text>{{"配送费￥"+order.express_price}}</text>
-                                    <text style="color:red;padding-left:10px">
-                                        合计:{{order.pay_price}}
-                                    </text>
-                                </text>
-                                <text class="btnop1">已完成</text>
-                            </view>
-                            <view class="order-foot f_h3" wx:if="{{orderActive==5}}">
-                                <view class="order-num">
-                                    <view>{{"配送费￥"+order.express_price}}</view>
-                                    <view class="priceBox">合计:{{order.pay_price}}</view>
-                                </view>
-                                <text class="btnop1">已退款</text>
-                            </view>
+                            <van-row custom-class="bottomRow">
+                                <van-col span="6" offset="1" custom-class="bottomCol">
+                                    {{"配送费￥"+order.express_price}}
+                                </van-col>
+                                <van-col span="5" custom-class="bottomCol redColor">
+                                    合计:￥{{order.pay_price}}
+                                </van-col>
+                                <!-- 1 -->
+                                <van-col span="12" custom-class="bottomColBtn" wx:if="{{orderActive==1}}">
+                                    <view id="{{order.id}}" bindtap="cancel">取消</view>
+                                    <view data-order="{{order}}" bindtap="pay">付款</view>
+                                </van-col>
+                                <!-- 2 -->
+                                <van-col span="6" offset="6" custom-class="bottomColBtn" wx:if="{{orderActive==2}}">
+                                    <!-- <text bindtap="backPay">退款</text> -->
+                                    <button open-type="contact">
+                                        <view id="{{order.id}}">退款</view>
+                                    </button>
+                                </van-col>
+                                <!-- 5 -->
+                                <van-col span="12" custom-class="bottomColBtn" wx:if="{{orderActive==5}}">
+                                    <view>已退款</view>
+                                </van-col>
+                                <!-- 3 4 -->
+                                <van-col custom-class="bottomColBtn" wx:else></van-col>
+                            </van-row>
                         </view>
                     </view>
                 </view>
             </van-tab>
         </van-tabs>
+        <!-- 左侧弹出抽屉 -->
+        <van-popup show="{{ show }}" position="left" closeable close-icon-position="top-right" bind:close="onClose" custom-style="height: 100%;width:80%">
+            <view>
+                <van-row custom-class="rowTitle" style="height:50px">
+                    <van-col custom-class="col" span="23" offset="1">
+                        商品清单({{goodList.length}})
+                    </van-col>
+                </van-row>
+                <scroll-view scroll-y="true" style="height:85vh">
+                    <van-row wx:for="{{goodList}}" wx:for-item="good" wx:key="*this" custom-class="goodBox" catch:tap="goodLink" data-id="{{good.goods_id}}">
+                        <van-col span="6" custom-class="goodImg">
+                            <van-image width="50px" height="50px" fit="contain" src="{{resourse+good.goods_img}}"></van-image>
+                        </van-col>
+                        <van-col span="14" custom-class="goodCon">
+                            <view>{{good.goods_name}}</view>
+                            <view>{{"￥"+good.goods_price}}</view>
+                        </van-col>
+                        <van-col span="4" custom-class="goodNum">
+                            <view>x{{good.goods_num}}</view>
+                        </van-col>
+                    </van-row>
+                </scroll-view>
+            </view>
+        </van-popup>
     </view>
 </view>

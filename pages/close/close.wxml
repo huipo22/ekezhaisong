@@ -1,2 +1,8 @@
-<!--pages/close/close.wxml-->
-<text>pages/close/close.wxml</text>
+<!-- pages/close/close.wxml -->
+<view class="container">
+    <view class="close">店面关闭通知</view>
+    <view>
+        营业时间为
+        <text style="color:red">{{start_time}} - {{end_time}}</text>
+    </view>
+</view>

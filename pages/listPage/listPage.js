@@ -36,7 +36,7 @@ Page({
   },
   onLoad: function (options) {
     console.log(options)
-    const cateid = options.parentId
+    const cateid = decodeURI(options.parentId)
     wx.setNavigationBarTitle({
       title: options.cateId
     })

@@ -1,0 +1,49 @@
+/**index.wxss**/
+
+.page-section {
+  width: 100%;
+  background: #fff;
+  margin: 0 0 15rpx 0;
+}
+
+.juzhen {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.grid {
+  width: 100%;
+}
+
+.cate-name {
+  width: 100%;
+  font-size: 25rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.van-grid-item__content {
+  padding: 5px !important;
+}
+
+.cart-bo {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.priceBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartIcon {
+  display: flex;
+  align-items: center;
+}
