@@ -1,61 +1,60 @@
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <add-tips text="点击后,选择[添加到我的小程序]微信首页下拉即可快速访问" />
 <view class="container">
-    <search-com style="width:100%;"></search-com>
-    <view class="slideImage">
-        <!-- 轮播图 -->
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" circular="true">
-            <block wx:for="{{imgUrls}}" wx:key="*this">
-                <swiper-item>
-                    <image src="{{resourse+item.url}}" class="slide-image" mode="aspectFit" />
-                </swiper-item>
-            </block>
-        </swiper>
-    </view>
-    <!-- 6列布局 -->
-    <view class="page-section juzhen">
-        <van-grid column-num="5" class="grid" border="{{false}}">
-            <van-grid-item use-slot wx:for="{{ cateList }}" wx:for-item="item" wx:for-index="index" wx:key="index" catch:tap="link" data-parentId="{{item.id}}" data-parentName="{{item.name}}" data-index="{{index}}">
-                <image style="width: 100%; height: 100rpx;" src="{{resourse+item.img}}" mode="aspectFit" lazy-load="{{true}}" />
-                <view class="cate-name">{{item.name}}</view>
-            </van-grid-item>
-        </van-grid>
-    </view>
-    <van-notice-bar left-icon="volume-o" scrollable="true" style="width:100%" text="{{take}}" />
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">123</button>
-    <van-tabs active="{{ active }}" bind:change="goodChange" style="width:100%;" sticky>
-        <van-tab title="{{item.name}}" wx:for="{{goodType}}" wx:for-item="item" wx:key="index" name="{{item.id}}" color="#00a046">
-            <!-- <view class="load" wx:if="{{loadFlag==true}}">
-                    <van-loading size="24px" color="#00a046">加载中...</van-loading>
-                </view>
-                <view wx:else> -->
-            <view>
-                <van-card title="{{items.goods_name}}" desc="{{items.remark}}" class="card" wx:for="{{goodGoods}}" wx:for-item="items" wx:key="index" catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{items.id}}" title-class="cardTitle">
-                    <view class="subscrbeImg" slot="thumb">
-                        <van-image width="100%" height="100%" src="{{resourse+items.goods_img}}" fit="contain" class="{{items.goods_num==0?'zhezhao':''}}"></van-image>
-                    </view>
-                    <view slot="bottom" class="cart-bo">
-                        <view class="priceBox">
-                            <view class="se_price">
-                                <rich-text class="" nodes="{{filter.priceFilter(items.present_price)}}"></rich-text>
-                                元/{{items.goods_spec}}
-                            </view>
-                            <view style="text-decoration:line-through;">
-                                {{items.original_price}}元/{{items.goods_spec}}
-                            </view>
-                        </view>
-                        <view class="volumn">
-                            已售
-                            <view class="red">{{items.goods_volume_false}}</view>
-                            {{items.goods_spec}}
-                        </view>
-                        <view class="cartIcon" wx:if="{{items.goods_num!==0}}">
-                            <image src="../../dist/icon2/cartLink.png" style="width:30px;height:30px" catch:tap="addCart" data-cart="{{items}}" data-goodid="{{items.id}}" mode="aspectFit" lazy-load="true"></image>
-                        </view>
-                    </view>
-                </van-card>
-            </view>
-            <!-- </view> -->
-        </van-tab>
-    </van-tabs>
+	<search-com style="width:100%;"></search-com>
+	<view class="slideImage">
+		<!-- 轮播图 -->
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" circular="true">
+			<block wx:for="{{imgUrls}}" wx:key="*this">
+				<swiper-item>
+					<image src="{{resourse+item.url}}" class="slide-image" mode="aspectFit" />
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<!-- 6列布局 -->
+	<view class="page-section juzhen">
+		<van-grid column-num="5" class="grid" border="{{false}}">
+			<van-grid-item use-slot wx:for="{{ cateList }}" wx:for-item="item" wx:for-index="index" wx:key="index" catch:tap="link" data-parentId="{{item.id}}" data-parentName="{{item.name}}" data-index="{{index}}">
+				<image style="width: 100%; height: 100rpx;" src="{{resourse+item.img}}" mode="aspectFit" lazy-load="{{true}}" />
+				<view class="cate-name">{{item.name}}</view>
+			</van-grid-item>
+		</van-grid>
+	</view>
+	<van-notice-bar left-icon="volume-o" scrollable="true" style="width:100%" text="{{take}}" />
+	<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">123</button>
+	<scroll-view scroll-x="true" class="tab {{tabFix}}" id="tab">
+		<block wx:for="{{goodType}}">
+			<view wx:for-item="item" wx:key="index" catch:tap="goodIdActive" data-id="{{item.id}}" class="viewName {{active==item.id?'activeTab':''}}">
+				{{item.name}}
+			</view>
+		</block>
+	</scroll-view>
+	<view style="width:100%">
+		<van-card title="{{items.goods_name}}" desc="{{items.remark}}" class="card" wx:for="{{goodGoods}}" wx:for-item="items" wx:key="index" catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{items.id}}" title-class="cardTitle">
+			<view class="subscrbeImg" slot="thumb">
+				<van-image width="100%" height="100%" src="{{resourse+items.goods_img}}" fit="contain" class="{{items.goods_num==0?'zhezhao':''}}"></van-image>
+			</view>
+			<view slot="bottom" class="cart-bo">
+				<view class="priceBox">
+					<view class="se_price">
+						<rich-text class="" nodes="{{filter.priceFilter(items.present_price)}}"></rich-text>
+						元/{{items.goods_spec}}
+					</view>
+					<view style="text-decoration:line-through;">
+						{{items.original_price}}元/{{items.goods_spec}}
+					</view>
+				</view>
+				<view class="volumn">
+					已售
+					<view class="red">{{items.goods_volume_false}}</view>
+					{{items.goods_spec}}
+				</view>
+				<view class="cartIcon" wx:if="{{items.goods_num!==0}}">
+					<image src="../../dist/icon2/cartLink.png" style="width:30px;height:30px" catch:tap="addCart" data-cart="{{items}}" data-goodid="{{items.id}}" mode="aspectFit" lazy-load="true"></image>
+				</view>
+			</view>
+		</van-card>
+	</view>
+
 </view>

@@ -47,3 +47,46 @@
   display: flex;
   align-items: center;
 }
+
+.Fixed {
+  position: fixed;
+  top: 0;
+  margin-top: 0;
+  z-index: 99999
+}
+
+.tab {
+  white-space: nowrap;
+  height: 80rpx;
+  background: #fff;
+}
+
+.titleView {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #fff;
+}
+
+.titleView view {
+  /* flex: 1;
+  display: flex; */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  display: inline-block
+}
+
+.activeTab {
+  border-bottom: 2rpx solid red;
+  border-bottom-width: 80%;
+}
+
+.viewName {
+  display: inline-block;
+  width: 33%;
+  height: 95%;
+  text-align: center;
+  line-height: 80rpx
+}

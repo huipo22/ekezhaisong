@@ -21,7 +21,6 @@ Page({
     active: 1,
     goodType: [],
     goodGoods: [],
-    tip: false
   },
   onShow() {
     // 全局手机号
@@ -57,6 +56,11 @@ Page({
     }).then(() => {
       this.goodType()
     })
+    let me = this;
+    const query = wx.createSelectorQuery();
+    query.select("#tab").boundingClientRect(function (res) {
+      me.data.tabTop = res.top
+    }).exec()
 
   },
   wheel() {
@@ -95,16 +99,21 @@ Page({
       }
     })
   },
-  goodChange(event) {
-    const status = event.detail.name
+  // goodChange(event) {
+  //   const status = event.detail.name
+  //   this.setData({
+  //     active: status
+  //   })
+  //   this.goodGoods(status)
+  // },
+  goodIdActive(e){
+    const status = e.currentTarget.dataset.id
     this.setData({
       active: status
     })
     this.goodGoods(status)
   },
-  scrollGood(e) {
-    console.log(e.detail)
-  },
+
   goodR() {
     const that = this;
     // 好物推荐
@@ -178,7 +187,20 @@ Page({
     })
   },
   onPageScroll(e) {
-
+    let me = this;
+    if (e.scrollTop > me.data.tabTop) {
+      if (me.data.tabFix) {
+        return
+      } else {
+        me.setData({
+          tabFix: 'Fixed'
+        })
+      }
+    } else {
+      me.setData({
+        tabFix: ''
+      })
+    }
   },
   /**
    * 用户点击右上角分享
