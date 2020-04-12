@@ -2,27 +2,41 @@
 <view class="container">
   <view class="marginBottom">
     <!-- 都没有 -->
-    <van-row custom-class="row addressB" catch:tap="address" wx:if="{{settleData.address_info==null&& parmsData==null}}">
+    <van-row custom-class="row3 addressB" catch:tap="address" wx:if="{{settleData.address_info==null&& parmsData==null}}">
       <van-col custom-class="col redColor" span="22">请点击选择收货地址</van-col>
       <van-col custom-class="col" span="2">
         <van-icon name="arrow" size="13px" color="red" />
       </van-col>
     </van-row>
     <!-- 切换地址 -->
-    <van-row custom-class="row addressB" catch:tap="address" wx:elif="{{parmsData!==null}}">
-      <van-col span="12" custom-class="col sty">
-        <view>收货人:{{parmsData.name}}</view>
-        <view>收货地址:{{parmsData.address}}</view>
-      </van-col>
-      <van-col span="12" custom-class="col">{{parmsData.mobile}}</van-col>
+    <van-row custom-class="row3 addressB" catch:tap="address" wx:elif="{{parmsData!==null}}">
+      <van-row custom-class="row4">
+        <van-col span="20" offset="1" custom-class="col4">
+          {{parmsData.province}}{{parmsData.city}}{{parmsData.county}}{{parmsData.address}}
+        </van-col>
+        <van-col custom-class="col4 iconA" span="3">
+          <van-icon name="arrow" size="40rpx" color="#ccc" />
+        </van-col>
+      </van-row>
+      <van-row custom-class="row4">
+        <van-col span="4" offset="1" custom-class="col3">{{parmsData.name}}</van-col>
+        <van-col span="8" custom-class="col3">{{parmsData.mobile}}</van-col>
+      </van-row>
     </van-row>
     <!-- 用户地址有 -->
-    <van-row custom-class="row addressB" catch:tap="address" wx:else>
-      <van-col span="12" custom-class="col sty">
-        <view>收货人:{{settleData.address_info.name}}</view>
-        <view>收货地址:{{settleData.address_info.address}}</view>
-      </van-col>
-      <van-col span="12" custom-class="col">{{settleData.address_info.mobile}}</van-col>
+    <van-row custom-class="row3 addressB" catch:tap="address" wx:else>
+      <van-row custom-class="row4">
+        <van-col span="20" offset="1" custom-class="col4">
+          {{settleData.address_info.province}}{{settleData.address_info.city}}{{settleData.address_info.county}}{{settleData.address_info.address}}
+        </van-col>
+        <van-col custom-class="col4 iconA" span="3">
+          <van-icon name="arrow" size="40rpx" color="#ccc" />
+        </van-col>
+      </van-row>
+      <van-row custom-class="row4">
+        <van-col span="4" offset="1" custom-class="col3">{{settleData.address_info.name}}</van-col>
+        <van-col span="8" custom-class="col3">{{settleData.address_info.mobile}}</van-col>
+      </van-row>
     </van-row>
     <van-row custom-class="row">
       <van-col custom-class="col" span="24">订单内容</van-col>

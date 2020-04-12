@@ -1,5 +1,6 @@
 // pages/editAddress/editAddress.js
 const app = getApp();
+console.log(app)
 import util from '../../utils/util'
 let api = require('../../utils/request').default;
 Page({
@@ -8,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userData:null,
+    userData: null,
     id: null,
     // province: null,
     // city: null,
@@ -16,22 +17,50 @@ Page({
     name: null,
     mobile: null,
     address: null,
-    region: ["山西省", "运城市", "稷山县"]
+    region: ["山西省", "运城市", "稷山县"],
+    flag: false
   },
-  getPhoneNumber (e) {
-    console.log(e)
+  getPhoneNumber(e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    if (e.detail.errMsg == "getPhoneNumber:ok")
+      api.phoneGet({
+        sessionKey: wx.getStorageSync('sessionKey'),
+        encrypted_data: e.detail.encryptedData,
+        iv: e.detail.iv
+      }, {}).then(res => {
+        console.log(res)
+        if (res.data.code == 1) {
+          wx.setStorageSync('userPhone', res.data.msg.phoneNumber);
+          this.setData({
+            mobile: res.data.msg.phoneNumber,
+            flag: false,
+          })
+        }
+      })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     //收货地址 页面传来的参数
-    console.log(options)
+    if (wx.getStorageSync("userPhone")) {
+      this.setData({
+        flag: false,
+        mobile: wx.getStorageSync("userPhone")
+      })
+    } else {
+      this.setData({
+        flag: true
+      })
+    }
     if (Object.keys(options).length == 0) {
       return
     } else {
       let Address = JSON.parse(options.addressInfo)
       this.setData({
+        flag: false,
         id: Address.id,
         province: Address.province,
         city: Address.city,

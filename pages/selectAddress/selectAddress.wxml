@@ -7,11 +7,11 @@
             </view>
             <view style="width:100%">
                 <van-row custom-class="row addressB" catch:tap="address">
-                    <van-col span="12" custom-class="col sty">
+                    <van-col span="14" custom-class="col sty">
                         <view>收货人:{{address.name}}</view>
                         <view>收货地址:{{address.address}}</view>
                     </van-col>
-                    <van-col span="12" custom-class="col">{{address.mobile}}</van-col>
+                    <van-col span="10" custom-class="col mobile">{{address.mobile}}</van-col>
                 </van-row>
             </view>
         </view>

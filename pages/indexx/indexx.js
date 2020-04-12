@@ -21,6 +21,7 @@ Page({
     active: 1,
     goodType: [],
     goodGoods: [],
+    flag:true
   },
   onShow() {
     // 全局手机号
@@ -59,7 +60,8 @@ Page({
     let me = this;
     const query = wx.createSelectorQuery();
     query.select("#tab").boundingClientRect(function (res) {
-      me.data.tabTop = res.top
+      console.log(res)
+      me.data.tabTop = res.bottom+res.height
     }).exec()
 
   },
@@ -188,17 +190,20 @@ Page({
   },
   onPageScroll(e) {
     let me = this;
-    if (e.scrollTop > me.data.tabTop) {
+    console.log(e.scrollTop)
+    if (e.scrollTop > me.data.tabTop+40) {
       if (me.data.tabFix) {
         return
       } else {
         me.setData({
-          tabFix: 'Fixed'
+          tabFix: 'Fixed',
+          flag:false,
         })
       }
     } else {
       me.setData({
-        tabFix: ''
+        tabFix: '',
+        flag:true
       })
     }
   },
@@ -208,22 +213,4 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    if (e.detail.errMsg == "getPhoneNumber:ok")
-      api.phoneGet({
-        sessionKey: wx.getStorageSync('sessionKey'),
-        encrypted_data: e.detail.encryptedData,
-        iv: e.detail.iv
-      }, {}).then(res => {
-        console.log(res)
-        if (res.data.code == 1) {
-          this.setData({
-            phoneNumber: res.data.data.phoneNumber
-          })
-        }
-      })
-  }
 })

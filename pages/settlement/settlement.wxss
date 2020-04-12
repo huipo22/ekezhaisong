@@ -65,19 +65,36 @@
   height: 80rpx;
   border-top: 1rpx solid #ccc;
 }
-
+.row3 {
+  border-top: 1rpx solid #ccc;
+}
+.row4 {
+ margin: 10rpx 0;
+}
 .col {
   height: 100%;
   display: flex;
   align-items: center;
 }
 
+.col3 {
+  display: flex;
+  align-items: center;
+}
+.col4{
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  font-size: 40rpx;
+  font-weight: bold;
+
+}
 .van-cell {
   padding: 0!important;
 }
 
 .addressB {
-  height: 160rpx;
+  padding: 10rpx 0;
 }
 
 .sty {
@@ -133,4 +150,7 @@
   border-top: 1rpx solid #ccc;
   font-size: 16px;
   font-weight: bold;
+}
+.iconA{
+  justify-content: center;
 }

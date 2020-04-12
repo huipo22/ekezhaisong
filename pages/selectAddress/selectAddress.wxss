@@ -42,7 +42,9 @@
     display: flex;
     align-items: center;
 }
-
+.mobile{
+    justify-content: center;
+}
 .sty {
     height: 100%;
     display: flex;

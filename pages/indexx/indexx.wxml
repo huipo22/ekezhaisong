@@ -1,5 +1,5 @@
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
-<add-tips text="点击后,选择[添加到我的小程序]微信首页下拉即可快速访问" />
+<add-tips text="点击后,选择[添加到我的小程序]微信首页下拉即可快速访问" wx:if="{{flag}}"/>
 <view class="container">
 	<search-com style="width:100%;"></search-com>
 	<view class="slideImage">
@@ -22,7 +22,7 @@
 		</van-grid>
 	</view>
 	<van-notice-bar left-icon="volume-o" scrollable="true" style="width:100%" text="{{take}}" />
-	<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">123</button>
+	<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">123</button> -->
 	<scroll-view scroll-x="true" class="tab {{tabFix}}" id="tab">
 		<block wx:for="{{goodType}}">
 			<view wx:for-item="item" wx:key="index" catch:tap="goodIdActive" data-id="{{item.id}}" class="viewName {{active==item.id?'activeTab':''}}">
