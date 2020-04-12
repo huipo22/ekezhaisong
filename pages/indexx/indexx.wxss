@@ -79,8 +79,19 @@
 }
 
 .activeTab {
-  border-bottom: 2rpx solid red;
-  border-bottom-width: 80%;
+  position: relative;
+  /* border-bottom: 2rpx solid red; */
+}
+
+.activeTab:after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 50%;
+  height: 2px;
+  transform: translate(-50%, 0);
+  background-color: red;
 }
 
 .viewName {

@@ -38,7 +38,7 @@ Page({
     console.log(options)
     const cateid = decodeURI(options.parentId)
     wx.setNavigationBarTitle({
-      title: options.cateId
+      title: decodeURIComponent(options.cateId)
     })
     api.subCategories({
       category_id: cateid,
