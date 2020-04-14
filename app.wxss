@@ -428,7 +428,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  height: 60rpx;
+  /* height: 60rpx; */
   width: 90%;
 }
 

@@ -1,6 +1,6 @@
 <!-- pages/goodDetail/goodDetail.wxml -->
-<view class="container">
-  <view class="slideImage2">
+<view class="container" style="background:#efefef">
+  <view class="slideImage2 boxmargin">
     <!-- 轮播图 -->
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" class="loopS">
       <block wx:for="{{goodDetailData.banners}}" wx:for-item="imgItem" wx:key="*this">
@@ -9,37 +9,49 @@
         </swiper-item>
       </block>
     </swiper>
+    <view>
+      <van-row custom-class="row">
+        <van-col custom-class="col title" span="19" offset="1">
+          {{goodDetailData.goods_name}}
+        </van-col>
+        <van-col span="4" custom-class="col">
+          <button open-type="share" plain="true" class="btn-share">
+            <view class="shareBox">
+              <van-icon name="more-o" size="18px" />
+              <text style="font-size:24rpx;line-height:1.5">分享</text>
+            </view>
+          </button>
+        </van-col>
+      </van-row>
+      <van-row custom-class="row bottomLine">
+        <van-col custom-class="col baseline" span="10" offset="1">
+          <view style="font-size:50rpx;color:red">{{goodDetailData.present_price}}</view>
+          <view>元/{{goodDetailData.goods_spec}}</view>
+        </van-col>
+        <van-col custom-class="col baseline cent" span="12">
+          已售
+          <view style="color:red">{{goodDetailData.goods_volume_false}}</view>
+          {{goodDetailData.goods_spec}}
+        </van-col>
+      </van-row>
+    </view>
   </view>
-  <view style="width:100%">
+  <view class="boxmargin" style="width:100%">
     <van-row custom-class="row">
-      <van-col custom-class="col title" span="19" offset="1">{{goodDetailData.goods_name}}</van-col>
-      <van-col span="4" custom-class="col">
-        <button open-type="share" plain="true" class="btn-share">
-          <view class="shareBox">
-            <van-icon name="more-o" size="18px" />
-            <text style="font-size:24rpx;line-height:1.5">分享</text>
-          </view>
-        </button>
-      </van-col>
-    </van-row>
-    <van-row custom-class="row bottomLine">
-      <van-col custom-class="col baseline" span="23" offset="1">
-        <view style="font-size:50rpx;color:red">{{goodDetailData.present_price}}</view>
-        <view>/元{{goodDetailData.goods_spec}}</view>
-      </van-col>
+      <van-col span="4" custom-class="col name" offset="1">说明:</van-col>
+      <van-col span="19" custom-class="col">{{goodDetailData.remark}}</van-col>
     </van-row>
     <van-row custom-class="row">
-      <van-col span="4" custom-class="col" style="color:red" offset="1">
-        {{"￥"+goodDetailData.present_price}}
-      </van-col>
-      <van-col span="4" custom-class="col line">{{"￥"+goodDetailData.original_price}}</van-col>
-      <van-col span="6" custom-class="col">
-        销量：{{goodDetailData.goods_volume_false}}{{goodDetailData.goods_spec}}
-      </van-col>
+      <van-col span="4" custom-class="col name" offset="1">库存:</van-col>
+      <van-col span="19" custom-class="col">{{goodDetailData.goods_num}}</van-col>
+    </van-row>
+    <van-row custom-class="row">
+      <van-col span="4" custom-class="col name" offset="1">原价:</van-col>
+      <van-col span="19" custom-class="col line">{{"￥"+goodDetailData.original_price}}</van-col>
     </van-row>
   </view>
-  <view>
-    <van-row custom-class="row detail" text-align="center">商品详情</van-row>
+  <view class="boxmargin">
+    <van-row custom-class="row detail title" text-align="center">商品详情</van-row>
     <view>
       <rich-text class="richText" nodes="{{rich}}"></rich-text>
     </view>
