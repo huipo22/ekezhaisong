@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/indexx/indexx",
+    "pages/index/index",
     "pages/logs/logs",
     "pages/supermarket/supermarket",
     "pages/person/person",
@@ -13,7 +13,7 @@
     "pages/selectAddress/selectAddress",
     "pages/platform/platform",
     "pages/Ccart/Ccart",
-    "pages/orderListt/orderListt",
+    "pages/orderList/orderList",
     "pages/listPage/listPage",
     "pages/close/close"
   ],
@@ -33,7 +33,7 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/indexx/indexx",
+        "pagePath": "pages/index/index",
         "text": "买菜",
         "iconPath": "./dist/icon2/caidan.png",
         "selectedIconPath": "./dist/icon2/caidan-select.png"

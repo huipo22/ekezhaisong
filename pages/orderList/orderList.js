@@ -1,4 +1,4 @@
-// pages/orderListt/orderListt.js
+// pages/orderList/orderList.js
 let app = getApp();
 const util = require('../../utils/util')
 import md5 from '../../utils/md5.js';

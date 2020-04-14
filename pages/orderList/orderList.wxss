@@ -1,4 +1,4 @@
-/* pages/orderListt/orderListt.wxss */
+/* pages/orderList/orderList.wxss */
 
 .subscrbeFont {
     font-size: 24rpx;

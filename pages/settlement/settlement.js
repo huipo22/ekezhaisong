@@ -184,7 +184,7 @@ Page({
                     }
                   })
                   wx.navigateTo({
-                    url: '../orderListt/orderListt?active=2'
+                    url: '../orderList/orderList?active=2'
                   })
                 } else if (res.cancel) {
                   console.log('用户点击取消')
@@ -196,7 +196,7 @@ Page({
           fail(res) {
             console.log('调用支付接口fail', res)
             wx.navigateTo({
-              url: '../orderListt/orderListt?active=1'
+              url: '../orderList/orderList?active=1'
             })
           }
         })

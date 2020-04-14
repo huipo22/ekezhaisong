@@ -30,7 +30,7 @@
         </view>
       </van-card>
       <view wx:if="{{noneFlag==true}}" class="noneData">
-        <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 14px" class="divider">
+        <van-divider contentPosition="center" customStyle="color: #bbb;border-color: #bbb;font-size: 14px" class="divider">
           我是有底线的
         </van-divider>
       </view>

@@ -5,7 +5,9 @@
       <van-field value="{{ name }}" placeholder="请输入姓名" border="{{ true }}" bind:change="nameChange" label="姓名" />
       <van-field value="{{ mobile }}" placeholder="请输入联系电话" border="{{ true }}" bind:change="mobileChange" label="手机号" use-button-slot>
         <view slot="button" wx:if="{{flag}}">
-          <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+          <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="line-height: 1.8;color: #fff;padding: 0 10rpx;font-size: 28rpx;" type="primary">
+            获取手机号
+          </button>
         </view>
       </van-field>
       <van-cell prop="address_zone" title="所在地区" ext-class="" value-class="valC" title-class="titleC">

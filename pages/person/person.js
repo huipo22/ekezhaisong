@@ -10,7 +10,7 @@ Page({
   // 我的订单
   orderList: function (e) {
     wx.navigateTo({
-      url: '../orderListt/orderListt?active=' + e.currentTarget.dataset.num,
+      url: '../orderList/orderList?active=' + e.currentTarget.dataset.num,
     })
   },
   // 收货地址
