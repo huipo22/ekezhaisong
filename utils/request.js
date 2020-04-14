@@ -174,7 +174,7 @@ let personOrderInfo = (data, header) => {
 }
 let wxActivity = (data, header) => {
     return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.wxActivity, 'get', data, header))
+        resolve(apiRequest(apiList.wxActivity, 'post', data, header))
     })
 }
 let goodType = (data, header) => {
@@ -190,6 +190,16 @@ let goodGoods = (data, header) => {
 let phoneGet = (data, header) => {
     return new Promise((resolve, reject) => {
         resolve(apiRequest(apiList.phoneGet, 'post', data, header))
+    })
+}
+let personList=(data, header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.personList, 'post', data, header))
+    })
+}
+let wxpay=(data, header) => {
+    return new Promise((resolve, reject) => {
+        resolve(apiRequest(apiList.wxpay, 'post', data, header))
     })
 }
 //最后需要将具体调用的函数暴露出，给具体业务调用
@@ -223,5 +233,7 @@ export default {
     wxActivity: wxActivity,
     goodType: goodType,
     goodGoods: goodGoods,
-    phoneGet: phoneGet
+    phoneGet: phoneGet,
+    personList:personList,
+    wxpay:wxpay,
 }

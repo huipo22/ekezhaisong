@@ -35,6 +35,7 @@ Page({
     resourse: app.globalData.resource,
     orderListData: [],
     goodList: [],
+    evenPrice:'',
   },
   // 加载订单数据
   loadOrdernData(status) {
@@ -109,47 +110,41 @@ Page({
     let order = e.target.dataset.order
     let that = this
     // return;
-    wx.request({
-      url: app.globalData.host + "/api/goods/order/wxapp_pay",
-      method: "POST",
-      header: {
-        "Token": wx.getStorageSync("token"),
-        "Device-Type": "wxapp"
-      },
-      data: {
-        order_id: order.id,
-        address_id: order.add_id,
-        price: order.pay_price,
-        remark: ''
-      },
-      success(res) {
-        console.log(res)
-        let paySign = md5.hexMD5('appId=' + res.data.data.appid + '&nonceStr=' + res.data.data.nonce_str + '&package=' + res.data.data.prepay_id + '&signType=MD5&timeStamp=' + res.data.data.timeStamp + "&key=n4iif00GHIAS8CFx4XxvWNNfYogZVDbg").toUpperCase();
-        wx.requestPayment({
-          'timeStamp': res.data.data.timeStamp + "",
-          'nonceStr': res.data.data.nonce_str,
-          'package': res.data.data.prepay_id,
-          'signType': 'MD5',
-          'paySign': paySign,
-          // 'appId': res.data.data.appid,
-          success(res) {
-            console.log('调用支付接口成功', res)
-            // 支付成功 删缓存 订单页支付
-            that.setData({
-              orderActive: 2,
-            })
-            that.loadOrdernData(2)
+    api.wxpay({
+      order_id: order.id,
+      address_id: order.add_id,
+      price: order.pay_price,
+      post_id:order.post_id,
+      remark: ''
+    }, {
+      "Token": wx.getStorageSync("token"),
+      "Device-Type": "wxapp"
+    }).then((res) => {
+      console.log(res)
+      const result = res.data.data
+      let paySign = md5.hexMD5('appId=' + result.appid + '&nonceStr=' + result.nonce_str + '&package=' + result.prepay_id + '&signType=MD5&timeStamp=' + result.timeStamp + "&key=n4iif00GHIAS8CFx4XxvWNNfYogZVDbg").toUpperCase();
+      wx.requestPayment({
+        'timeStamp': result.timeStamp + "",
+        'nonceStr': result.nonce_str,
+        'package': result.prepay_id,
+        'signType': 'MD5',
+        'paySign': paySign,
+        success(res) {
+          console.log('调用支付接口成功', res)
+          that.setData({
+            orderActive: 2,
+          })
+          that.loadOrdernData(2)
 
-          },
-          fail(res) {
-            console.log('调用支付接口fail', res)
-            that.setData({
-              orderActive: 1,
-            })
-            that.loadOrdernData(1)
-          }
-        })
-      },
+        },
+        fail(res) {
+          console.log('调用支付接口fail', res)
+          // that.setData({
+          //   orderActive: 1,
+          // })
+          // that.loadOrdernData(1)
+        }
+      })
     })
   },
   // 退款
@@ -206,7 +201,8 @@ Page({
     const index = e.currentTarget.dataset.index
     this.setData({
       show: true,
-      goodList: this.data.orderListData[index].goods_info
+      goodList: this.data.orderListData[index].goods_info,
+      evenPrice:this.data.orderListData[index].pay_price
     });
   },
   onClose() {

@@ -234,7 +234,7 @@ button {
 
 .addressInfo {
   background: #fff;
-  padding: 20rpx;
+  padding: 0 20rpx;
 }
 
 .addressCon, .address {

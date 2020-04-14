@@ -11,7 +11,8 @@
     padding: 0;
 }
 
-.addressCon, .address {
+.addressCon,
+.address {
     display: flex;
     height: 80rpx;
     align-items: center;
@@ -42,9 +43,11 @@
     display: flex;
     align-items: center;
 }
-.mobile{
+
+.mobile {
     justify-content: center;
 }
+
 .sty {
     height: 100%;
     display: flex;
@@ -59,5 +62,23 @@
 }
 
 .addressB {
-    height: 160rpx;
+    padding: 10rpx 0;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.col3 {
+    display: flex;
+    align-items: center;
+}
+
+.col4 {
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.row4 {
+    margin: 10rpx 0;
 }

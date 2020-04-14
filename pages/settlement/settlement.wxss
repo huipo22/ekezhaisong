@@ -2,11 +2,15 @@
 
 .container {
   /* height: calc(100% - 100rpx); */
-  margin: 0 5px;
+  /* margin: 0 5px; */
+  background: #efefef;
+  height: 100vh;
 }
-.redColor{
+
+.redColor {
   color: red;
 }
+
 .bottom {
   width: 100%;
   display: flex;
@@ -15,6 +19,7 @@
   bottom: 0;
   background: #fff;
   z-index: 99;
+  padding: 0 20rpx;
 }
 
 .bottom>.tag1 {
@@ -58,19 +63,28 @@
 
 .marginBottom {
   width: 100%;
-  margin-bottom: 100rpx;
+  /* margin-bottom: 100rpx; */
 }
 
 .row {
   height: 80rpx;
-  border-top: 1rpx solid #ccc;
+  /* border-top: 1rpx solid #ccc; */
 }
+
 .row3 {
-  border-top: 1rpx solid #ccc;
+  /* border-top: 1rpx solid #ccc; */
 }
+
+.row5 {
+  height: 110rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
 .row4 {
- margin: 10rpx 0;
+  margin: 10rpx 0;
 }
+
 .col {
   height: 100%;
   display: flex;
@@ -81,20 +95,24 @@
   display: flex;
   align-items: center;
 }
-.col4{
+
+.col4 {
   height: 100rpx;
   display: flex;
   align-items: center;
-  font-size: 40rpx;
+  font-size: 32rpx;
   font-weight: bold;
-
 }
+
 .van-cell {
-  padding: 0!important;
+  padding: 0 !important;
 }
 
 .addressB {
   padding: 10rpx 0;
+  margin: 20rpx;
+  background: #fff;
+  border-radius: 5px;
 }
 
 .sty {
@@ -111,9 +129,10 @@
 }
 
 .goodBox {
-  height: 120rpx;
+  height: 130rpx;
   border-bottom: 1rpx solid #eee;
   padding: 10rpx;
+  font-size: 26rpx;
 }
 
 .goodCon {
@@ -121,7 +140,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 22rpx;
+  /* font-size: 22rpx; */
 }
 
 .goodImg {
@@ -149,8 +168,73 @@
   height: 50px;
   border-top: 1rpx solid #ccc;
   font-size: 16px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
-.iconA{
+
+.iconA {
   justify-content: center;
+}
+
+.orderCon {
+  margin: 20rpx;
+  background: #fff;
+  padding: 10rpx 0;
+  border-radius: 5px;
+}
+
+.orderTitle {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  /* border-bottom: 1rpx solid #ccc; */
+}
+
+.noneLine {
+  border: none;
+}
+
+.Title {
+  /* border-bottom: 1rpx solid #ccc; */
+}
+
+.radioBox {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.radio {
+  flex: 1;
+}
+
+.SMcss {
+  width: 80%;
+  /* height: 50%; */
+  border-radius: 20rpx;
+}
+
+.smName {
+  border-top: 1rpx solid #ccc;
+  justify-content: center;
+  font-size: 34rpx;
+  color: #00a046;
+}
+
+.active {
+  color: #00a046;
+}
+
+.conCol {
+  padding: 40rpx;
+  font-size: 32rpx;
+}
+
+.row6 {
+  height: 60rpx;
+}
+
+.row7 {
+  height: 120rpx;
 }

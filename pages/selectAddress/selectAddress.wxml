@@ -6,12 +6,23 @@
                 <radio class="a_radio" checked="{{address.default}}" bindtap="radioTap" data-id="{{address.id}}"></radio>
             </view>
             <view style="width:100%">
-                <van-row custom-class="row addressB" catch:tap="address">
-                    <van-col span="14" custom-class="col sty">
+                <van-row custom-class="row3 addressB" catch:tap="address">
+                    <van-row custom-class="row4">
+                        <van-col span="23" offset="1" custom-class="col4">
+                            {{address.province}}{{address.city}}{{address.county}}{{address.address}}
+                        </van-col>
+                    </van-row>
+                    <van-row custom-class="row4">
+                        <van-col span="4" offset="1" custom-class="col3">
+                            {{address.name}}
+                        </van-col>
+                        <van-col span="8" custom-class="col3">{{address.mobile}}</van-col>
+                    </van-row>
+                    <!-- <van-col span="14" custom-class="col sty">
                         <view>收货人:{{address.name}}</view>
                         <view>收货地址:{{address.address}}</view>
                     </van-col>
-                    <van-col span="10" custom-class="col mobile">{{address.mobile}}</van-col>
+                    <van-col span="10" custom-class="col mobile">{{address.mobile}}</van-col> -->
                 </van-row>
             </view>
         </view>

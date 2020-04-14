@@ -6,7 +6,10 @@
     "van-field": "../../dist/vant/field/index",
     "van-popup": "../../dist/vant/popup/index",
     "van-image": "../../dist/vant/image/index",
-    "van-icon": "../../dist/vant/icon/index"
+    "van-icon": "../../dist/vant/icon/index",
+    "van-radio": "../../dist/vant/radio/index",
+    "van-radio-group": "../../dist/vant/radio-group/index",
+    "van-picker": "../../dist/vant/picker/index"
   },
   "navigationBarTitleText": "结算"
 }

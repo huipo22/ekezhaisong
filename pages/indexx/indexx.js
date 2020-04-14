@@ -21,7 +21,13 @@ Page({
     active: 1,
     goodType: [],
     goodGoods: [],
-    flag:true
+    flag: true,
+    flag1:null,
+  },
+  receiveValue(res) {
+    this.setData({
+      flag1: res.detail
+    })
   },
   onShow() {
     // 全局手机号
@@ -56,12 +62,14 @@ Page({
       this.column()
     }).then(() => {
       this.goodType()
+    }).then(() => {
+      util.queryCart(app)
     })
     let me = this;
     const query = wx.createSelectorQuery();
     query.select("#tab").boundingClientRect(function (res) {
       console.log(res)
-      me.data.tabTop = res.bottom+res.height
+      me.data.tabTop = res.bottom + res.height
     }).exec()
 
   },
@@ -96,7 +104,7 @@ Page({
     }, {}).then((res) => {
       if (res.data.code == 1) {
         that.setData({
-          goodGoods: res.data.data
+          goodGoods: res.data.data,
         })
       }
     })
@@ -108,10 +116,10 @@ Page({
   //   })
   //   this.goodGoods(status)
   // },
-  goodIdActive(e){
+  goodIdActive(e) {
     const status = e.currentTarget.dataset.id
     this.setData({
-      active: status
+      active: status,
     })
     this.goodGoods(status)
   },
@@ -150,20 +158,6 @@ Page({
     app.globalData.shopId = wx.getStorageSync('shopId')
 
   },
-  test() {
-    wx.requestSubscribeMessage({
-      tmplIds: ['nh6KXiwir1vr3rWRnZ_Wg6-gn_cGmEoVth1pnzGpqkE'],
-      success(res) {
-        console.log(res)
-        if (res['nh6KXiwir1vr3rWRnZ_Wg6-gn_cGmEoVth1pnzGpqkE'] == 'accept') {
-          console.log('已授权接收订阅消息')
-          api.wxActivity({}, {}).then(res => {
-            console.log(res)
-          })
-        }
-      }
-    })
-  },
   goodDetailTap: function (e) {
     wx.navigateTo({
       url: '../goodDetail/goodDetail?goodId=' + e.currentTarget.dataset.goodid,
@@ -191,20 +185,28 @@ Page({
   onPageScroll(e) {
     let me = this;
     console.log(e.scrollTop)
-    if (e.scrollTop > me.data.tabTop+40) {
+    if (e.scrollTop > me.data.tabTop + 40) {
       if (me.data.tabFix) {
         return
       } else {
         me.setData({
           tabFix: 'Fixed',
-          flag:false,
+          flag: false,
         })
       }
     } else {
       me.setData({
         tabFix: '',
-        flag:true
       })
+      if(me.data.flag1==null){
+        me.setData({
+          flag:true
+        })
+      }else{
+        me.setData({
+          flag:me.data.flag1
+        })
+      }
     }
   },
   /**

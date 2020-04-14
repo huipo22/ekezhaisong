@@ -57,6 +57,7 @@ Component({
       this.setData({
         SHOW_TOP: false
       });
+      this.triggerEvent("sendEvent",false)
     },
     okHandler: function () {
       this.setData({

@@ -20,7 +20,7 @@ Page({
     goodIndex: 0,
     page: 1,
     cateId: null,
-    noneFlag:false,
+    noneFlag: false,
   },
 
   // left click
@@ -69,13 +69,13 @@ Page({
           //   duration: 1500,
           // });
           this.setData({
-            noneFlag:true
+            noneFlag: true
           })
         } else {
           this.setData({
             rightList: oldData.concat(res.data.data),
             page: pp,
-            noneFlag:false,
+            noneFlag: false,
           })
         }
       }
@@ -106,8 +106,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function () {},
   // 加载右侧数据
   loadList(categoryId, index) {
     this.setData({
@@ -139,8 +138,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

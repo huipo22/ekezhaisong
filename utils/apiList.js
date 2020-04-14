@@ -16,7 +16,7 @@ let apiList = {
     cartDelete: host + "/api/goods/shopcar/remove", //购物车删除
     cartNum: host + "/api/goods/shopcar/get_sum", //查询购物车数量
     cartAction: host + "/api/goods/shopcar/action", //购物车加减
-    createOrder: host + "/api/goods/order/create_order", //创建订单
+    createOrder: host + "/api/goods/order/test_create_order", //创建订单
     goodSub: host + "/api/goods/goods/goods_good", //商品推荐
     getOrder: host + "/api/goods/order/order_status", //获取订单
     orderRefund: host + "/api/goods/order/order_refund", //取消订单
@@ -27,10 +27,12 @@ let apiList = {
     updateAddress: host + "/api/goods/address/update_address", //更改地址
     wxLogin: host + "/api/wxapp/public/login", //微信登录后台
     personOrderInfo: host + "/api/home/index/statistical", //个人中心订单徽章
-    wxActivity:host+"/api/home/index/wx_activity",//订阅消息
+    wxActivity:host+"/api/home/index/send_work",//订阅消息
     goodType:host+"/api/goods/goods/good_type",//活动类型
     goodGoods:host+"/api/goods/goods/good_goods",//活动分类下的商品
     phoneGet:host+"/api/wxapp/public/phone",//手机号授权
+    personList:host+"/api/goods/order/post_list",//代收点
+    wxpay:host+"/api/goods/order/test_wxapp_pay",//支付
 }
 
 module.exports = apiList; //暴露出来
