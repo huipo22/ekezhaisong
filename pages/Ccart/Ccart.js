@@ -246,7 +246,7 @@ Page({
         const chooseGoods = carts.filter((obj) => {
             return obj.isSelect == true
         })
-        console.log(chooseGoods)
+        // console.log(chooseGoods)
         if (chooseGoods.length == 0) {
             wx.showModal({
                 content: '请选择商品',

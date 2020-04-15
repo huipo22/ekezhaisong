@@ -21,16 +21,16 @@ Page({
     flag: false
   },
   getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+    // console.log(e.detail.errMsg)
+    // console.log(e.detail.iv)
+    // console.log(e.detail.encryptedData)
     if (e.detail.errMsg == "getPhoneNumber:ok")
       api.phoneGet({
         sessionKey: wx.getStorageSync('sessionKey'),
         encrypted_data: e.detail.encryptedData,
         iv: e.detail.iv
       }, {}).then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.data.code == 1) {
           wx.setStorageSync('userPhone', res.data.msg.phoneNumber);
           this.setData({
@@ -87,7 +87,7 @@ Page({
   },
   // region
   bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value
     })

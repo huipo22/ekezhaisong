@@ -73,7 +73,7 @@ const login = () => {
                 "Device-Type": 'wxapp',
               }).then((res) => {
                 if (res.data.code == 1) {
-                  console.log(111115555)
+                  // console.log(111115555)
                   // 购物车右上角数量
                   let sum = res.data.data.sum;
                   if (sum !== 0) {

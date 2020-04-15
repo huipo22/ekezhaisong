@@ -164,13 +164,13 @@ Page({
                 if (res.confirm) {
                   console.log('用户点击确定')
                   wx.requestSubscribeMessage({
-                    tmplIds: ['_KSK07-1whvjJpj29L55_yBaY4VsrHHAl67IbW_Uhqo'],
+                    tmplIds: ['_KSK07-1whvjJpj29L55_wnsyi3L68c7EuynLX1fctM'],
                     success(res) {
                       console.log(res)
-                      if (res['_KSK07-1whvjJpj29L55_yBaY4VsrHHAl67IbW_Uhqo'] == 'accept') {
+                      if (res['_KSK07-1whvjJpj29L55_wnsyi3L68c7EuynLX1fctM'] == 'accept') {
                         console.log('已授权接收订阅消息')
                         api.wxActivity({
-                          temp_id: '_KSK07-1whvjJpj29L55_yBaY4VsrHHAl67IbW_Uhqo',
+                          temp_id: '_KSK07-1whvjJpj29L55_wnsyi3L68c7EuynLX1fctM',
                           order_id: settResult.order_id
                         }, {
                           "Token": wx.getStorageSync("token"),

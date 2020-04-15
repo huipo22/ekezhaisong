@@ -31,8 +31,7 @@
     "selectedColor": "#00a046",
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "买菜",
         "iconPath": "./dist/icon2/caidan.png",
@@ -63,5 +62,12 @@
         "selectedIconPath": "./dist/icon2/platform-select.png"
       }
     ]
+  },
+  "plugins": {
+    "live-player-plugin": {
+      "version": "1.0.5",
+      "provider": "wx2b03c6e691cd7370"
+    }
   }
+
 }

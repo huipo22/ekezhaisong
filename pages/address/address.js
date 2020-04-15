@@ -71,7 +71,7 @@ Page({
   },
   // 编辑地址
   editTap(e) {
-    console.log(e)
+    // console.log(e)
     const addressInfo = e.currentTarget.dataset.info
     wx.navigateTo({
       url: '../editAddress/editAddress?addressInfo=' + JSON.stringify(addressInfo),

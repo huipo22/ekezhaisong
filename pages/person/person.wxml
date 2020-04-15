@@ -42,9 +42,9 @@
     <button open-type="contact">
       <van-cell title="在线客服" icon="service-o"></van-cell>
     </button>
-    <van-cell title="联系商家" icon="phone-o" bindtap="makePhone"></van-cell>
-    <van-cell title="联系开发小程序" icon="phone-o" bindtap="shopsTap"></van-cell>
-    <van-cell title="收货地址" icon="location-o" is-link bindtap="addressTap"></van-cell>
+    <van-cell title="联系商家" icon="contact" bindtap="makePhone"></van-cell>
+    <van-cell title="联系开发小程序" icon="chat-o" bindtap="shopsTap"></van-cell>
+    <van-cell title="收货地址" icon="logistics" is-link bindtap="addressTap"></van-cell>
     <!-- 商家地址 -->
     <van-cell title="门店地址" icon="location-o" catch:tap="shopAddress" />
   </van-cell-group>

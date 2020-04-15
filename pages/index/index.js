@@ -22,7 +22,13 @@ Page({
     goodType: [],
     goodGoods: [],
     flag: true,
-    flag1:null,
+    flag1: null,
+  },
+  zhibo() {
+    console.log(454545)
+    wx.navigateTo({
+      url: "plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=2"
+    })
   },
   receiveValue(res) {
     this.setData({
@@ -184,7 +190,7 @@ Page({
   },
   onPageScroll(e) {
     let me = this;
-    console.log(e.scrollTop)
+    // console.log(e.scrollTop)
     if (e.scrollTop > me.data.tabTop + 40) {
       if (me.data.tabFix) {
         return
@@ -198,13 +204,13 @@ Page({
       me.setData({
         tabFix: '',
       })
-      if(me.data.flag1==null){
+      if (me.data.flag1 == null) {
         me.setData({
-          flag:true
+          flag: true
         })
-      }else{
+      } else {
         me.setData({
-          flag:me.data.flag1
+          flag: me.data.flag1
         })
       }
     }

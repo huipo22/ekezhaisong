@@ -27,6 +27,9 @@ Page({
   leftClick(e) {
     let categoryId = e.currentTarget.dataset.num;
     let index = e.currentTarget.dataset.index
+    this.setData({
+      noneFlag: false
+    })
     this.loadList(categoryId, index)
   },
   // 商品链接
