@@ -191,6 +191,7 @@
     height: 120rpx;
     line-height: 120rpx;
     background: white;
+    z-index: 999;
 }
 
 .button-red {

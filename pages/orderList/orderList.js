@@ -35,7 +35,7 @@ Page({
     resourse: app.globalData.resource,
     orderListData: [],
     goodList: [],
-    evenPrice:'',
+    evenPrice: '',
   },
   // 加载订单数据
   loadOrdernData(status) {
@@ -114,7 +114,7 @@ Page({
       order_id: order.id,
       address_id: order.add_id,
       price: order.pay_price,
-      post_id:order.post_id,
+      post_id: order.post_id,
       remark: ''
     }, {
       "Token": wx.getStorageSync("token"),
@@ -202,7 +202,7 @@ Page({
     this.setData({
       show: true,
       goodList: this.data.orderListData[index].goods_info,
-      evenPrice:this.data.orderListData[index].pay_price
+      evenPrice: this.data.orderListData[index].pay_price
     });
   },
   onClose() {
@@ -252,9 +252,15 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.switchTab({
-      url: '../person/person',
-    });
+    var pages = getCurrentPages(); //页面指针数组
+    console.log(pages)
+    var prepage = pages[pages.length - 2]; //上一页面指针
+    if (prepage.route == "pages/settlement/settlement") {
+      prepage.onHide()
+      wx.switchTab({
+        url: '../person/person',
+      });
+    }
   },
 
   /**
