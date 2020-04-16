@@ -43,7 +43,7 @@
 .sku text {
     display: inline-block;
     height: 40rpx;
-    line-height: 0.42;
+    line-height: .5;
     width: 40rpx;
     margin-left: 20rpx;
     text-align: center;

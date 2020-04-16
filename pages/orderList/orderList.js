@@ -254,10 +254,10 @@ Page({
   onUnload: function () {
     var pages = getCurrentPages(); //页面指针数组
     console.log(pages)
-    var prepage = pages[pages.length - 2]; //上一页面指针
-    if (prepage.route == "pages/settlement/settlement") {
-      prepage.onHide()
-      wx.switchTab({
+    var prepage = pages[pages.length - 1]; //上一页面指针
+    console.log(prepage)
+    if (prepage.route == "pages/orderList/orderList") {
+      wx.reLaunch({
         url: '../person/person',
       });
     }

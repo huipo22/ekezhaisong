@@ -1,7 +1,7 @@
 /* pages/editAddress/editAddress.wxss */
 
 .titleC {
-  flex: 1!important;
+  flex: .82!important;
 }
 
 .valC {

@@ -256,7 +256,8 @@ button {
 }
 
 .a_radio {
-  flex: 1
+  flex: 1;
+  padding-left: 4%;
 }
 
 .edit, .delete {
@@ -424,7 +425,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .cardTitle {
-  font-size: 30rpx !important;
+  font-size: 29rpx !important;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

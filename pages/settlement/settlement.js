@@ -183,7 +183,7 @@ Page({
                       }
                     }
                   })
-                  wx.navigateTo({
+                  wx.redirectTo({
                     url: '../orderList/orderList?active=2'
                   })
                 } else if (res.cancel) {
@@ -195,7 +195,7 @@ Page({
           },
           fail(res) {
             console.log('调用支付接口fail', res)
-            wx.navigateTo({
+            wx.redirectTo({
               url: '../orderList/orderList?active=1'
             })
           }
