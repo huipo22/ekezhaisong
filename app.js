@@ -91,7 +91,5 @@ App({
     host: 'https://hr.jishanhengrui.com', //域名
     resource: 'https://hr.jishanhengrui.com/upload/', //图片资源地址
     sum: 0,
-    start_time: '',
-    end_time: '',
   }
 })

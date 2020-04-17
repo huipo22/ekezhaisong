@@ -44,8 +44,6 @@ Page({
         const result = res.data.data;
         console.log(result)
         app.globalData.phone = result.user_phone;
-        app.globalData.start_time = result.start_time
-        app.globalData.end_time = result.end_time
         wx.setNavigationBarTitle({
           title: "e刻宅送",
         })
@@ -56,7 +54,7 @@ Page({
         console.log(currentTime + "-" + result.start_time)
         if (currentTime < result.start_time || currentTime > result.end_time) {
           wx.reLaunch({
-            url: "../close/close"
+            url: "../close/close?start=" + result.start_time + "&end=" + result.end_time
           })
         } else {
           console.log('在范围内')

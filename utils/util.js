@@ -7,8 +7,8 @@ const formatDate = date => {
 const formatTime = date => {
   const hour = date.getHours()
   const minute = date.getMinutes()
-  return [hour, minute].map(formatNumber).join(':')
-  // return [hour, minute, second].map(formatNumber).join(':') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  const second = date.getSeconds()
+  return [hour, minute, second].map(formatNumber).join(':') 
 }
 let api = require('./request').default;
 const app = getApp();
