@@ -11,7 +11,7 @@ App({
     }
     this.globalData.shopId = wx.getStorageSync('shopId')
     // 场景值
-    console.log(options)
+    // console.log(options)
 
     // 登录
     util.login()

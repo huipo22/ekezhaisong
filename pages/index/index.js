@@ -42,7 +42,7 @@ Page({
     }).then((res) => {
       if (res.data.code == 1) {
         const result = res.data.data;
-        console.log(result)
+        // console.log(result)
         app.globalData.phone = result.user_phone;
         wx.setNavigationBarTitle({
           title: "e刻宅送",
@@ -65,7 +65,11 @@ Page({
     }).then(() => {
       this.column()
     }).then(() => {
-      this.goodType()
+      if(this.data.active==1){
+        this.goodType()
+      }else{
+        this.goodIdActives(this.data.active)
+      }
     }).then(() => {
       util.queryCart(app)
     })
@@ -122,6 +126,12 @@ Page({
   // },
   goodIdActive(e) {
     const status = e.currentTarget.dataset.id
+    this.setData({
+      active: status,
+    })
+    this.goodGoods(status)
+  },
+  goodIdActives(status) {
     this.setData({
       active: status,
     })

@@ -23,9 +23,8 @@
 		</van-grid>
 	</view>
 	<van-notice-bar left-icon="volume-o" scrollable="true" style="width:100%" text="{{take}}" />
-	<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">123</button> -->
 	<scroll-view scroll-x="true" class="tab {{tabFix}}" id="tab">
-		<block wx:for="{{goodType}}">
+		<block wx:for="{{goodType}}" wx:key="index">
 			<view wx:for-item="item" wx:key="index" catch:tap="goodIdActive" data-id="{{item.id}}" class="viewName {{active==item.id?'activeTab':''}}">
 				{{item.name}}
 			</view>

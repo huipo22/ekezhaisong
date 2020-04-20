@@ -2,7 +2,7 @@
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <view class="container">
     <scroll-view class='scroll' scroll-y="true">
-        <view wx:for="{{carts}}" wx:key="">
+        <view wx:for="{{carts}}" wx:key="index">
             <view class='cart_container'>
                 <!-- 删除icon -->
                 <van-icon name="delete" class="deleteBox" catch:tap="singleDelete" data-index="{{index}}" size="16px" />

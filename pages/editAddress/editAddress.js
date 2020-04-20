@@ -1,6 +1,5 @@
 // pages/editAddress/editAddress.js
 const app = getApp();
-console.log(app)
 import util from '../../utils/util'
 let api = require('../../utils/request').default;
 Page({

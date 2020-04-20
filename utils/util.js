@@ -62,7 +62,7 @@ const login = () => {
             'AppId': 'wx1c2c5d708d0c4ea9' // 默认值
           }).then((res) => {
             if (res.data.code == 1) {
-              console.log(res);
+              // console.log(res);
               wx.setStorageSync('token', res.data.data.token)
               wx.setStorageSync('sessionKey',res.data.data.sessionKey)
               const app = getApp()
@@ -89,7 +89,7 @@ const login = () => {
                 }
               })
               var pages = getCurrentPages();
-              console.log(pages)
+              // console.log(pages)
               if (pages.length !== 1) {
                 wx.navigateBack({
                   delta: 1
