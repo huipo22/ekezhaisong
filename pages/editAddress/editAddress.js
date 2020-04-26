@@ -112,27 +112,16 @@ Page({
       }, {
         "Token": wx.getStorageSync("token"),
         "Device-Type": 'wxapp',
-      }).then((res) => {
-        if (res.data.code == 1) {
-          wx.showToast({
-            title: '保存成功',
-            duration: 1500,
-            success: () => {
-              // wx.redirectTo({
-              //   url: '../address/address',
-              // });
-              wx.navigateBack({
-                delta: 1
-              });
-            },
-          });
-        } else if (res.data.code == 0) {
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 2000
-          })
-        }
+      }).then((result) => {
+        wx.showToast({
+          title: '保存成功',
+          duration: 1500,
+          success: () => {
+            wx.navigateBack({
+              delta: 1
+            });
+          },
+        });
       })
     } else {
       // update adress
@@ -147,18 +136,16 @@ Page({
       }, {
         "Token": wx.getStorageSync("token"),
         "Device-Type": 'wxapp',
-      }).then(res => {
-        if (res.data.code == 1) {
-          wx.showToast({
-            title: '保存成功',
-            duration: 1500,
-            success: (result) => {
-              wx.navigateTo({
-                url: '../address/address',
-              });
-            },
-          });
-        }
+      }).then(result => {
+        wx.showToast({
+          title: '保存成功',
+          duration: 1500,
+          success: () => {
+            wx.navigateTo({
+              url: '../address/address',
+            });
+          },
+        });
       })
     }
   },

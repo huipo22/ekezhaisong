@@ -26,12 +26,10 @@ Page({
     }, {
       Token: wx.getStorageSync('token'),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {
+    }).then((result) => {
         that.setData({
-          cartInfo: res.data.data.sum
+          cartInfo: result.sum
         })
-      }
     })
   },
   onLoad: function (options) {
@@ -43,14 +41,12 @@ Page({
     api.subCategories({
       category_id: cateid,
       page: 1
-    }).then((res) => {
-      if (res.data.code == 1) {
+    }).then((result) => {
         this.setData({
           loadFlag: false,
-          cateData: res.data.data,
+          cateData: result,
           categoryId: cateid,
         })
-      }
     })
   },
   // 加载更多
@@ -61,24 +57,18 @@ Page({
     api.subCategories({
       category_id: categoryId,
       page: pp
-    }).then((res) => {
-      if (res.data.code == 1) {
-        if (res.data.data == 0) {
-          // wx.showToast({
-          //   title: '无更多数据',
-          //   duration: 1500,
-          // });
+    }).then((result) => {
+        if (result==0) {
           this.setData({
             noneFlag:true
           })
         } else {
           this.setData({
-            cateData: oldData.concat(res.data.data),
+            cateData: oldData.concat(result),
             page: pp,
             noneFlag:false,
           })
         }
-      }
     })
   },
   // 商品链接
@@ -97,7 +87,6 @@ Page({
       Token: wx.getStorageSync('token'),
       "Device-Type": 'wxapp',
     }).then((res) => {
-      if (res.data.code == 1) {
         wx.showToast({
           title: '加入购物车成功',
           icon: "none",
@@ -108,10 +97,9 @@ Page({
         }, {
           Token: wx.getStorageSync('token'),
           "Device-Type": 'wxapp',
-        }).then((res) => {
-          if (res.data.code == 1) {
+        }).then((result) => {
             // 购物车右上角数量
-            let sum = res.data.data.sum;
+            let sum = result.sum;
             let that = this;
             if (sum !== 0) {
               wx.setTabBarBadge({
@@ -126,19 +114,8 @@ Page({
                 index: 2,
               });
             }
-          }
         })
-      } else if (res.data.code == 10001) {
-        wx.navigateTo({
-          url: '../login/login'
-        })
-      } else {
-        wx.showToast({
-          title: res.data.msg,
-          icon: "none",
-          duration: 1200
-        })
-      }
+     
     })
   },
   // 购物车链接

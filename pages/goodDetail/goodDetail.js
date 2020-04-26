@@ -27,14 +27,12 @@ Page({
     // 商品详情数据请求
     api.goodDetail({
       goods_id: options.goodId
-    }).then((res) => {
-      if (res.data.code == 1) {
-        let rich = res.data.data.goods_detail.replace(/\<p><img/gi, '<img class="richImg" ')
-        that.setData({
-          goodDetailData: res.data.data,
-          rich: rich
-        })
-      }
+    }).then((result) => {
+      let rich = result.goods_detail.replace(/\<p><img/gi, '<img class="richImg" ')
+      that.setData({
+        goodDetailData: result,
+        rich: rich
+      })
     })
 
   },
@@ -49,12 +47,10 @@ Page({
     }, {
       Token: wx.getStorageSync('token'),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          cartInfo: res.data.data.sum
-        })
-      }
+    }).then((result) => {
+      that.setData({
+        cartInfo: result.sum
+      })
     })
   },
   // 添加购物车
@@ -66,49 +62,36 @@ Page({
     }, {
       Token: wx.getStorageSync('token'),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {
-        wx.showToast({
-          title: '加入购物车成功',
-          icon: "none",
-          duration: 1000
-        })
-        api.cartNum({
-          shop_id: app.globalData.shopId,
-        }, {
-          Token: wx.getStorageSync('token'),
-          "Device-Type": 'wxapp',
-        }).then((res) => {
-          if (res.data.code == 1) {
-            // 购物车右上角数量
-            let sum = res.data.data.sum;
-            let that = this;
-            if (sum !== 0) {
-              wx.setTabBarBadge({
-                index: 2,
-                text: String(sum)
-              })
-              that.setData({
-                cartInfo: sum
-              })
-            } else {
-              wx.removeTabBarBadge({
-                index: 2,
-              });
-            }
-          }
-        })
-      } else if (res.data.code == 10001) {
-        wx.navigateTo({
-          url: '../login/login'
-        })
-      } else {
-        wx.showToast({
-          title: res.data.msg,
-          icon: "none",
-          duration: 1200
-        })
-      }
+    }).then((result) => {
+      wx.showToast({
+        title: '加入购物车成功',
+        icon: "none",
+        duration: 1000
+      })
+      api.cartNum({
+        shop_id: app.globalData.shopId,
+      }, {
+        Token: wx.getStorageSync('token'),
+        "Device-Type": 'wxapp',
+      }).then((result) => {
+        // 购物车右上角数量
+        let sum = result.sum;
+        let that = this;
+        if (sum !== 0) {
+          wx.setTabBarBadge({
+            index: 2,
+            text: String(sum)
+          })
+          that.setData({
+            cartInfo: sum
+          })
+        } else {
+          wx.removeTabBarBadge({
+            index: 2,
+          });
+        }
+      })
+
     })
 
   },
@@ -139,7 +122,7 @@ Page({
   onUnload: function () {
     util.queryCart(app)
   },
-    /**
+  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {

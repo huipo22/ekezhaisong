@@ -145,8 +145,7 @@ Page({
       }, {
         "Token": wx.getStorageSync("token"),
         "Device-Type": "wxapp"
-      }).then((res) => {
-        const result = res.data.data;
+      }).then((result) => {
         let that = this;
         let paySign = md5.hexMD5('appId=' + result.appid + '&nonceStr=' + result.nonce_str + '&package=' + result.prepay_id + '&signType=MD5&timeStamp=' + result.timeStamp + "&key=n4iif00GHIAS8CFx4XxvWNNfYogZVDbg").toUpperCase();
         wx.requestPayment({
@@ -191,7 +190,7 @@ Page({
                 }
               }
             })
-           
+
           },
           fail(res) {
             console.log('调用支付接口fail', res)
@@ -258,15 +257,13 @@ Page({
     };
     // 自提点list
     api.personList().then(res => {
-      if (res.data.code == 1) {
-        const list = res.data.data.map(obj => {
-          return obj.user_address
-        })
-        this.setData({
-          result: res.data.data,
-          columns: list
-        })
-      }
+      const list = res.map(obj => {
+        return obj.user_address
+      })
+      this.setData({
+        result: res,
+        columns: list
+      })
     })
   },
 

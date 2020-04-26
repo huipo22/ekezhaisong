@@ -17,8 +17,8 @@ Page({
     }, {
       "Token": wx.getStorageSync("token"),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {}
+    }).then((result) => {
+
     })
     wx.navigateBack({
       delta: 1
@@ -80,15 +80,7 @@ Page({
       "Token": wx.getStorageSync("token"),
       "Device-Type": 'wxapp',
     }).then(result => {
-      if (result.data.code == 1) {
-        let addressId = result.data.data;
-      } else if (result.data.code == 0) {
-        wx.showToast({
-          title: result.data.msg,
-          icon: 'none',
-          duration: 1500
-        });
-      }
+
     })
   },
   /**
@@ -113,12 +105,10 @@ Page({
     api.addressList({}, {
       "Token": wx.getStorageSync("token"),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          addressList: res.data.data
-        })
-      }
+    }).then((result) => {
+      that.setData({
+        addressList: result
+      })
     })
   },
 

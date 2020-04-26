@@ -18,67 +18,40 @@ Page({
     cateList: null, //6列数据
     recommend: null,
     take: '',
-    active: 1,
-    goodType: [],
-    goodGoods: [],
-    flag: true,
-    flag1: null,
   },
   zhibo() {
-    console.log(454545)
     wx.navigateTo({
       url: "plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=2"
-    })
-  },
-  receiveValue(res) {
-    this.setData({
-      flag1: res.detail
     })
   },
   onShow() {
     // 全局手机号
     api.globalPhone({
       shop_id: app.globalData.shopId
-    }).then((res) => {
-      if (res.data.code == 1) {
-        const result = res.data.data;
-        // console.log(result)
-        app.globalData.phone = result.user_phone;
-        wx.setNavigationBarTitle({
-          title: "e刻宅送",
+    }).then((result) => {
+      app.globalData.phone = result.user_phone;
+      wx.setNavigationBarTitle({
+        title: "e刻宅送",
+      })
+      this.setData({
+        take: result.take
+      })
+      let currentTime = Math.round(new Date().getTime() / 1000).toString();
+      console.log(currentTime + "-" + result.start_time)
+      if (currentTime < result.start_time || currentTime > result.end_time) {
+        wx.reLaunch({
+          url: "../close/close?start=" + result.start_time + "&end=" + result.end_time
         })
-        this.setData({
-          take: result.take
-        })
-        let currentTime = Math.round(new Date().getTime() / 1000).toString();
-        console.log(currentTime + "-" + result.start_time)
-        if (currentTime < result.start_time || currentTime > result.end_time) {
-          wx.reLaunch({
-            url: "../close/close?start=" + result.start_time + "&end=" + result.end_time
-          })
-        } else {
-          console.log('在范围内')
-        }
+      } else {
+        console.log('在范围内')
       }
     }).then(() => {
       this.wheel()
     }).then(() => {
       this.column()
     }).then(() => {
-      if(this.data.active==1){
-        this.goodType()
-      }else{
-        this.goodIdActives(this.data.active)
-      }
-    }).then(() => {
-      util.queryCart(app)
+      // util.queryCart(app)
     })
-    let me = this;
-    const query = wx.createSelectorQuery();
-    query.select("#tab").boundingClientRect(function (res) {
-      console.log(res)
-      me.data.tabTop = res.bottom + res.height
-    }).exec()
 
   },
   wheel() {
@@ -86,67 +59,20 @@ Page({
     // 轮播图
     api.wheel({
       shop_id: app.globalData.shopId
-    }).then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          imgUrls: res.data.data
-        })
-      }
+    }).then((result) => {
+      that.setData({
+        imgUrls: result
+      })
     })
-  },
-  goodType() {
-    const that = this;
-    api.goodType().then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          goodType: res.data.data
-        })
-        that.goodGoods(res.data.data[0].id)
-      }
-    })
-  },
-  goodGoods(goodid) {
-    const that = this;
-    api.goodGoods({
-      good_id: goodid
-    }, {}).then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          goodGoods: res.data.data,
-        })
-      }
-    })
-  },
-  // goodChange(event) {
-  //   const status = event.detail.name
-  //   this.setData({
-  //     active: status
-  //   })
-  //   this.goodGoods(status)
-  // },
-  goodIdActive(e) {
-    const status = e.currentTarget.dataset.id
-    this.setData({
-      active: status,
-    })
-    this.goodGoods(status)
-  },
-  goodIdActives(status) {
-    this.setData({
-      active: status,
-    })
-    this.goodGoods(status)
   },
 
   goodR() {
     const that = this;
     // 好物推荐
-    api.goodSub().then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          recommend: res.data.data
-        })
-      }
+    api.goodSub().then((result) => {
+      that.setData({
+        recommend: result
+      })
     })
   },
   column() {
@@ -154,12 +80,10 @@ Page({
     // 首页5列数据
     api.homeCategory({
       shop_id: app.globalData.shopId
-    }).then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          cateList: res.data.data
-        })
-      }
+    }).then((result) => {
+      that.setData({
+        cateList: result
+      })
     })
   },
   onLoad(options) {
@@ -172,11 +96,7 @@ Page({
     app.globalData.shopId = wx.getStorageSync('shopId')
 
   },
-  goodDetailTap: function (e) {
-    wx.navigateTo({
-      url: '../goodDetail/goodDetail?goodId=' + e.currentTarget.dataset.goodid,
-    })
-  },
+
   // 矩阵跳转
   link(e) {
     console.log(e)
@@ -185,43 +105,6 @@ Page({
     wx.navigateTo({
       url: '../listPage/listPage?parentId=' + parentid + '&cateId=' + parentname
     })
-  },
-  // 添加购物车
-  addCart(e) {
-    util.addCart(e, app, util.queryCart)
-  },
-  // 商品链接
-  goodSelect(e) {
-    wx.navigateTo({
-      url: encodeURI('../goodDetail/goodDetail?goodId=' + e.currentTarget.dataset.goodid),
-    })
-  },
-  onPageScroll(e) {
-    let me = this;
-    // console.log(e.scrollTop)
-    if (e.scrollTop > me.data.tabTop + 40) {
-      if (me.data.tabFix) {
-        return
-      } else {
-        me.setData({
-          tabFix: 'Fixed',
-          flag: false,
-        })
-      }
-    } else {
-      me.setData({
-        tabFix: '',
-      })
-      if (me.data.flag1 == null) {
-        me.setData({
-          flag: true
-        })
-      } else {
-        me.setData({
-          flag: me.data.flag1
-        })
-      }
-    }
   },
   /**
    * 用户点击右上角分享

@@ -1,0 +1,37 @@
+<!-- pages/activePage.wxml -->
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="container">
+    <scroll-view scroll-x="true" class="tab {{tabFix}}" id="tab">
+        <block wx:for="{{goodType}}" wx:key="index">
+            <view wx:for-item="item" wx:key="index" catch:tap="goodIdActive" data-id="{{item.id}}" class="viewName {{active==item.id?'activeTab':''}}">
+                {{item.name}}
+            </view>
+        </block>
+    </scroll-view>
+    <view style="width:100%">
+        <van-card title="{{items.goods_name}}" desc="{{items.remark}}" class="card" wx:for="{{goodGoods}}" wx:for-item="items" wx:key="index" catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{items.id}}" title-class="cardTitle">
+            <view class="subscrbeImg" slot="thumb">
+                <van-image width="100%" height="100%" src="{{resourse+items.goods_img}}" fit="contain" class="{{items.goods_num==0?'zhezhao':''}}"></van-image>
+            </view>
+            <view slot="bottom" class="cart-bo">
+                <view class="priceBox">
+                    <view class="se_price">
+                        <rich-text class="" nodes="{{filter.priceFilter(items.present_price)}}"></rich-text>
+                        元/{{items.goods_spec}}
+                    </view>
+                    <view style="text-decoration:line-through;">
+                        {{items.original_price}}元/{{items.goods_spec}}
+                    </view>
+                </view>
+                <view class="volumn">
+                    已售
+                    <view class="red">{{items.goods_volume_false}}</view>
+                    {{items.goods_spec}}
+                </view>
+                <view class="cartIcon" wx:if="{{items.goods_num!==0}}">
+                    <image src="../../dist/icon2/cartLink.png" style="width:30px;height:30px" catch:tap="addCart" data-cart="{{items}}" data-goodid="{{items.id}}" mode="aspectFit" lazy-load="true"></image>
+                </view>
+            </view>
+        </van-card>
+    </view>
+</view>

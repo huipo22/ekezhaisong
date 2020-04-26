@@ -5,7 +5,7 @@ let api = require('../../utils/request').default;
 Page({
   data: {
     userData: null,
-    smallList:[]
+    smallList: []
   },
   // 我的订单
   orderList: function (e) {
@@ -33,18 +33,18 @@ Page({
     })
   },
   // 门店地址位置
-  shopAddress(){
+  shopAddress() {
     wx.openLocation({
       latitude: 35.607745,
       longitude: 110.996911,
       scale: 18,
       name: 'e刻宅送',
       address: '稷山县育英街外婆饺子宴东e刻宅送',
-      success: (result)=>{
-        
+      success: (result) => {
+
       },
-      fail: ()=>{},
-      complete: ()=>{}
+      fail: () => {},
+      complete: () => {}
     });
   },
   onShow() {
@@ -58,12 +58,10 @@ Page({
     api.personOrderInfo({}, {
       Token: wx.getStorageSync('token'),
       "Device-Type": 'wxapp',
-    }).then(res => {
-      if (res.data.code == 1) {
-        this.setData({
-          smallList:res.data.data.list
-        })
-      }
+    }).then(result => {
+      this.setData({
+        smallList: result.list
+      })
     })
   },
   /**

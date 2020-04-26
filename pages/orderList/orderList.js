@@ -48,13 +48,11 @@ Page({
     }, {
       Token: wx.getStorageSync('token'),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {
-        this.setData({
-          orderListData: res.data.data,
-          loadFlag: false
-        })
-      }
+    }).then((result) => {
+      this.setData({
+        orderListData: result,
+        loadFlag: false
+      })
     })
   },
   // 订单选项卡改变事件
@@ -80,22 +78,14 @@ Page({
           }, {
             "Token": wx.getStorageSync("token"),
             "Device-Type": "wxapp"
-          }).then((res) => {
-            if (res.data.code == 1) {
-              wx.showToast({
-                title: '订单已取消',
-                icon: 'success',
-                duration: 2000
-              })
-              console.log(that.data.orderActive)
-              that.loadOrdernData(that.data.orderActive)
-            } else {
-              wx.showToast({
-                title: res.data.msg,
-                icon: 'none',
-                duration: 2000
-              })
-            }
+          }).then((result) => {
+            wx.showToast({
+              title: '订单已取消',
+              icon: 'success',
+              duration: 2000
+            })
+            that.loadOrdernData(that.data.orderActive)
+
           })
 
         } else if (res.cancel) {
@@ -119,9 +109,7 @@ Page({
     }, {
       "Token": wx.getStorageSync("token"),
       "Device-Type": "wxapp"
-    }).then((res) => {
-      console.log(res)
-      const result = res.data.data
+    }).then((result) => {
       let paySign = md5.hexMD5('appId=' + result.appid + '&nonceStr=' + result.nonce_str + '&package=' + result.prepay_id + '&signType=MD5&timeStamp=' + result.timeStamp + "&key=n4iif00GHIAS8CFx4XxvWNNfYogZVDbg").toUpperCase();
       wx.requestPayment({
         'timeStamp': result.timeStamp + "",
@@ -139,17 +127,12 @@ Page({
         },
         fail(res) {
           console.log('调用支付接口fail', res)
-          // that.setData({
-          //   orderActive: 1,
-          // })
-          // that.loadOrdernData(1)
         }
       })
     })
   },
   // 退款
   backPay(e) {
-    console.log(e)
     let that = this
     wx.showModal({
       title: '提示',
@@ -162,25 +145,23 @@ Page({
           }, {
             "Token": wx.getStorageSync("token"),
             "Device-Type": "wxapp"
-          }).then((res) => {
-            if (res.data.code == 1) {
-              that.setData({
-                orderList: res.data.data
-              })
-              wx.showModal({
-                title: '提示',
-                content: '退款成功',
-                showCancel: false,
-                success(res) {
-                  if (res.confirm) {
-                    that.setData({
-                      orderActive: 5,
-                    })
-                    that.loadOrdernData(5)
-                  }
+          }).then((result) => {
+            that.setData({
+              orderList: result
+            })
+            wx.showModal({
+              title: '提示',
+              content: '退款成功',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  that.setData({
+                    orderActive: 5,
+                  })
+                  that.loadOrdernData(5)
                 }
-              })
-            }
+              }
+            })
           })
 
         } else if (res.cancel) {

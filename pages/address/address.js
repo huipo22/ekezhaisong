@@ -16,12 +16,10 @@ Page({
     api.addressList({}, {
       "Token": wx.getStorageSync("token"),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          addressList: res.data.data
-        })
-      }
+    }).then((result) => {
+      that.setData({
+        addressList: result
+      })
     })
   },
   // 默认地址
@@ -33,15 +31,13 @@ Page({
     }, {
       "Token": wx.getStorageSync("token"),
       "Device-Type": 'wxapp',
-    }).then((res) => {
-      if (res.data.code == 1) {
-        wx.showToast({
-          title: '设置成功',
-          icon: 'none',
-          duration: 1500,
-        });
-        that.readyData()
-      }
+    }).then((result) => {
+      wx.showToast({
+        title: '设置成功',
+        icon: 'none',
+        duration: 1500,
+      });
+      that.readyData()
     })
   },
   // 删除地址
@@ -59,9 +55,12 @@ Page({
             "Token": wx.getStorageSync("token"),
             "Device-Type": 'wxapp',
           }).then((res) => {
-            if (res.data.code == 1) {
-              that.readyData()
-            }
+            wx.showToast({
+              title: '删除成功',
+              icon: 'none',
+              duration: 1500,
+            });
+            that.readyData()
           })
         } else if (res.cancel) {
           console.log('用户点击取消')

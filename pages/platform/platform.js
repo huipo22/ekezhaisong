@@ -9,7 +9,7 @@ Page({
    */
   data: {
     platformList: [],
-    resourse: app.globalData.resource,//图片域名
+    resourse: app.globalData.resource, //图片域名
   },
   // 拨打电话
   call(e) {
@@ -48,12 +48,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    api.platfromServe().then((res) => {
-      if (res.data.code == 1) {
-        this.setData({
-          platformList: res.data.data
-        })
-      }
+    api.platfromServe().then((result) => {
+      this.setData({
+        platformList: result
+      })
     })
   },
 

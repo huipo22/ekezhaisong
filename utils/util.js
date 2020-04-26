@@ -8,7 +8,7 @@ const formatTime = date => {
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-  return [hour, minute, second].map(formatNumber).join(':') 
+  return [hour, minute, second].map(formatNumber).join(':')
 }
 let api = require('./request').default;
 const app = getApp();
@@ -60,41 +60,37 @@ const login = () => {
             signature: wxData.signature
           }, {
             'AppId': 'wx1c2c5d708d0c4ea9' // 默认值
-          }).then((res) => {
-            if (res.data.code == 1) {
-              // console.log(res);
-              wx.setStorageSync('token', res.data.data.token)
-              wx.setStorageSync('sessionKey',res.data.data.sessionKey)
-              const app = getApp()
-              api.cartNum({
-                shop_id: app.globalData.shopId,
-              }, {
-                Token: wx.getStorageSync('token'),
-                "Device-Type": 'wxapp',
-              }).then((res) => {
-                if (res.data.code == 1) {
-                  // console.log(111115555)
-                  // 购物车右上角数量
-                  let sum = res.data.data.sum;
-                  if (sum !== 0) {
-                    wx.setTabBarBadge({
-                      index: 2,
-                      text: String(sum)
-                    })
-                  } else {
-                    wx.removeTabBarBadge({
-                      index: 2,
-                    });
-                  }
-                }
-              })
-              var pages = getCurrentPages();
-              // console.log(pages)
-              if (pages.length !== 1) {
-                wx.navigateBack({
-                  delta: 1
+          }).then((result) => {
+            // console.log(res);
+            wx.setStorageSync('token', result.token)
+            wx.setStorageSync('sessionKey', result.sessionKey)
+            const app = getApp()
+            api.cartNum({
+              shop_id: app.globalData.shopId,
+            }, {
+              Token: wx.getStorageSync('token'),
+              "Device-Type": 'wxapp',
+            }).then((result) => {
+              // console.log(111115555)
+              // 购物车右上角数量
+              let sum = result.sum;
+              if (sum !== 0) {
+                wx.setTabBarBadge({
+                  index: 2,
+                  text: String(sum)
+                })
+              } else {
+                wx.removeTabBarBadge({
+                  index: 2,
                 });
               }
+            })
+            var pages = getCurrentPages();
+            // console.log(pages)
+            if (pages.length !== 1) {
+              wx.navigateBack({
+                delta: 1
+              });
             }
           })
         }
@@ -112,25 +108,14 @@ const addCart = (e, app, query) => {
   }, {
     Token: wx.getStorageSync('token'),
     "Device-Type": 'wxapp',
-  }).then((res) => {
-    if (res.data.code == 1) {
-      wx.showToast({
-        title: '加入购物车成功',
-        icon: "none",
-        duration: 1000
-      })
-      query(app)
-    } else if (res.data.code == 10001) {
-      wx.navigateTo({
-        url: '../login/login'
-      })
-    } else {
-      wx.showToast({
-        title: res.data.msg,
-        icon: "none",
-        duration: 1200
-      })
-    }
+  }).then((result) => {
+    wx.showToast({
+      title: '加入购物车成功',
+      icon: "none",
+      duration: 1000
+    })
+    query(app)
+
   })
 }
 // tab 购物车徽章
@@ -140,20 +125,18 @@ const queryCart = (app) => {
   }, {
     Token: wx.getStorageSync('token'),
     "Device-Type": 'wxapp',
-  }).then((res) => {
-    if (res.data.code == 1) {
-      // 购物车右上角数量
-      let sum = res.data.data.sum;
-      if (sum !== 0) {
-        wx.setTabBarBadge({
-          index: 2,
-          text: String(sum)
-        })
-      } else {
-        wx.removeTabBarBadge({
-          index: 2,
-        });
-      }
+  }).then((result) => {
+    // 购物车右上角数量
+    let sum = result.sum;
+    if (sum !== 0) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: String(sum)
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 2,
+      });
     }
   })
 }
