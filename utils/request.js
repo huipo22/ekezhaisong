@@ -224,11 +224,6 @@ let search = (data, header) => {
         resolve(apiRequest(apiList.search, 'get', data, header))
     })
 }
-let searchName = (data, header) => {
-    return new Promise((resolve, reject) => {
-        resolve(apiRequest(apiList.searchName, 'get', data, header))
-    })
-}
 //最后需要将具体调用的函数暴露出，给具体业务调用
 export default {
     platfromServe: platfromServe,
@@ -263,4 +258,5 @@ export default {
     phoneGet: phoneGet,
     personList: personList,
     wxpay: wxpay,
+    search:search
 }

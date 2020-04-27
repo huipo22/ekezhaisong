@@ -13,25 +13,21 @@ Page({
   },
   goodType() {
     const that = this;
-    api.goodType().then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          goodType: res.data.data
-        })
-        that.goodGoods(res.data.data[0].id)
-      }
+    api.goodType().then((result) => {
+      that.setData({
+        goodType: result
+      })
+      that.goodGoods(result[0].id)
     })
   },
   goodGoods(goodid) {
     const that = this;
     api.goodGoods({
       good_id: goodid
-    }, {}).then((res) => {
-      if (res.data.code == 1) {
-        that.setData({
-          goodGoods: res.data.data,
-        })
-      }
+    }, {}).then((result) => {
+      that.setData({
+        goodGoods: result,
+      })
     })
   },
   goodIdActive(e) {

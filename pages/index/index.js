@@ -49,8 +49,6 @@ Page({
       this.wheel()
     }).then(() => {
       this.column()
-    }).then(() => {
-      // util.queryCart(app)
     })
 
   },

@@ -33,6 +33,7 @@ let apiList = {
     phoneGet:host+"/api/wxapp/public/phone",//手机号授权
     personList:host+"/api/goods/order/post_list",//代收点
     wxpay:host+"/api/goods/order/test_wxapp_pay",//支付
+    search:host+"/api/goods/goods/search",//搜索
 }
 
 module.exports = apiList; //暴露出来
