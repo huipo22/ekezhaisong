@@ -20,20 +20,17 @@ Page({
     flag: false
   },
   getPhoneNumber(e) {
-    // console.log(e.detail.errMsg)
-    // console.log(e.detail.iv)
-    // console.log(e.detail.encryptedData)
     if (e.detail.errMsg == "getPhoneNumber:ok")
       api.phoneGet({
         sessionKey: wx.getStorageSync('sessionKey'),
         encrypted_data: e.detail.encryptedData,
         iv: e.detail.iv
       }, {}).then(result => {
-          wx.setStorageSync('userPhone', result.phoneNumber);
-          this.setData({
-            mobile: result.phoneNumber,
-            flag: false,
-          })
+        wx.setStorageSync('userPhone', result.phoneNumber);
+        this.setData({
+          mobile: result.phoneNumber,
+          flag: false,
+        })
       })
   },
   /**
@@ -94,64 +91,51 @@ Page({
       address: e.detail
     })
   },
+  toast() {
+    wx.showToast({
+      title: '保存成功',
+      duration: 1500,
+      success: () => {
+        wx.navigateBack({
+          delta: 1
+        });
+      },
+    });
+  },
   // save
   saveTap(e) {
-    // add address
     const addressId = e.currentTarget.dataset.id
+    let obj = {
+      name: this.data.name,
+      mobile: this.data.mobile,
+      address: this.data.address,
+      province: this.data.region[0],
+      city: this.data.region[1],
+      county: this.data.region[2]
+    }
     if (addressId == null) {
-      api.addAddress({
-        name: this.data.name,
-        mobile: this.data.mobile,
-        address: this.data.address,
-        province: this.data.region[0],
-        city: this.data.region[1],
-        county: this.data.region[2]
-      }, {
+      // add address
+      api.addAddress(obj, {
         "Token": wx.getStorageSync("token"),
         "Device-Type": 'wxapp',
-      }).then((result) => {
-        wx.showToast({
-          title: '保存成功',
-          duration: 1500,
-          success: () => {
-            wx.navigateBack({
-              delta: 1
-            });
-          },
-        });
+      }).then(() => {
+        this.toast()
       })
     } else {
       // update adress
-      api.updateAddress({
-        id: addressId,
-        name: this.data.name,
-        mobile: this.data.mobile,
-        address: this.data.address,
-        province: this.data.region[0],
-        city: this.data.region[1],
-        county: this.data.region[2]
-      }, {
+      obj.id = addressId
+      api.updateAddress(obj, {
         "Token": wx.getStorageSync("token"),
         "Device-Type": 'wxapp',
-      }).then(result => {
-        wx.showToast({
-          title: '保存成功',
-          duration: 1500,
-          success: () => {
-            wx.navigateTo({
-              url: '../address/address',
-            });
-          },
-        });
+      }).then(() => {
+        this.toast()
       })
     }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示

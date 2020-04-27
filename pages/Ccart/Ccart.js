@@ -63,10 +63,7 @@ Page({
             content: '确定删除商品?',
             success(res) {
                 if (res.confirm) {
-                    // debugger
                     that.cartDelete(shoppingId, index)
-                    // util.queryCart(app)
-                    // that.getTotalPrice()
                 } else if (res.cancel) {
                     return
                 }
@@ -97,14 +94,14 @@ Page({
             if (selectNum == carts.length) {
                 this.setData({
                     isAllSelect: true,
-                    selectNum:carts.length
+                    selectNum: carts.length
                 })
             } else {
                 this.setData({
                     isAllSelect: false
                 })
             }
-            util.queryCart(app)
+            util.queryCart()
             this.getTotalPrice()
             this.cartQ()
         })
@@ -299,7 +296,6 @@ Page({
                             selectNum++
                         }
                     }
-
                 }
                 that.setData({
                     isAllSelect: true,
@@ -316,9 +312,9 @@ Page({
         })
     },
     onShow: function () {
-        // 查询购物车
-        util.getSetting()
+        //查询购物车数据
         this.cartQuery()
+        // 查询购物车
         util.queryCart(app)
     },
     /**

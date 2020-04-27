@@ -37,7 +37,7 @@ Page({
   },
   // 添加购物车
   addCart(e) {
-    util.addCart(e, app, util.queryCart)
+    util.addCart(e)
   },
   // 加载更多
   loadMore(e) {

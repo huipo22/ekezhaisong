@@ -45,7 +45,7 @@ Page({
   },
   // 添加购物车
   addCart(e) {
-    util.addCart(e, app, util.queryCart)
+    util.addCart(e)
   },
   /**
    * 生命周期函数--监听页面加载

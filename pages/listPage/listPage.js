@@ -92,30 +92,8 @@ Page({
           icon: "none",
           duration: 1000
         })
-        api.cartNum({
-          shop_id: app.globalData.shopId,
-        }, {
-          Token: wx.getStorageSync('token'),
-          "Device-Type": 'wxapp',
-        }).then((result) => {
-            // 购物车右上角数量
-            let sum = result.sum;
-            let that = this;
-            if (sum !== 0) {
-              wx.setTabBarBadge({
-                index: 2,
-                text: String(sum)
-              })
-              that.setData({
-                cartInfo: sum
-              })
-            } else {
-              wx.removeTabBarBadge({
-                index: 2,
-              });
-            }
-        })
-     
+        // 查询购物车
+        util.queryCart(this)
     })
   },
   // 购物车链接

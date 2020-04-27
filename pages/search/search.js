@@ -24,12 +24,6 @@ Page({
       })
     })
   },
-  // 商品链接
-  goodSelect(e) {
-    wx.navigateTo({
-      url: '../goodDetail/goodDetail?goodId=' + e.currentTarget.dataset.goodid,
-    })
-  },
   // 加载更多
   loadMore() {
     let that = this;
@@ -56,7 +50,7 @@ Page({
   },
   // 添加购物车
   addCart(e) {
-    util.addCart(e, app, util.queryCart)
+    util.addCart(e)
   },
   // 商品链接
   goodSelect(e) {

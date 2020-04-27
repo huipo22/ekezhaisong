@@ -48,7 +48,6 @@ Page({
     });
   },
   onShow() {
-    util.getSetting()
     if (wx.getStorageSync("userData")) {
       this.setData({
         userData: JSON.parse(wx.getStorageSync("userData"))

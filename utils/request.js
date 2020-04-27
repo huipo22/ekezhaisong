@@ -26,7 +26,14 @@ const apiRequest = (url, method, data, header) => { //接收所需要的参数�
                         wx.navigateTo({
                             url: '../login/login'
                         });
-                        break
+                        break;
+                    default:
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: "none",
+                            duration: 1200
+                        })
+                        break;
                 }
 
             },
@@ -258,5 +265,5 @@ export default {
     phoneGet: phoneGet,
     personList: personList,
     wxpay: wxpay,
-    search:search
+    search: search
 }

@@ -11,16 +11,12 @@ const formatTime = date => {
   return [hour, minute, second].map(formatNumber).join(':')
 }
 let api = require('./request').default;
-const app = getApp();
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-const searchTap = () => {
-  wx.navigateTo({
-    url: '../search/search',
-  })
-}
+
 // 删除数组中某一项
 const arrayRemoveItem = (arr, delVal) => {
   if (arr instanceof Array) {
@@ -29,20 +25,6 @@ const arrayRemoveItem = (arr, delVal) => {
       return arr.splice(index, 1);
     }
   }
-}
-// 是否授权
-const getSetting = () => {
-  wx.getSetting({
-    success(res) {
-      if (res.authSetting['scope.userInfo']) {
-        return
-      } else {
-        wx.navigateTo({
-          url: '../login/login'
-        })
-      }
-    }
-  })
 }
 
 const login = () => {
@@ -61,32 +43,13 @@ const login = () => {
           }, {
             'AppId': 'wx1c2c5d708d0c4ea9' // 默认值
           }).then((result) => {
-            // console.log(res);
+            // 存缓存 token sessionKey
             wx.setStorageSync('token', result.token)
             wx.setStorageSync('sessionKey', result.sessionKey)
-            const app = getApp()
-            api.cartNum({
-              shop_id: app.globalData.shopId,
-            }, {
-              Token: wx.getStorageSync('token'),
-              "Device-Type": 'wxapp',
-            }).then((result) => {
-              // console.log(111115555)
-              // 购物车右上角数量
-              let sum = result.sum;
-              if (sum !== 0) {
-                wx.setTabBarBadge({
-                  index: 2,
-                  text: String(sum)
-                })
-              } else {
-                wx.removeTabBarBadge({
-                  index: 2,
-                });
-              }
-            })
+            // 查询购物车
+            queryCart()
+            // 授权完返回上一页
             var pages = getCurrentPages();
-            // console.log(pages)
             if (pages.length !== 1) {
               wx.navigateBack({
                 delta: 1
@@ -95,12 +58,12 @@ const login = () => {
           })
         }
       })
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
     }
   })
 }
 // 加入购物车接口
-const addCart = (e, app, query) => {
+const addCart = (e) => {
+  const app = getApp();
   let goodId = e.currentTarget.dataset.goodid;
   api.cartAdd({
     goods_id: goodId,
@@ -114,12 +77,13 @@ const addCart = (e, app, query) => {
       icon: "none",
       duration: 1000
     })
-    query(app)
-
+    // 查询购物车徽章
+    queryCart()
   })
 }
 // tab 购物车徽章
-const queryCart = (app) => {
+const queryCart = (currentObj) => {
+  const app = getApp();
   api.cartNum({
     shop_id: app.globalData.shopId,
   }, {
@@ -133,6 +97,11 @@ const queryCart = (app) => {
         index: 2,
         text: String(sum)
       })
+      if (currentObj) {
+        currentObj.setData({
+          cartInfo: sum
+        })
+      }
     } else {
       wx.removeTabBarBadge({
         index: 2,
@@ -157,9 +126,7 @@ const getCurrentPageArgs = () => {
 module.exports = {
   formatDate: formatDate,
   formatTime: formatTime,
-  searchTap: searchTap,
   arrayRemoveItem: arrayRemoveItem,
-  getSetting: getSetting,
   login: login,
   addCart: addCart,
   cartLink: cartLink,
