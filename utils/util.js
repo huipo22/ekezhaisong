@@ -1,3 +1,4 @@
+let api = require('./request').default;
 const formatDate = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -10,7 +11,6 @@ const formatTime = date => {
   const second = date.getSeconds()
   return [hour, minute, second].map(formatNumber).join(':')
 }
-let api = require('./request').default;
 
 const formatNumber = n => {
   n = n.toString()

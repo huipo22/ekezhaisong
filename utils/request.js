@@ -15,13 +15,6 @@ const apiRequest = (url, method, data, header) => { //接收所需要的参数�
                         //接口调用成功
                         resolve(res.data.data); //根据业务需要resolve接口返回的json的数据
                         break;
-                    case 0:
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon: "none",
-                            duration: 1200
-                        })
-                        break;
                     case 10001:
                         wx.navigateTo({
                             url: '../login/login'

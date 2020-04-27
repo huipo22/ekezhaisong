@@ -146,7 +146,7 @@ Page({
             this.setData({
                 carts: carts
             })
-            util.queryCart(app)
+            util.queryCart()
             this.getTotalPrice()
             this.cartQ()
         })
@@ -282,6 +282,8 @@ Page({
             "Token": wx.getStorageSync("token"),
             "Device-Type": "wxapp"
         }).then((result) => {
+            // 查询购物车
+            util.queryCart()
             that.setData({
                 carts: result
             })
@@ -314,8 +316,6 @@ Page({
     onShow: function () {
         //查询购物车数据
         this.cartQuery()
-        // 查询购物车
-        util.queryCart(app)
     },
     /**
      * 用户点击右上角分享
