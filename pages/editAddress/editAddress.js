@@ -28,15 +28,12 @@ Page({
         sessionKey: wx.getStorageSync('sessionKey'),
         encrypted_data: e.detail.encryptedData,
         iv: e.detail.iv
-      }, {}).then(res => {
-        // console.log(res)
-        if (res.data.code == 1) {
-          wx.setStorageSync('userPhone', res.data.msg.phoneNumber);
+      }, {}).then(result => {
+          wx.setStorageSync('userPhone', result.phoneNumber);
           this.setData({
-            mobile: res.data.msg.phoneNumber,
+            mobile: result.phoneNumber,
             flag: false,
           })
-        }
       })
   },
   /**

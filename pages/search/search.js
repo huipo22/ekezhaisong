@@ -47,7 +47,7 @@ Page({
         })
       } else {
         that.setData({
-          goodsList: oldData.concat(result),
+          goodList: oldData.concat(result),
           noneFlag: false,
           page: pp,
         })
