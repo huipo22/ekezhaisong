@@ -11,7 +11,10 @@
     "van-tabs": "../../dist/vant/tabs/index",
     "van-notice-bar": "../../dist/vant/notice-bar/index",
     "add-tips": "../../dist/weplug-add-tips-master/index",
-    "van-loading": "../../dist/vant/loading/index"
+    "van-loading": "../../dist/vant/loading/index",
+    "van-row": "../../dist/vant/row/index",
+    "van-col": "../../dist/vant/col/index",
+    "van-count-down": "../../dist/vant/count-down/index"
   },
   "navigationBarTitleText": ""
 }

@@ -15,11 +15,6 @@ Page({
         totalMoney: 0,
         selectNum: 0
     },
-    // 商品详情
-    detailPage(e) {
-        const goodId = e.currentTarget.dataset.goodid
-        util.navigateTo('../detail/detail?goodId=' + goodId)
-    },
     /**
      * 生命周期函数--监听页面加载
      */

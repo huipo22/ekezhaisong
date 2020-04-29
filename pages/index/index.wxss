@@ -1,9 +1,12 @@
 /**index.wxss**/
 
+.container {
+  background: #eee;
+}
+
 .page-section {
   width: 100%;
   background: #fff;
-  margin: 0 0 15rpx 0;
 }
 
 .juzhen {
@@ -106,4 +109,68 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.secondView {
+  width: 100%;
+  margin: 20rpx 0 0 0;
+  background: #fff;
+}
+
+.secondView>.row, .col {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.name::before {
+  content: ' ';
+  border-left: 3px solid #00a046;
+  display: inline-block;
+  height: 16px;
+  position: absolute;
+  left: 2%;
+}
+
+.imgView {
+  width: 30%;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.itemImg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itemTitle {
+  height: 60rpx;
+  font-size: 26rpx;
+}
+.itemTitle>.title{
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.itemDec {
+  height: 80rpx;
+  font-size: 24rpx;
+}
+
+.colprice {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.colcart {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -18,6 +18,7 @@ Page({
     cateList: null, //6列数据
     recommend: null,
     take: '',
+    time: 30 * 60 * 60 * 1000
   },
   zhibo() {
     wx.navigateTo({

@@ -88,7 +88,7 @@
       <van-row custom-class="row">
         <van-col span="6" custom-class="col Title" offset="1">备注</van-col>
         <van-col span="17" custom-class="col Title">
-          <input type="text" value="{{ remark }}" label="备注" placeholder="请输入备注" />
+          <input type="text" value="{{ remark }}" label="备注" placeholder="请输入备注" bindblur="remarkEvent"/>
         </van-col>
       </van-row>
     </view>

@@ -23,5 +23,41 @@
 	</view>
 	<!-- 通告栏 -->
 	<van-notice-bar left-icon="volume-o" scrollable="true" style="width:100%" text="{{take}}" />
-
+	<!-- 限时抢购 -->
+	<view class="secondView">
+		<van-row custom-class="row">
+			<van-col span="6" offset="1" custom-class="col name">限时抢购</van-col>
+			<van-col span="6" custom-class="col">
+				<van-count-down time="{{ time }}" />
+			</van-col>
+		</van-row>
+		<van-row>
+			<scroll-view scroll-x="true" style="width:100%;white-space: nowrap;">
+				<block wx:for="{{cateList}}" wx:for-item="item">
+					<view class="imgView">
+						<van-row custom-class="itemImg">
+							<van-image src="{{resourse+item.img}}" width="4.5rem" height="4.5rem"></van-image>
+						</van-row>
+						<van-row custom-class="itemTitle">
+							<van-col offset="2" span="22" custom-class="title">
+								{{item.name}}
+							</van-col>
+						</van-row>
+						<van-row custom-class="itemDec">
+							<van-col span="12" custom-class="colprice" offset="2">
+								<van-row>19.00</van-row>
+								<van-row>16.00</van-row>
+							</van-col>
+							<van-col span="10" custom-class="colcart">
+								<view class="cartIcon">
+									<image src="../../dist/icon2/cartLink.png" style="width:50rpx;height:50rpx" catch:tap="addCart" data-cart="{{items}}" data-goodid="{{items.id}}" mode="aspectFit" lazy-load="true"></image>
+								</view>
+							</van-col>
+						</van-row>
+					</view>
+					
+				</block>
+			</scroll-view>
+		</van-row>
+	</view>
 </view>

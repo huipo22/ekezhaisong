@@ -23,6 +23,12 @@ Page({
     selectPerson: null,
     settlePrice: null,
   },
+  // 备注
+  remarkEvent(event){
+    this.setData({
+      remark:event.detail.value
+    })
+  },
   // 选择县城内外
   onChange(event) {
     this.setData({
