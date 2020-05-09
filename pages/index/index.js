@@ -7,7 +7,6 @@ let api = require('../../utils/request').default;
 Page({
   data: {
     imgUrls: [], //轮播图
-    shopsData: null, //商品分类
     resourse: app.globalData.resource, //图片域名
     indicatorDots: true, //小点
     indicatorColor: "white", //指示点颜色
@@ -16,9 +15,11 @@ Page({
     interval: 2000, //间隔时间
     duration: 400, //滑动时间
     cateList: null, //6列数据
-    recommend: null,
     take: '',
-    time: 30 * 60 * 60 * 1000
+    time: 30 * 60 * 60 * 1000,
+    secondData: null, //限时抢购
+    thirdData: null, //第三方店铺
+    goodType: null, //三个活动
   },
   zhibo() {
     wx.navigateTo({
@@ -37,6 +38,7 @@ Page({
       this.setData({
         take: result.take
       })
+      // 关闭页面链接
       let currentTime = Math.round(new Date().getTime() / 1000).toString();
       console.log(currentTime + "-" + result.start_time)
       if (currentTime < result.start_time || currentTime > result.end_time) {
@@ -50,12 +52,35 @@ Page({
       this.wheel()
     }).then(() => {
       this.column()
+    }).then(() => {
+      this.secondFun()
+    }).then(() => {
+      this.thirdFun()
+    }).then(() => {
+      this.goodType()
     })
 
   },
+  //三个活动
+  goodType() {
+    const that = this;
+    api.goodType().then((result) => {
+      that.setData({
+        goodType: result
+      })
+    })
+  },
+  // 活动链接
+  activeTap(e) {
+    const typeId = e.currentTarget.dataset.typeid
+    console.log(typeId)
+    wx.navigateTo({
+      url: '../activePage/activePage?typeId=' + typeId,
+    })
+  },
+  // 轮播图
   wheel() {
     const that = this;
-    // 轮播图
     api.wheel({
       shop_id: app.globalData.shopId
     }).then((result) => {
@@ -64,19 +89,29 @@ Page({
       })
     })
   },
-
-  goodR() {
-    const that = this;
-    // 好物推荐
-    api.goodSub().then((result) => {
-      that.setData({
-        recommend: result
-      })
+  // 限时抢购
+  secondFun() {},
+  //第三方店铺
+  thirdFun() {},
+  // 限时抢购链接
+  secondLink(e) {
+    const goodId = e.currentTarget.dataset.goodid
+    console.log(goodId)
+    wx.navigateTo({
+      url: '../goodDetail/goodDetail?goodId=' + goodId,
     })
   },
+  // 第三方店铺链接
+  thirdLink(e) {
+    const shopId = e.currentTarget.dataset.shopid
+    console.log(shopId)
+    wx.navigateTo({
+      url: '../shop/shop?shopId=' + shopId,
+    })
+  },
+  // 首页5列数据
   column() {
     const that = this;
-    // 首页5列数据
     api.homeCategory({
       shop_id: app.globalData.shopId
     }).then((result) => {

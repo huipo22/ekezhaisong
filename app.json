@@ -15,7 +15,8 @@
     "pages/Ccart/Ccart",
     "pages/orderList/orderList",
     "pages/listPage/listPage",
-    "pages/close/close"
+    "pages/close/close",
+    "pages/shop/shop"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -31,7 +32,8 @@
     "selectedColor": "#00a046",
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "买菜",
         "iconPath": "./dist/icon2/caidan.png",
@@ -69,5 +71,4 @@
       "provider": "wx2b03c6e691cd7370"
     }
   }
-
 }

@@ -10,23 +10,31 @@ const apiRequest = (url, method, data, header) => { //接收所需要的参数�
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success: function (res) {
-                switch (res.data.code) {
-                    case 1:
-                        //接口调用成功
-                        resolve(res.data.data); //根据业务需要resolve接口返回的json的数据
-                        break;
-                    case 10001:
-                        wx.navigateTo({
-                            url: '../login/login'
-                        });
-                        break;
-                    default:
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon: "none",
-                            duration: 1200
-                        })
-                        break;
+                if (res.statusCode == 500) {
+                    wx.showToast({
+                        title: '数据错误',
+                        icon: "none",
+                        duration: 1200,
+                    })
+                } else {
+                    switch (res.data.code) {
+                        case 1:
+                            //接口调用成功
+                            resolve(res.data.data); //根据业务需要resolve接口返回的json的数据
+                            break;
+                        case 10001:
+                            wx.navigateTo({
+                                url: '../login/login'
+                            });
+                            break;
+                        default:
+                            wx.showToast({
+                                title: res.data.msg,
+                                icon: "none",
+                                duration: 1200
+                            })
+                            break;
+                    }
                 }
 
             },

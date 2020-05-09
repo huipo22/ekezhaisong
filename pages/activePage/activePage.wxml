@@ -1,6 +1,9 @@
 <!-- pages/activePage.wxml -->
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <view class="container">
+    <view class="infoBox">
+        <van-icon name="shopping-cart" info="{{cartInfo==0?'':cartInfo}}" size="45px" color="#00a046" catch:tap="cartLink" />
+    </view>
     <scroll-view scroll-x="true" class="tab {{tabFix}}" id="tab">
         <block wx:for="{{goodType}}" wx:key="index">
             <view wx:for-item="item" wx:key="index" catch:tap="goodIdActive" data-id="{{item.id}}" class="viewName {{active==item.id?'activeTab':''}}">

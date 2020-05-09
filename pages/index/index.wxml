@@ -1,7 +1,7 @@
 <add-tips text="点击后,选择[添加到我的小程序]微信首页下拉即可快速访问" />
 <view class="container">
 	<!-- 搜索框 -->
-	<search-com style="width:100%;"></search-com>
+	<search-com style="width:100%;background:#fff"></search-com>
 	<view class="slideImage">
 		<!-- 轮播图 -->
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" circular="true">
@@ -33,8 +33,8 @@
 		</van-row>
 		<van-row>
 			<scroll-view scroll-x="true" style="width:100%;white-space: nowrap;">
-				<block wx:for="{{cateList}}" wx:for-item="item">
-					<view class="imgView">
+				<block wx:for="{{cateList}}" wx:for-item="item" wx:key="index">
+					<view class="imgView" catch:tap="secondLink" data-goodId="{{1}}">
 						<van-row custom-class="itemImg">
 							<van-image src="{{resourse+item.img}}" width="4.5rem" height="4.5rem"></van-image>
 						</van-row>
@@ -45,8 +45,8 @@
 						</van-row>
 						<van-row custom-class="itemDec">
 							<van-col span="12" custom-class="colprice" offset="2">
-								<van-row>19.00</van-row>
-								<van-row>16.00</van-row>
+								<van-row>¥19.00</van-row>
+								<van-row>¥16.00</van-row>
 							</van-col>
 							<van-col span="10" custom-class="colcart">
 								<view class="cartIcon">
@@ -60,4 +60,30 @@
 			</scroll-view>
 		</van-row>
 	</view>
+	<!-- 第三方店铺 -->
+	<view class="thirdView">
+		<van-row>
+			<van-col span="6" offset="1" custom-class="col name">附近商家</van-col>
+		</van-row>
+		<van-row catch:tap="thirdLink" data-shopId="{{2}}">
+			<van-col span="7" custom-class="shopImg">
+				<van-image src="{{}}" width="4.5rem" height="4.5rem"></van-image>
+			</van-col>
+			<van-col span="17">
+				<van-row>店铺名称</van-row>
+				<van-row>店铺描述</van-row>
+				<van-row>店铺地址</van-row>
+				<van-row>店铺标签</van-row>
+			</van-col>
+		</van-row>
+	</view>
+	<!-- 页面活动 新品抢先 -->
+	<view class="fourView">
+		<scroll-view scroll-x="true" style="width:100%;white-space: nowrap;">
+		<block wx:for="{{goodType}}" wx:for-item="item" wx:key="index">
+			<view class="activeName" catch:tap="activeTap" data-typeId="{{item.id}}">{{item.name}}</view>
+		</block>	  
+		</scroll-view>
+	</view>
+	  
 </view>

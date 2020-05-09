@@ -95,7 +95,6 @@ Page({
     wx.navigateTo({
       url: '../selectAddress/selectAddress'
     });
-
   },
   // 提交事件
   submitTap() {
@@ -120,12 +119,10 @@ Page({
     } else {
       // 地址
       let addressId = null
-      if (settResult.address_info !== null) {
-        addressId = settResult.address_info.id
-      } else if (this.data.parmsData !== null) {
+      if (this.data.parmsData !== null) {
         addressId = this.data.parmsData.id
       } else {
-        addressId = null
+        addressId = settResult.address_info.id
       }
       // 价格
       let Price;
@@ -277,14 +274,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    wx.removeStorageSync('switchData');
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    wx.removeStorageSync('switchData');
   },
 
   /**

@@ -18,7 +18,7 @@
       </view>
       <scroll-view scroll-y="true" style="height: 100%;" scroll-with-animation="true" bindscrolltolower="loadMore" wx:else>
         <view>
-          <van-card title="{{item.goods_name}}" class="card" wx:for="{{rightList}}" wx:for-item="item" wx:key="index" catch:tap="{{item.goods_num==0?'':'goodSelect'}}" data-goodid="{{item.id}}" mode="aspectFit" class="card" desc="{{item.remark}}" title-class="cardTitle">
+          <van-card title="{{item.goods_name}}" class="card" wx:for="{{rightList}}" wx:for-item="item" wx:key="index" catch:tap="{{item.goods_num==0?'':'goodSelect'}}" data-goodid="{{item.id}}" mode="aspectFit" class="card" desc="{{item.remark}}" desc-class="descClass" title-class="cardTitle">
             <view class="subscrbeImg" slot="thumb">
               <van-image width="100%" height="100%" src="{{resource+item.goods_img}}" fit="contain" class="{{item.goods_num==0?'zhezhao':''}}"></van-image>
             </view>

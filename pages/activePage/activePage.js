@@ -10,6 +10,7 @@ Page({
     active: 1,
     goodType: [],
     goodGoods: [],
+    resourse: app.globalData.resource, //图片域名
   },
   goodType() {
     const that = this;
@@ -45,7 +46,22 @@ Page({
   },
   // 添加购物车
   addCart(e) {
-    util.addCart(e)
+    let goodId = e.currentTarget.dataset.goodid;
+    api.cartAdd({
+      goods_id: goodId,
+      shop_id: app.globalData.shopId
+    }, {
+      Token: wx.getStorageSync('token'),
+      "Device-Type": 'wxapp',
+    }).then((res) => {
+      wx.showToast({
+        title: '加入购物车成功',
+        icon: "none",
+        duration: 1000
+      })
+      // 查询购物车
+      util.queryCart(this)
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -65,7 +81,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.goodType()
+    let option = util.getCurrentPageArgs();
+    const typeId = option.typeId
+    this.setData({
+      active: typeId,
+    })
+    this.goodType(typeId)
+    this.cartQ(app)
+    // this.goodType()
     let me = this;
     const query = wx.createSelectorQuery();
     query.select("#tab").boundingClientRect(function (res) {
@@ -73,7 +96,19 @@ Page({
       me.data.tabTop = res.bottom + res.height
     }).exec()
   },
-
+  cartQ(app) {
+    let that = this;
+    api.cartNum({
+      shop_id: app.globalData.shopId
+    }, {
+      Token: wx.getStorageSync('token'),
+      "Device-Type": 'wxapp',
+    }).then((result) => {
+      that.setData({
+        cartInfo: result.sum
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -1,1 +1,116 @@
-/* pages/activePage.wxss */
+/**index.wxss**/
+
+.page-section {
+  width: 100%;
+  background: #fff;
+  margin: 0 0 15rpx 0;
+}
+
+.juzhen {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.grid {
+  width: 100%;
+}
+
+.cate-name {
+  width: 100%;
+  font-size: 25rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.van-grid-item__content {
+  padding: 5px !important;
+}
+
+.cart-bo {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.priceBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartIcon {
+  display: flex;
+  align-items: center;
+}
+
+.Fixed {
+  position: fixed;
+  top: 0;
+  margin-top: 0;
+  z-index: 99999
+}
+
+.tab {
+  white-space: nowrap;
+  height: 80rpx;
+  background: #fff;
+}
+
+.titleView {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #fff;
+}
+
+.titleView view {
+  /* flex: 1;
+    display: flex; */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  display: inline-block
+}
+
+.activeTab {
+  position: relative;
+  /* border-bottom: 2rpx solid red; */
+}
+
+.activeTab:after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 50%;
+  height: 2px;
+  transform: translate(-50%, 0);
+  background-color: red;
+}
+
+.viewName {
+  display: inline-block;
+  width: 33%;
+  height: 95%;
+  text-align: center;
+  line-height: 80rpx
+}
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoBox {
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+  z-index: 999;
+}

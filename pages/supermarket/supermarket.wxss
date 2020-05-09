@@ -240,8 +240,15 @@
   padding: 4rpx 25rpx;
   font-size: 22rpx;
 }
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
   color: transparent;
+}
+
+.descClass {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

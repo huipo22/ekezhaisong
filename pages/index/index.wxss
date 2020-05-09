@@ -111,7 +111,7 @@
   align-items: center;
 }
 
-.secondView {
+.secondView, .thirdView {
   width: 100%;
   margin: 20rpx 0 0 0;
   background: #fff;
@@ -142,20 +142,24 @@
   display: inline-block;
   box-sizing: border-box;
 }
-.itemImg{
+
+.itemImg {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .itemTitle {
   height: 60rpx;
   font-size: 26rpx;
 }
-.itemTitle>.title{
+
+.itemTitle>.title {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
 }
+
 .itemDec {
   height: 80rpx;
   font-size: 24rpx;
@@ -173,4 +177,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.shopImg {
+  box-sizing: border-box;
+  padding: 0 .5rem;
+}
+
+.activeName {
+  width: 30%;
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 15rpx 0;
+}
+
+.fourView {
+  width: 100%;
+  margin: 20rpx 0 0 0;
+  background: #fff;
 }
