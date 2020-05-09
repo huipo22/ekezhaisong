@@ -58,6 +58,8 @@ Page({
       this.thirdFun()
     }).then(() => {
       this.goodType()
+    }).then(()=>{
+      util.queryCart()
     })
 
   },

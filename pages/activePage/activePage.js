@@ -67,7 +67,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let option = util.getCurrentPageArgs();
+    const typeId = option.typeId
+    this.setData({
+      active: typeId,
+    })
+    this.goodType(typeId)
+    this.cartQ(app)
+    let me = this;
+    const query = wx.createSelectorQuery();
+    query.select("#tab").boundingClientRect(function (res) {
+      console.log(res)
+      me.data.tabTop = res.bottom + res.height
+    }).exec()
   },
 
   /**
@@ -81,20 +93,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let option = util.getCurrentPageArgs();
-    const typeId = option.typeId
-    this.setData({
-      active: typeId,
-    })
-    this.goodType(typeId)
-    this.cartQ(app)
-    // this.goodType()
-    let me = this;
-    const query = wx.createSelectorQuery();
-    query.select("#tab").boundingClientRect(function (res) {
-      console.log(res)
-      me.data.tabTop = res.bottom + res.height
-    }).exec()
+
   },
   cartQ(app) {
     let that = this;

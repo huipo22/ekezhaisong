@@ -23,9 +23,21 @@ const apiRequest = (url, method, data, header) => { //接收所需要的参数�
                             resolve(res.data.data); //根据业务需要resolve接口返回的json的数据
                             break;
                         case 10001:
-                            wx.navigateTo({
-                                url: '../login/login'
-                            });
+                            wx.showModal({
+                                title: '提示',
+                                content: '您未登录,是否登录',
+                                success(res) {
+                                    if (res.confirm) {
+                                        console.log('用户点击确定')
+                                        wx.navigateTo({
+                                            url: '../login/login'
+                                        });
+                                    } else if (res.cancel) {
+                                        console.log('用户点击取消')
+                                    }
+                                }
+                            })
+
                             break;
                         default:
                             wx.showToast({
