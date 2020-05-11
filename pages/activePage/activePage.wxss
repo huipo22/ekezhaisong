@@ -114,3 +114,8 @@
   left: 5%;
   z-index: 999;
 }
+.descClass {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

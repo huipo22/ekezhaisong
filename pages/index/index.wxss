@@ -185,7 +185,7 @@
 }
 
 .activeName {
-  width: 30%;
+  width: 33%;
   display: inline-block;
   box-sizing: border-box;
   text-align: center;
@@ -196,4 +196,8 @@
   width: 100%;
   margin: 20rpx 0 0 0;
   background: #fff;
+}
+.van-count-down{
+  font-size: 12px!important;
+  color: red!important;
 }

@@ -14,7 +14,8 @@
     "van-loading": "../../dist/vant/loading/index",
     "van-row": "../../dist/vant/row/index",
     "van-col": "../../dist/vant/col/index",
-    "van-count-down": "../../dist/vant/count-down/index"
+    "van-count-down": "../../dist/vant/count-down/index",
+    "van-toast": "../../dist/vant/toast/index"
   },
   "navigationBarTitleText": ""
 }

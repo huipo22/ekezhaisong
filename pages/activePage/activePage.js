@@ -81,7 +81,10 @@ Page({
       me.data.tabTop = res.bottom + res.height
     }).exec()
   },
-
+  // 购物车链接
+  cartLink() {
+    util.cartLink()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

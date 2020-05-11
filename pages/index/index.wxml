@@ -1,4 +1,5 @@
 <add-tips text="点击后,选择[添加到我的小程序]微信首页下拉即可快速访问" />
+<van-toast id="van-toast" />
 <view class="container">
 	<!-- 搜索框 -->
 	<search-com style="width:100%;background:#fff"></search-com>
@@ -24,11 +25,11 @@
 	<!-- 通告栏 -->
 	<van-notice-bar left-icon="volume-o" scrollable="true" style="width:100%" text="{{take}}" />
 	<!-- 限时抢购 -->
-	<view class="secondView">
+	<view class="secondView" wx:if="{{countShow}}">
 		<van-row custom-class="row">
 			<van-col span="6" offset="1" custom-class="col name">限时抢购</van-col>
 			<van-col span="6" custom-class="col">
-				<van-count-down time="{{ time }}" />
+				<van-count-down time="{{ time }}"  bind:finish="finish"/>
 			</van-col>
 		</van-row>
 		<van-row>
@@ -81,6 +82,7 @@
 	<view class="fourView">
 		<scroll-view scroll-x="true" style="width:100%;white-space: nowrap;">
 		<block wx:for="{{goodType}}" wx:for-item="item" wx:key="index">
+			<view class="activeName" catch:tap="activeTap" data-typeId="{{item.id}}">{{item.name}}</view>
 			<view class="activeName" catch:tap="activeTap" data-typeId="{{item.id}}">{{item.name}}</view>
 		</block>	  
 		</scroll-view>

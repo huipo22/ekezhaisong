@@ -12,7 +12,7 @@
         </block>
     </scroll-view>
     <view style="width:100%">
-        <van-card title="{{items.goods_name}}" desc="{{items.remark}}" class="card" wx:for="{{goodGoods}}" wx:for-item="items" wx:key="index" catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{items.id}}" title-class="cardTitle">
+        <van-card title="{{items.goods_name}}" desc="{{items.remark}}" class="card" wx:for="{{goodGoods}}" wx:for-item="items" wx:key="index" catch:tap="{{items.goods_num==0?'':'goodSelect'}}" data-goodid="{{items.id}}" desc-class="descClass" title-class="cardTitle">
             <view class="subscrbeImg" slot="thumb">
                 <van-image width="100%" height="100%" src="{{resourse+items.goods_img}}" fit="contain" class="{{items.goods_num==0?'zhezhao':''}}"></van-image>
             </view>

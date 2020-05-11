@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp();
 import util from '../../utils/util'
+import Toast from '../../dist/vant/toast/toast';
 let api = require('../../utils/request').default;
 
 Page({
@@ -16,10 +17,11 @@ Page({
     duration: 400, //滑动时间
     cateList: null, //6列数据
     take: '',
-    time: 30 * 60 * 60 * 1000,
+    time: null,
     secondData: null, //限时抢购
     thirdData: null, //第三方店铺
     goodType: null, //三个活动
+    countShow:true,//倒计时是否显示
   },
   zhibo() {
     wx.navigateTo({
@@ -27,6 +29,9 @@ Page({
     })
   },
   onShow() {
+    // 倒计时
+    let nowTime = new Date().getTime()
+    let endTime = new Date('2020/5/30 17:39').getTime()
     // 全局手机号
     api.globalPhone({
       shop_id: app.globalData.shopId
@@ -36,7 +41,8 @@ Page({
         title: "e刻宅送",
       })
       this.setData({
-        take: result.take
+        take: result.take,
+        time: endTime - nowTime
       })
       // 关闭页面链接
       let currentTime = Math.round(new Date().getTime() / 1000).toString();
@@ -58,10 +64,17 @@ Page({
       this.thirdFun()
     }).then(() => {
       this.goodType()
-    }).then(()=>{
+    }).then(() => {
       util.queryCart()
     })
 
+  },
+  // 倒计时结束
+  finish(){
+    Toast('限时抢购结束');
+    this.setData({
+      countShow:false
+    })
   },
   //三个活动
   goodType() {
